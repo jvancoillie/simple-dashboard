@@ -1,0 +1,99 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Dashboard{% endblock %}
+{% block body_id 'dashboard' %}
+
+{% block header %}{% endblock header %}
+{% block body %}
+
+    <div class="d-flex h-100">
+        <div class="w-66 bg-white  h-100">
+            <div id="section1" class="section h-50 text-white">
+                <div class="section-inner h-100">
+                    <div class="d-flex h-100 align-items-center">
+                        <div class="section-header w-50 text-white">
+                            <div class="content">
+                                <div class="section-logo">
+                                    <i class="fas fa-utensils text-white fa-4x my-auto d-block text-center"></i>
+                                </div>
+                                <h2 class="text-center">{{ 'dashboard.menu.title'|trans }}</h2>
+                            </div>
+                        </div>
+                        <div class="section-content w-50">
+                            <div id="carouselExampleSlidesOnly" class="carousel slide" data-ride="carousel">
+                                <div class="carousel-inner">
+                                    {% for event in widgets.Menu %}
+                                        <div class="carousel-item  {% if loop.first %} active {% endif %}">
+                                            <div class="w-100 d-block">
+                                                {{ event.content|md2html }}
+                                            </div>
+                                        </div>
+                                    {% else %}
+                                        <p>Aucun menu</p>
+                                    {% endfor %}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div id="section2" class="section h-50 text-white">
+                <div class="section-inner h-100">
+                    <div class="d-flex h-100 align-items-center">
+
+                        <div class="section-content w-50">
+                            {% for event in widgets.Birthday %}
+                                <div class="w-100 d-block">
+                                    {{ event.content|md2html }}
+                                </div>
+                            {% else %}
+                                <p>Aucun anniversaire</p>
+                            {% endfor %}
+                        </div>
+                        <div class="section-header w-50 text-white">
+                            <div class="section-logo">
+                                <i class="fas fa-birthday-cake text-white fa-4x my-auto d-block text-center"></i>
+                            </div>
+                            <h2 class="text-center">{{ 'dashboard.birthday.title'|trans }}</h2>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <div class="w-33">
+            <div class="d-flex flex-column h-100">
+                <div class="ww-wrapper border-bottom">
+                    <div class="ww-row">
+                        <div class="weatherCard weatherCard1"></div>
+                    </div>
+                </div>
+                <div class="information-content flex-grow-1 p-2">
+                            <h5 class="card-title text-center">
+                                <i class="fas fa-info-circle"></i>
+                                {{ 'dashboard.information.title'|trans }}
+                            </h5>
+                            <div class="content">
+                                {% for event in widgets.News %}
+                                        {{ event.content|md2html }}
+                                {% else %}
+                                    <p>Aucune Information</p>
+                                {% endfor %}
+                            </div>
+                </div>
+                <div class="date d-flex w-100 p-3">
+                    <div class="w-50  align-self-end">
+                        <div id="time"></div>
+                    </div>
+                    <div class="w-50 ">
+                        <div id="day" class="text-right">{{ 'now'|localizeddate('none', 'none', null, null, "d") }}</div>
+                        <div id="month" class="text-right">{{ 'now'|localizeddate('none', 'none', null, null, "MMMM") }}</div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+{% endblock %}

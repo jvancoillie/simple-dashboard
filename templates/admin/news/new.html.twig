@@ -1,0 +1,13 @@
+{% extends 'admin/layout.html.twig' %}
+
+{% block title %}New News{% endblock %}
+
+{% block main %}
+    <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+        <h1 class="h2">{{ 'news.create.title'|trans }}</h1>
+    </div>
+
+    {{ include('admin/news/_form.html.twig') }}
+
+    <a href="{{ path('admin_news_index') }}">{{ 'action.back_to_list'|trans }}</a>
+{% endblock %}

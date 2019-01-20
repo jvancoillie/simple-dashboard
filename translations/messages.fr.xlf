@@ -1,0 +1,168 @@
+<?xml version="1.0"?>
+<xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
+    <file source-language="en" target-language="fr" datatype="plaintext" original="file.ext">
+        <body>
+            <!-- dashboard translations-->
+            <trans-unit id="dashboard.menu.title">
+                <source>dashboard.menu.title</source>
+                <target>Menu</target>
+            </trans-unit>
+            <trans-unit id="dashboard.birthday.title">
+                <source>dashboard.birthday.title</source>
+                <target>Anniversaire</target>
+            </trans-unit>
+            <trans-unit id="dashboard.information.title">
+                <source>dashboard.information.title</source>
+                <target>Info du jour</target>
+            </trans-unit>
+            <!-- Birthday translations-->
+            <trans-unit id="birthday.title">
+                <source>birthday.title</source>
+                <target>Liste des anniversaires</target>
+            </trans-unit>
+            <trans-unit id="birthday.create.title">
+                <source>birthday.create.title</source>
+                <target>Ajouter un anniversaire</target>
+            </trans-unit>
+            <trans-unit id="birthday.edit.title">
+                <source>birthday.edit.title</source>
+                <target>Modifier un anniversaire</target>
+            </trans-unit>
+            <trans-unit id="birthday.firstname">
+                <source>birthday.firstname</source>
+                <target>Prénom</target>
+            </trans-unit>
+            <trans-unit id="birthday.lastname">
+                <source>birthday.lastname</source>
+                <target>Nom</target>
+            </trans-unit>
+            <trans-unit id="birthday.date">
+                <source>birthday.date</source>
+                <target>Date d'anniversaire</target>
+            </trans-unit>
+            <trans-unit id="birthday.action.add">
+                <source>birthday.action.add</source>
+                <target>Ajouter un anniversaire</target>
+            </trans-unit>
+
+            <!-- Menu translations-->
+            <trans-unit id="menu.title">
+                <source>menu.title</source>
+                <target>Liste des menus</target>
+            </trans-unit>
+            <trans-unit id="menu.create.title">
+                <source>menu.create.title</source>
+                <target>Ajouter un menu</target>
+            </trans-unit>
+            <trans-unit id="menu.edit.title">
+                <source>menu.edit.title</source>
+                <target>Modifier un menu</target>
+            </trans-unit>
+            <trans-unit id="menu.publish_at">
+                <source>menu.publish_at</source>
+                <target>Date</target>
+            </trans-unit>
+            <trans-unit id="menu.content">
+                <source>menu.content</source>
+                <target>Contenu</target>
+            </trans-unit>
+            <trans-unit id="menu.action.add">
+                <source>menu.action.add</source>
+                <target>Ajouter un menu</target>
+            </trans-unit>
+
+            <!-- News translations-->
+            <trans-unit id="news.title">
+                <source>news.title</source>
+                <target>Liste des informations</target>
+            </trans-unit>
+            <trans-unit id="news.create.title">
+                <source>news.create.title</source>
+                <target>Ajouter une information</target>
+            </trans-unit>
+            <trans-unit id="news.edit.title">
+                <source>news.edit.title</source>
+                <target>Modifier une information</target>
+            </trans-unit>
+            <trans-unit id="news.publish_at">
+                <source>news.publish_at</source>
+                <target>Date</target>
+            </trans-unit>
+            <trans-unit id="news.content">
+                <source>news.content</source>
+                <target>Contenu</target>
+            </trans-unit>
+            <trans-unit id="news.action.add">
+                <source>news.action.add</source>
+                <target>Ajouter une information</target>
+            </trans-unit>
+
+            <!-- Navabr translations-->
+            <trans-unit id="menu.birthday">
+                <source>menu.birthday</source>
+                <target>Anniversaires</target>
+            </trans-unit>
+            <trans-unit id="menu.menu">
+                <source>menu.menu</source>
+                <target>Menus</target>
+            </trans-unit>
+            <trans-unit id="menu.news">
+                <source>menu.news</source>
+                <target>Informations</target>
+            </trans-unit>
+
+            <trans-unit id="table.actions">
+                <source>table.actions</source>
+                <target>Actions</target>
+            </trans-unit>
+
+            <!-- Modal import translations-->
+            <trans-unit id="modal.cancel">
+                <source>modal.cancel</source>
+                <target>Annuler</target>
+            </trans-unit>
+            <trans-unit id="modal.import.title">
+                <source>modal.import.title</source>
+                <target>Importer des données</target>
+            </trans-unit>
+
+            <!-- Common actions translations-->
+            <trans-unit id="action.sign.out">
+                <source>action.sign.out</source>
+                <target>Déconnexion</target>
+            </trans-unit>
+            <trans-unit id="action.save">
+                <source>action.save</source>
+                <target>Enregistrer</target>
+            </trans-unit>
+            <trans-unit id="action.update">
+                <source>action.update</source>
+                <target>Modifier</target>
+            </trans-unit>
+            <trans-unit id="action.delete">
+                <source>action.delete</source>
+                <target>Supprimer</target>
+            </trans-unit>
+            <trans-unit id="action.back_to_list">
+                <source>action.back_to_list</source>
+                <target>Retour à la liste</target>
+            </trans-unit>
+            <trans-unit id="no_records">
+                <source>no_records</source>
+                <target>Aucun enregistrement</target>
+            </trans-unit>
+
+
+
+
+            <trans-unit id="action.import">
+                <source>action.import</source>
+                <target>Importer</target>
+            </trans-unit>
+            <trans-unit id="action.truncate">
+                <source>action.truncate</source>
+                <target>Vider</target>
+            </trans-unit>
+        </body>
+    </file>
+</xliff>
