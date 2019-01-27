@@ -16,28 +16,12 @@ Encore
     .splitEntryChunks()
     .enableSingleRuntimeChunk()
     .autoProvideVariables({
-        moment: 'moment',
-        snapsvg: 'snapsvg'
+        moment: 'moment'
     })
     .addPlugin(new webpack.IgnorePlugin(/^\.\/locale$/, /moment$/))
-    .addRule({
-        test: require.resolve('snapsvg/dist/snap.svg.js'),
-        use: 'imports-loader?this=>window,fix=>module.exports=0',
-    })
-    .addAliases({
-        snapsvg: 'snapsvg/dist/snap.svg.js',
-    })
+    .enablePostCssLoader()
     .copyFiles({
         from: './assets/images',
-
-        // optional target path, relative to the output dir
-        //to: 'images/[path][name].[ext]',
-
-        // if versioning is enabled, add the file hash too
-        //to: 'images/[path][name].[hash:8].[ext]',
-
-        // only copy files matching this pattern
-        //pattern: /\.(png|jpg|jpeg)$/
     })
 ;
 

@@ -1,51 +1,58 @@
-@import url(https://fonts.googleapis.com/css?family=Roboto);
 
 /* The card */
 .menu-card {
-  position: relative;
-  height: 100%;
-  width: 100%;
-  //margin: 200px auto;
-  //background-color: #FFF;
-  //background-image: url("../images/body_bg.png");
-  //background-size: contain;
-  //background-repeat: no-repeat;
-  //background-position: center center;
+  position: absolute;
+  width: 900px;
+  margin : 20px auto 60px 175px;
+  background-color : #FFF;
+  box-shadow: 10px 10px 93px 0px rgba(0,0,0,0.75);
+  z-index: 30;
+  height: 350px;
+  bottom: 0;
   /* Image on the left side */
   .thumbnail {
-    position: relative;
-    top: -130px;
-    height: 100%;
-    box-shadow: 10px 10px 60px 0px rgba(0, 0, 0, 0.75);
+    float : left;
+    position : relative;
+    left : 30px;
+    top : -30px;
+    height : 320px;
+    width : 530px;
+    -webkit-box-shadow: 10px 10px 60px 0px rgba(0,0,0,0.75);
+    -moz-box-shadow: 10px 10px 60px 0px rgba(0,0,0,0.75);
+    box-shadow: 10px 10px 60px 0px rgba(0,0,0,0.75);
     overflow: hidden;
-    z-index: 15;
-    border: 6px solid #474850;
-    //border-radius: 50%;
-    background-image: url("../images/logo.png");
-    background-size: cover;
+    /*object-fit: cover;*/
+    /*object-position: center;*/
   }
 
-  #pic {
-    height: 120px;
+  .elior{
+    background-image: url("../images/elior.png");
+    background-size: contain;
+    background-color:white;
+    background-repeat:no-repeat;
+    height: 68px;
     width: 120px;
-    border: 6px solid #474850;
-    border-radius: 50%;
-    box-shadow: 0px 4px 3px #5B5D68;
-    margin: 0 auto;
-    background-image: url("http://lorempixel.com/output/food-q-c-640-480-2.jpg");
-    background-size: cover;
-
+    position: absolute;
+    bottom: 0;
+    right:0;
   }
 
-  /*object-fit: cover; */
-  /*object-position: center; */
   img.left {
     position: absolute;
     left: 50%;
     top: 50%;
     height: auto;
     width: 100%;
+    -webkit-transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
     transform: translate(-50%, -50%);
+  }
+
+  /* Right side of the card */
+  .right {
+    margin-left: 590px;
+    margin-right: 20px;
+    height: 100%;
   }
 
   h1 {
@@ -72,23 +79,4 @@
       list-style: none;
     }
   }
-
-  /* DATE of release */
-  h5 {
-    font-size: 6rem;
-    color: #C3C3C3;
-    color: rgba(0, 0, 0, 0.6);
-    text-shadow: 2px 2px 3px rgba(255, 255, 255, 0.1);
-  }
-
-  h6,
-  #time {
-    font-size: 2rem;
-    color: #C3C3C3;
-    text-transform: uppercase;
-    color: rgba(0, 0, 0, 0.6);
-    text-shadow: 2px 2px 3px rgba(255, 255, 255, 0.1);
-  }
-
-  /* Those futur buttons */
 }

@@ -1,12 +1,11 @@
 @import url('https://fonts.googleapis.com/css?family=Lato:300');
+@import url('https://fonts.googleapis.com/css?family=Roboto');
 
 @import "variables";
 @import "~bootstrap/scss/bootstrap";
 @import "~@fortawesome/fontawesome-free/css/all.css";
 @import "~pickadate-webpack/lib/themes/classic.css";
 @import "~pickadate-webpack/lib/themes/classic.date.css";
-@import "calendar_icon";
-@import "particles";
 @import "weather";
 @import "weather-icons.min.css";
 @import "skew";
@@ -16,10 +15,6 @@
 
 body#dashboard {
     font-family: 'Lato', sans-serif;
-//    background-image: url("../images/body_bg.png");
-//    background-size:     auto;
-//    background-repeat:   no-repeat;
-//    background-position: center center;
 }
 
 body#dashboard-animated {
@@ -89,26 +84,6 @@ body#dashboard-animated {
     }
 }
 
-
-.date {
-    position: relative;
-    color : #C3C3C3;
-    #day {
-        font-size : 4rem;
-        line-height: 4rem;
-    }
-    #month {
-        font-size : 3rem;
-        line-height: 3rem;
-
-    }
-    #time {
-        font-size : 2rem;
-        line-height: 2rem;
-
-    }
-
-}
 .section-header {
 
     .section-logo {
@@ -154,4 +129,37 @@ body#dashboard-animated {
 .separator {
     margin: 10px 0;
     border: 1px solid #C3C3C3;
+}
+
+.date{
+    font-family: "Roboto", sans-serif;
+    /* DATE of release */
+    h5 {
+        font-size: 6rem;
+        color: #C3C3C3;
+        color: rgba(0, 0, 0, 0.6);
+        text-shadow: 2px 2px 3px rgba(255, 255, 255, 0.1);
+    }
+
+    h6,
+    #time {
+        font-size: 2rem;
+        color: #C3C3C3;
+        text-transform: uppercase;
+        color: rgba(0, 0, 0, 0.6);
+        text-shadow: 2px 2px 3px rgba(255, 255, 255, 0.1);
+    }
+}
+
+.logo{
+    background-image: url("../images/logo.png");
+    background-size: contain;
+    background-color:white;
+    background-repeat:no-repeat;
+    height: 68px;
+    width: 120px;
+    position: absolute;
+    top: 0;
+    right:0;
+    z-index: 30;
 }
