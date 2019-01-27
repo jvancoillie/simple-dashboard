@@ -10,9 +10,16 @@
 @import "weather";
 @import "weather-icons.min.css";
 @import "skew";
+@import "information";
+@import "menu";
+@import "birthday";
 
 body#dashboard {
     font-family: 'Lato', sans-serif;
+//    background-image: url("../images/body_bg.png");
+//    background-size:     auto;
+//    background-repeat:   no-repeat;
+//    background-position: center center;
 }
 
 body#dashboard-animated {
@@ -120,7 +127,9 @@ body#dashboard-animated {
     }
 }
 
-
+.section-left{
+    z-index: 3;
+}
 
 .section-content {
     font-size: 1.25rem;
@@ -140,4 +149,9 @@ body#dashboard-animated {
 
 .w-66{
     width: 66.6666% !important;
+}
+
+.separator {
+    margin: 10px 0;
+    border: 1px solid #C3C3C3;
 }

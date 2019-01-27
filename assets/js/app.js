@@ -10,7 +10,7 @@ require('pickadate-webpack/lib/picker');
 require('pickadate-webpack/lib/picker.date');
 require('pickadate-webpack/lib/picker.time');
 import WeatherWidget from './weather';
-
+require('./birthday');
 
 $(document).ready(function() {
     jQuery.extend( jQuery.fn.pickadate.defaults, {

@@ -4,20 +4,24 @@
   position: relative;
 }
 #section1{
-  background:#f47070;
+  background: -moz-linear-gradient(-45deg, #ffe0e3 32%, #a7e0e5 68%);
+  background: -webkit-linear-gradient(-45deg, #ffe0e3 32%, #a7e0e5 68%);
+  background: linear-gradient(135deg, #ffe0e3 32%, #a7e0e5 68%);
   z-index: 10;
   .section-inner{
+    overflow: hidden;
     padding: 10px 10px 10px 10px;
   }
 
 }
 #section2{
-  background: #f5d36e;
-  z-index: 5;
+  background: #353B3F;
+  //z-index: 5;
   .section-inner{
     padding: 50px 10px 10px 10px;
   }
 }
+
 .section::after{
   content: '';
   width: 100%;
@@ -34,8 +38,6 @@
 
 .section-inner{
   display: block;
-  overflow: hidden;
-  text-align: center;
 //  color: rgba(0, 0, 0, 0.5);
 }
 

@@ -7,60 +7,92 @@
 {% block body %}
 
     <div class="d-flex h-100">
-        <div class="w-66 bg-white  h-100">
-            <div id="section1" class="section h-50 text-white">
-                <div class="section-inner h-100">
-                    <div class="d-flex h-100 align-items-center">
-                        <div class="section-header w-50 text-white">
-                            <div class="content">
-                                <div class="section-logo">
-                                    <i class="fas fa-utensils text-white fa-4x my-auto d-block text-center"></i>
+        <div class="w-66 bg-white section-left h-100 border-right shadow">
+            <div id="section1" class="section h-50">
+                <div class="information h-100">
+                    <div class="section-inner h-100">
+                        <div class="d-flex h-100">
+                            <div class="w-50"></div>
+                            <div class="w-50 h-100">
+                                <div class="information-container h-100">
+                                    <div class="card w-100 mw-50" >
+                                        <div class="card-body">
+                                            <h5 class="card-title">{{ 'dashboard.information.title'|trans }}</h5>
+                                            <div class="separator"></div>
+                                            <div class="card-text">
+                                                {% for event in widgets.News %}
+                                                    {{ event.content|md2html }}
+                                                {% else %}
+                                                    <p>Aucune Information</p>
+                                                {% endfor %}
+                                            </div>
+
+                                        </div>
+                                    </div>
                                 </div>
-                                <h2 class="text-center">{{ 'dashboard.menu.title'|trans }}</h2>
                             </div>
+
                         </div>
-                        <div class="section-content w-50">
-                            <div id="carouselExampleSlidesOnly" class="carousel slide" data-ride="carousel">
-                                <div class="carousel-inner">
-                                    {% for event in widgets.Menu %}
-                                        <div class="carousel-item  {% if loop.first %} active {% endif %}">
-                                            <div class="w-100 d-block">
-                                                {{ event.content|md2html }}
+
+                        <div class="circle1"></div>
+                        <div class="circle2"></div>
+                        <div class="circle3"></div>
+                        <div class="circle4"></div>
+                        <div class="circle5"></div>
+                        <div class="circle6"></div>
+                        <div class="circle7"></div>
+                        <div class="circle8"></div>
+                    </div>
+                </div>
+            </div>
+            <div id="section2" class="section h-50">
+                <div class="menu h-100">
+
+                    <div class="menu-card bg-dark">
+                        <div class="section-inner h-100">
+
+                                <div class="w-50 h-50 position-absolute">
+                                    <div class="thumbnail">
+                                        {#<img class="left"#}
+                                             {#src="https://cdn2.hubspot.net/hubfs/322787/Mychefcom/images/BLOG/Header-Blog/photo-culinaire-pexels.jpg"/>#}
+                                    </div>
+                                </div>
+                            <div class="d-flex h-100 w-100">
+                                <div class="h-100 w-50 d-flex flex-column px-3 pt-3">
+                                    <div class="d-flex flex-column h-100 align-items-end justify-content-end">
+                                        <h5 class="w-100 text-left">{{ 'now'|localizeddate('none', 'none', null, null, "d") }}</h5>
+                                        <div class="d-flex align-content-between w-100">
+                                            <h6 class="text-left w-50">{{ 'now'|localizeddate('none', 'none', null, null, "MMMM") }}</h6>
+                                            <div class="w-50 text-right" id="time"></div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="h-100 w-50 p-3">
+                                    <div class="pt-5">
+                                        <h1 class="text-center">{{ 'dashboard.menu.title'|trans }}</h1>
+                                        <div class="separator"></div>
+                                        <div id="carouselExampleSlidesOnly" class="carousel slide" data-ride="carousel">
+                                            <div class="carousel-inner">
+                                                {% for event in widgets.Menu %}
+                                                    <div class="carousel-item description {% if loop.first %} active {% endif %}">
+                                                        <div class="w-100 d-block">
+                                                            {{ event.content|md2html }}
+                                                        </div>
+                                                    </div>
+                                                {% else %}
+                                                    <p>Aucun menu</p>
+                                                {% endfor %}
                                             </div>
                                         </div>
-                                    {% else %}
-                                        <p>Aucun menu</p>
-                                    {% endfor %}
+                                    </div>
                                 </div>
+
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-            <div id="section2" class="section h-50 text-white">
-                <div class="section-inner h-100">
-                    <div class="d-flex h-100 align-items-center">
-
-                        <div class="section-content w-50">
-                            {% for event in widgets.Birthday %}
-                                <div class="w-100 d-block">
-                                    {{ event.content|md2html }}
-                                </div>
-                            {% else %}
-                                <p>Aucun anniversaire</p>
-                            {% endfor %}
-                        </div>
-                        <div class="section-header w-50 text-white">
-                            <div class="section-logo">
-                                <i class="fas fa-birthday-cake text-white fa-4x my-auto d-block text-center"></i>
-                            </div>
-                            <h2 class="text-center">{{ 'dashboard.birthday.title'|trans }}</h2>
-                        </div>
-
-                    </div>
-                </div>
-            </div>
-
         </div>
         <div class="w-33">
             <div class="d-flex flex-column h-100">
@@ -69,26 +101,21 @@
                         <div class="weatherCard weatherCard1"></div>
                     </div>
                 </div>
-                <div class="information-content flex-grow-1 p-2">
-                            <h5 class="card-title text-center">
-                                <i class="fas fa-info-circle"></i>
-                                {{ 'dashboard.information.title'|trans }}
-                            </h5>
-                            <div class="content">
-                                {% for event in widgets.News %}
-                                        {{ event.content|md2html }}
-                                {% else %}
-                                    <p>Aucune Information</p>
-                                {% endfor %}
+                <div class="birthday-container flex-grow-1 p-2" id="birthday">
+                    <h5 class="card-title text-center">
+                        <i class="fas fa-info-circle"></i>
+                        {{ 'dashboard.birthday.title'|trans }}
+                    </h5>
+                    <div class="birthday-content">
+
+
+                        {% for event in widgets.Birthday %}
+                            <div class="w-100 d-block">
+                                {{ event.content|md2html }}
                             </div>
-                </div>
-                <div class="date d-flex w-100 p-3">
-                    <div class="w-50  align-self-end">
-                        <div id="time"></div>
-                    </div>
-                    <div class="w-50 ">
-                        <div id="day" class="text-right">{{ 'now'|localizeddate('none', 'none', null, null, "d") }}</div>
-                        <div id="month" class="text-right">{{ 'now'|localizeddate('none', 'none', null, null, "MMMM") }}</div>
+                        {% else %}
+                            <p>Aucun anniversaire</p>
+                        {% endfor %}
                     </div>
                 </div>
             </div>

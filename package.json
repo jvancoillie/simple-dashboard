@@ -23,6 +23,7 @@
         "normalize.css": "^8.0.1",
         "pickadate-webpack": "^3.5.6",
         "popper.js": "^1.14.6",
-        "snapsvg": "^0.5.1"
+        "snapsvg": "^0.5.1",
+        "vara": "^1.1.3"
     }
 }
