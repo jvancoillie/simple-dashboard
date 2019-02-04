@@ -7,14 +7,13 @@
 {% block body %}
 
     <div class="d-flex h-100">
-        <div class="w-75 bg-white section-left h-100 border-right shadow">
+        <div class="w-66 bg-white section-left h-100 shadow">
             <div id="section1" class="section h-50">
 
                 <div class="information h-100">
                     <div class="section-inner h-100">
                         <div class="d-flex h-100">
-                            <div class="w-50"></div>
-                            <div class="w-50 h-100">
+                            <div class="w-75 h-100">
                                 <div class="information-container h-100">
                                     <div class="card w-100 mw-50">
                                         <div class="card-body">
@@ -24,7 +23,7 @@
                                                 {% for event in widgets.News %}
                                                     {{ event.content|md2html }}
                                                 {% else %}
-                                                    <p>Aucune Information</p>
+                                                    <h1>Aucune Information</h1>
                                                 {% endfor %}
                                             </div>
                                             <div class="logo"></div>
@@ -73,7 +72,7 @@
                     </div>
                     <div class="d-flex flex-column h-100 align-items-end justify-content-end date px-4">
                         <h5 class="w-100 text-left">{{ 'now'|localizeddate('none', 'none', null, null, "dd") }}</h5>
-                        <div class="d-flex align-content-between w-100">
+                        <div class="d-flex align-content-between w-100 pb-3">
                             <h6 class="text-left w-50">{{ 'now'|localizeddate('none', 'none', null, null, "MMMM") }}</h6>
                             <div class="w-50 text-right" id="time"></div>
                         </div>
@@ -81,27 +80,27 @@
                 </div>
             </div>
         </div>
-        <div class="w-25">
+        <div class="w-33">
             <div class="d-flex flex-column h-100">
                 <div class="ww-wrapper border-bottom">
                     <div class="ww-row">
                         <div class="weatherCard weatherCard1"></div>
                     </div>
                 </div>
-                <div class="birthday-container flex-grow-1 p-2" id="birthday">
-                    <h3 class=" mt-1 card-title text-center">
-                        {{ 'dashboard.birthday.title'|trans }}
-                    </h3>
-                    <div class="birthday-content">
-
-
-                        {% for event in widgets.Birthday %}
-                            <div class="w-100 d-block">
-                                {{ event.content|md2html }}
-                            </div>
-                        {% else %}
-                            <p>Aucun</p>
-                        {% endfor %}
+                <div class="frame">
+                    <div class="list">
+                        <div class="head">
+                            <div class="title"> {{ 'dashboard.birthday.title'|trans }}</div>
+                        </div>
+                        <ul>
+                            {% for event in widgets.Birthday %}
+                                <li>
+                                    {{ event.content|md2html }}
+                                </li>
+                            {% else %}
+                                <li>Aucun</li>
+                            {% endfor %}
+                        </ul>
                     </div>
                 </div>
             </div>
