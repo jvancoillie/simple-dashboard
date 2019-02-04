@@ -59,19 +59,6 @@ export default class WeatherWidget {
 
     }
 
-    // Returns next 3 days for forecast.
-    returnNextDays(n) {
-       // const dayNames = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
-        const dayNames = moment.weekdays();
-
-        const today = (new Date()).getDay();
-        let nextDays = [];
-        for (let i = 0; i < n; i++) {
-            nextDays.push(dayNames[(today + 1 + i) % dayNames.length]);
-        }
-        return nextDays;
-    }
-
     renderData(data, city) {
         const cityName = city;
         const country = data.city.country;
@@ -87,7 +74,7 @@ export default class WeatherWidget {
             <div class="weatherDate">${cityName}</div>
             
             
-            <div class="d-flex justify-content-between my-2">
+            <div class="d-flex justify-content-around my-2">
        
                 <div class="weatherIcon">
                 ${this.getWeatherIcon(data.list[0].weather[0].id)}
@@ -101,26 +88,13 @@ export default class WeatherWidget {
              <div class="d-flex justify-content-between">
                 </div>
             
-        </div>
-        <div class="weatherForecast d-flex justify-content-between"></div>`;
+        </div>`;
 
         // Append the html to the page with the data
         $('.ww-wrapper .'+this.targetEl).append(html);
 
         // Call method to change the WeatherCard background by passing it's condition code
         this.changeCardBg(data.list[0].weather[0].id);
-
-        // Grab the next 3 days and loop through each with the days top temperature.
-        // generate forecast sections and loop through the data for each day
-        const nextDays = this.returnNextDays(3);
-        let forecast = nextDays.map((nextDay, i) => {
-            return `<div class="forecastCard d-flex flex-column"><p>${nextDay}</p>
-                  <p class="forecastIcons">${this.getWeatherIcon(data.list[i+1].weather[0].id)}</p>
-                  <p class="forecastMax">${data.list[i+1].temp.max.toFixed(0)}°</p>
-                  <p class="forecastMin">${data.list[i+1].temp.min.toFixed(0)}°</p></div>`
-        }).join('');
-        $('.'+this.targetEl+' .weatherForecast').append(forecast);
-
 
         // Convert the temperature units on click.
         const $thisTemp = $('.'+this.targetEl+' .weatherTemp');

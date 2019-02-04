@@ -2,12 +2,12 @@
 /* The card */
 .menu-card {
   position: absolute;
-  width: 900px;
-  margin : 20px auto 60px 175px;
+  width: 690px;
+  margin : 30px auto 85px 175px;
   background-color : #FFF;
   box-shadow: 10px 10px 93px 0px rgba(0,0,0,0.75);
   z-index: 30;
-  height: 350px;
+  height: 315px;
   bottom: 0;
   /* Image on the left side */
   .thumbnail {
@@ -15,8 +15,8 @@
     position : relative;
     left : 30px;
     top : -30px;
-    height : 320px;
-    width : 530px;
+    height : 230px;
+    width : 350px;
     -webkit-box-shadow: 10px 10px 60px 0px rgba(0,0,0,0.75);
     -moz-box-shadow: 10px 10px 60px 0px rgba(0,0,0,0.75);
     box-shadow: 10px 10px 60px 0px rgba(0,0,0,0.75);
@@ -28,13 +28,12 @@
   .elior{
     background-image: url("../images/elior.png");
     background-size: contain;
-    background-color:white;
     background-repeat:no-repeat;
     height: 68px;
     width: 120px;
     position: absolute;
     bottom: 0;
-    right:0;
+    left:0;
   }
 
   img.left {
@@ -50,14 +49,14 @@
 
   /* Right side of the card */
   .right {
-    margin-left: 590px;
+    margin-left: 400px;
     margin-right: 20px;
     height: 100%;
   }
 
   h1 {
     padding-top: 15px;
-    font-size: 1.3rem;
+    font-size: 2rem;
     color: #4B4B4B;
   }
 
@@ -70,7 +69,6 @@
 
   .description {
     text-align: center;
-    padding-top: 10px;
     font-size: 1.25rem;
     line-height: 150%;
     color: #4B4B4B;
