@@ -9,7 +9,6 @@
     <div class="d-flex h-100">
         <div class="w-66 bg-white section-left h-100 shadow">
             <div id="section1" class="section h-50">
-
                 <div class="information h-100">
                     <div class="section-inner h-100">
                         <div class="d-flex h-100">
@@ -23,7 +22,7 @@
                                                 {% for event in widgets.News %}
                                                     {{ event.content|md2html }}
                                                 {% else %}
-                                                    <h1>Aucune Information</h1>
+                                                    <p>Aucune Information</p>
                                                 {% endfor %}
                                             </div>
                                             <div class="logo"></div>
@@ -49,7 +48,8 @@
                 <div class="menu h-100">
                     <div class="menu-card">
                         <div class="thumbnail">
-                            <img class="left" src="https://cdn2.hubspot.net/hubfs/322787/Mychefcom/images/BLOG/Header-Blog/photo-culinaire-pexels.jpg"/>
+                            <img class="left"
+                                 src="https://cdn2.hubspot.net/hubfs/322787/Mychefcom/images/BLOG/Header-Blog/photo-culinaire-pexels.jpg"/>
                         </div>
                         <div class="right">
                             <h1 class="text-center">{{ 'dashboard.menu.title'|trans }}</h1>
@@ -63,7 +63,7 @@
                                             </div>
                                         </div>
                                     {% else %}
-                                        <p>Aucun menu</p>
+                                        <div class="description">Aucun menu</div>
                                     {% endfor %}
                                 </div>
                             </div>
@@ -92,15 +92,20 @@
                         <div class="head">
                             <div class="title"> {{ 'dashboard.birthday.title'|trans }}</div>
                         </div>
-                        <ul>
-                            {% for event in widgets.Birthday %}
-                                <li>
-                                    {{ event.content|md2html }}
-                                </li>
-                            {% else %}
-                                <li>Aucun</li>
-                            {% endfor %}
-                        </ul>
+                        {% if widgets.Birthday|length %}
+                            <ul>
+                                {% for event in widgets.Birthday %}
+                                    <li>
+                                        {{ event.content|md2html }}
+                                    </li>
+                                {% endfor %}
+                            </ul>
+                        {% else %}
+                            <div class="h-50 align-items-center d-flex justify-content-center">
+                                <div class="empty-state">Aucun</div>
+                            </div>
+                        {% endif %}
+
                     </div>
                 </div>
             </div>
