@@ -22,7 +22,7 @@ class MenuController extends AbstractController
      */
     public function index(MenuRepository $menuRepository): Response
     {
-        $form = $this->createForm(ImportType::class, null, [ 'action' => $this->generateUrl('admin_menu_import')]);
+        $form = $this->createForm(ImportType::class, null, ['action' => $this->generateUrl('admin_menu_import')]);
 
         return $this->render('admin/menu/index.html.twig', [
             'menus' => $menuRepository->findAll(),
@@ -91,7 +91,7 @@ class MenuController extends AbstractController
      */
     public function delete(Request $request, Menu $menu): Response
     {
-        if ($this->isCsrfTokenValid('delete'.$menu->getId(), $request->request->get('_token'))) {
+        if ($this->isCsrfTokenValid('delete' . $menu->getId(), $request->request->get('_token'))) {
             $em = $this->getDoctrine()->getManager();
             $em->remove($menu);
             $em->flush();
@@ -121,25 +121,28 @@ class MenuController extends AbstractController
 
             $em = $this->getDoctrine()->getManager();
 
-            foreach ($records as $offset => $record) {
-                $menu = new Menu();
-                $content = '';
-                foreach(['plat1', 'plat2', 'legume1', 'legume2'] as $index)
-                    if($record[$index] !== ''){
-                       $content .= sprintf("* %s \n", $record[$index]);
-                    }
+            try {
+                foreach ($records as $offset => $record) {
+                    $menu = new Menu();
+                    $content = '';
+                    foreach (['plat1', 'plat2', 'legume1', 'legume2'] as $index)
+                        if ($record[$index] !== '') {
+                            $content .= sprintf("* %s \n", $record[$index]);
+                        }
 
-                $menu
-                    ->setContent($content)
-                    ->setPublishAt(\DateTime::createFromFormat('d/m/Y', $record['date']))
-                ;
-                $em->persist($menu);
+                    $menu
+                        ->setContent($content)
+                        ->setPublishAt(\DateTime::createFromFormat('d/m/Y', $record['date']));
+                    $em->persist($menu);
+                }
+
+                $em->flush();
+
+
+                $this->addFlash('success', 'fichier importé');
+            } catch (\Exception $e) {
+                $this->addFlash('danger', 'Erreur lors de l\'import');
             }
-
-            $em->flush();
-
-
-            $this->addFlash('success', 'fichier importé');
         }
 
         return $this->redirectToRoute('admin_menu_index');

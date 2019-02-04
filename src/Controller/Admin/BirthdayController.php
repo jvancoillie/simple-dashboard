@@ -122,20 +122,27 @@ class BirthdayController extends AbstractController
 
             $em = $this->getDoctrine()->getManager();
 
-            foreach ($records as $offset => $record) {
-                $birthday = new Birthday();
-                $birthday
-                    ->setFirstname($record['Prenom'])
-                    ->setLastname($record['Nom'])
-                    ->setDate(\DateTime::createFromFormat('d/m/Y', $record['Date']))
-                ;
-                $em->persist($birthday);
+            try{
+                foreach ($records as $offset => $record) {
+                    $birthday = new Birthday();
+                    $birthday
+                        ->setFirstname($record['prenom'])
+                        ->setLastname($record['nom'])
+                        ->setDate(\DateTime::createFromFormat('d/m/Y', $record['date']))
+                    ;
+                    $em->persist($birthday);
+                }
+
+                $this->addFlash('success', 'fichier importé');
+
+                $em->flush();
+            }catch (\Exception $e){
+                $this->addFlash('danger', 'Erreur lors de l\'import');
             }
 
-            $em->flush();
 
 
-            $this->addFlash('success', 'fichier importé');
+
         }
 
         return $this->redirectToRoute('admin_birthday_index');
