@@ -1,22 +1,3 @@
-@font-face {
-  font-family: "NoTime";
-  src: url("../font/NoTime.ttf");
-}
-
-.birthday-container {
-  font-family: "NoTime";
-  background-color: #fff;
-  background-image: linear-gradient(90deg, transparent 79px, #abced4 79px, #abced4 81px, transparent 81px),
-  linear-gradient(#eee .1em, transparent .1em);
-  background-size: 100% 1.2em;
-  height: 500px;
-  text-align: center;
-}
-
-.birthday-content{
-
-}
-
 
 @import url('https://fonts.googleapis.com/css?family=Fredericka+the+Great|Zilla+Slab:300,400');
 $white: #fff;
@@ -44,6 +25,10 @@ $main-color: #643A7A;
   box-shadow: 1rem 1rem .5rem rgba(0, 0, 0, 0.15);
   border-radius: 3px;
   text-align: center;
+  .empty-state {
+    transform: rotate(20deg);
+    font-size: 2.5rem;
+  }
 }
 
 .list .head {
