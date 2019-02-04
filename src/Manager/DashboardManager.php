@@ -13,6 +13,7 @@ use App\Repository\BirthdayRepository;
 use App\Repository\DashboardRepositoryInterface;
 use App\Repository\MenuRepository;
 use App\Repository\NewsRepository;
+use App\Repository\WeekRepository;
 
 class DashboardManager
 {
@@ -24,11 +25,12 @@ class DashboardManager
      * @param $birthdayRepository
      * @param $MenuRepository
      */
-    public function __construct(NewsRepository $newsRepository, BirthdayRepository $birthdayRepository, MenuRepository $menuRepository)
+    public function __construct(NewsRepository $newsRepository, BirthdayRepository $birthdayRepository, MenuRepository $menuRepository, WeekRepository $weekRepository)
     {
         $this->dashboardRepositories[$newsRepository->getName()] = $newsRepository;
         $this->dashboardRepositories[$birthdayRepository->getName()] = $birthdayRepository;
         $this->dashboardRepositories[$menuRepository->getName()] = $menuRepository;
+        $this->dashboardRepositories[$weekRepository->getName()] = $weekRepository;
     }
 
     public function getWidgetsByDate(\DateTime $date)

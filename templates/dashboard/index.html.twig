@@ -48,8 +48,7 @@
                 <div class="menu h-100">
                     <div class="menu-card">
                         <div class="thumbnail">
-                            <img class="left"
-                                 src="https://cdn2.hubspot.net/hubfs/322787/Mychefcom/images/BLOG/Header-Blog/photo-culinaire-pexels.jpg"/>
+                            <img class="left" src="{{ asset('build/'~random(['culinaire-1.png', 'culinaire-2.png', 'culinaire-3.png', 'culinaire-4.png', 'culinaire-5.png', 'culinaire-6.png', 'culinaire-7.png', 'culinaire-8.png'])) }}" alt="">
                         </div>
                         <div class="right">
                             <h1 class="text-center">{{ 'dashboard.menu.title'|trans }}</h1>
@@ -72,9 +71,14 @@
                     </div>
                     <div class="d-flex flex-column h-100 align-items-end justify-content-end date px-4">
                         <h5 class="w-100 text-left">{{ 'now'|localizeddate('none', 'none', null, null, "dd") }}</h5>
-                        <div class="d-flex align-content-between w-100 pb-3">
-                            <h6 class="text-left w-50">{{ 'now'|localizeddate('none', 'none', null, null, "MMMM") }}</h6>
-                            <div class="w-50 text-right" id="time"></div>
+                        <div class="d-flex justify-content-between w-100 pb-3">
+                            <h6 class="text-left ">{{ 'now'|localizeddate('none', 'none', null, null, "MMMM") }}</h6>
+                            <div id="week" class=" text-center">
+                                {% for event in widgets.Week %}
+                                            {{ event.content|md2html }}
+                                {% endfor %}
+                            </div>
+                            <div class="text-right" id="time"></div>
                         </div>
                     </div>
                 </div>

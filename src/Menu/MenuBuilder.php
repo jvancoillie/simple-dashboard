@@ -46,6 +46,14 @@ class MenuBuilder
             ],
         ]);
 
+        $menu->addChild('Week', [
+            'label' => 'menu.week',
+            'route' => 'admin_week_index',
+            'attributes' => [
+                'icon' => 'fas fa-calendar-week',
+            ],
+        ]);
+
         return $menu;
     }
 }

@@ -98,6 +98,36 @@
                 <target>Ajouter une information</target>
             </trans-unit>
 
+            <!-- Week translations-->
+            <trans-unit id="week.title">
+                <source>week.title</source>
+                <target>Liste des semaines</target>
+            </trans-unit>
+            <trans-unit id="week.create.title">
+                <source>week.create.title</source>
+                <target>Ajouter une semaine</target>
+            </trans-unit>
+            <trans-unit id="week.edit.title">
+                <source>week.edit.title</source>
+                <target>Modifier une semaine</target>
+            </trans-unit>
+            <trans-unit id="week.start_date">
+                <source>week.start_date</source>
+                <target>Date de début</target>
+            </trans-unit>
+            <trans-unit id="week.end_date">
+                <source>week.end_date</source>
+                <target>Date de fin</target>
+            </trans-unit>
+            <trans-unit id="week.content">
+                <source>week.content</source>
+                <target>Contenu</target>
+            </trans-unit>
+            <trans-unit id="week.action.add">
+                <source>week.action.add</source>
+                <target>Ajouter une semaine</target>
+            </trans-unit>
+
             <!-- Users translations-->
             <trans-unit id="user.title">
                 <source>user.title</source>
@@ -174,7 +204,7 @@
                 <target>Rôle</target>
             </trans-unit>
 
-            <!-- Navabr translations-->
+            <!-- Navbar translations-->
             <trans-unit id="menu.birthday">
                 <source>menu.birthday</source>
                 <target>Anniversaires</target>
@@ -187,9 +217,9 @@
                 <source>menu.news</source>
                 <target>Informations</target>
             </trans-unit>
-            <trans-unit id="menu.users">
-                <source>menu.users</source>
-                <target>Utilisateurs</target>
+            <trans-unit id="menu.week">
+                <source>menu.week</source>
+                <target>Semaine</target>
             </trans-unit>
 
             <trans-unit id="table.actions">
