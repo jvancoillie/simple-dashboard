@@ -13,7 +13,7 @@
             </trans-unit>
             <trans-unit id="dashboard.information.title">
                 <source>dashboard.information.title</source>
-                <target>Info du jour</target>
+                <target>Informations</target>
             </trans-unit>
             <!-- Birthday translations-->
             <trans-unit id="birthday.title">
