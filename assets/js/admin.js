@@ -1,3 +1,7 @@
+const $ = jQuery = require('jquery');
+
+require('bootstrap');
+
 const moment = require('moment');
 require('moment/locale/fr');
 moment.locale('fr');
@@ -31,19 +35,4 @@ $(document).ready(function() {
         $(this).next('.custom-file-label').addClass("selected").html(fileName);
     });
 
-    // pass in no parameters - uses your current location
-    const test = new WeatherWidget('weatherCard1',{location: 'Poitiers, FR', units: 'metric', displayName: 'Poitiers', lang:'fr', appid:"9c5213ce52fe7ffa15a904fc80a5f879"});
-
-    function realtime() {
-
-        let time = moment().format('HH:mm:ss');
-        document.getElementById('time').innerHTML = time;
-
-        setInterval(() => {
-            time = moment().format('HH:mm:ss');
-            document.getElementById('time').innerHTML = time;
-        }, 1000)
-    }
-
-    realtime();
 });
