@@ -13,6 +13,20 @@ body {
   background-color: #f5f5f5;
 }
 
+body#signin {
+  font-family: 'Lato', sans-serif;
+}
+
+body#signin {
+  height: 90vh;
+  background: linear-gradient(-45deg, #EE7752, #E73C7E, #23A6D5, #23D5AB);
+  background-size: 400% 400%;
+  -webkit-animation: Gradient 15s ease infinite;
+  -moz-animation: Gradient 15s ease infinite;
+  animation: Gradient 15s ease infinite;
+  font-family: 'Lato', sans-serif;
+}
+
 .form-signin {
   width: 100%;
   max-width: 330px;
