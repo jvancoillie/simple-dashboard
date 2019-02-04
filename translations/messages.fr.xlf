@@ -15,6 +15,7 @@
                 <source>dashboard.information.title</source>
                 <target>Informations</target>
             </trans-unit>
+
             <!-- Birthday translations-->
             <trans-unit id="birthday.title">
                 <source>birthday.title</source>
@@ -97,6 +98,82 @@
                 <target>Ajouter une information</target>
             </trans-unit>
 
+            <!-- Users translations-->
+            <trans-unit id="user.title">
+                <source>user.title</source>
+                <target>Liste des utilisateurs</target>
+            </trans-unit>
+            <trans-unit id="user.create.title">
+                <source>user.create.title</source>
+                <target>Ajouter un utilisateur</target>
+            </trans-unit>
+            <trans-unit id="user.edit.title">
+                <source>user.edit.title</source>
+                <target>Modifier un utilisateur</target>
+            </trans-unit>
+            <trans-unit id="user.email">
+                <source>user.email</source>
+                <target>Courriel</target>
+            </trans-unit>
+            <trans-unit id="user.roles">
+                <source>user.roles</source>
+                <target>Rôles</target>
+            </trans-unit>
+            <trans-unit id="user.action.add">
+                <source>user.action.add</source>
+                <target>Ajouter un utilisateur</target>
+            </trans-unit>
+
+            <!-- profile translations-->
+            <trans-unit id="title.profile">
+                <source>action.profile</source>
+                <target>Mon profil</target>
+            </trans-unit>
+            <trans-unit id="profile.edit">
+                <source>profile.edit</source>
+                <target>Mes informations</target>
+            </trans-unit>
+            <trans-unit id="action.profile.change_password">
+                <source>action.profile.change_password</source>
+                <target>Modifier mon mot de passe</target>
+            </trans-unit>
+            <trans-unit id="profile.change_password">
+                <source>profile.change_password</source>
+                <target>Changement de mot de passe</target>
+            </trans-unit>
+            <trans-unit id="label.username">
+                <source>label.username</source>
+                <target>Identifiant</target>
+            </trans-unit>
+            <trans-unit id="label.fullname">
+                <source>label.fullname</source>
+                <target>Nom complet</target>
+            </trans-unit>
+            <trans-unit id="label.email">
+                <source>label.email</source>
+                <target>Mail</target>
+            </trans-unit>
+            <trans-unit id="label.password">
+                <source>label.password</source>
+                <target>Mot de passe</target>
+            </trans-unit>
+            <trans-unit id="label.current_password">
+                <source>label.current_password</source>
+                <target>Mot de passe actuel</target>
+            </trans-unit>
+            <trans-unit id="label.new_password">
+                <source>label.new_password</source>
+                <target>Nouveau mot de passe</target>
+            </trans-unit>
+            <trans-unit id="label.new_password_confirm">
+                <source>label.new_password_confirm</source>
+                <target>Confirmer le mot de passe</target>
+            </trans-unit>
+            <trans-unit id="label.role">
+                <source>label.role</source>
+                <target>Rôle</target>
+            </trans-unit>
+
             <!-- Navabr translations-->
             <trans-unit id="menu.birthday">
                 <source>menu.birthday</source>
@@ -109,6 +186,10 @@
             <trans-unit id="menu.news">
                 <source>menu.news</source>
                 <target>Informations</target>
+            </trans-unit>
+            <trans-unit id="menu.users">
+                <source>menu.users</source>
+                <target>Utilisateurs</target>
             </trans-unit>
 
             <trans-unit id="table.actions">
@@ -147,14 +228,34 @@
                 <source>action.back_to_list</source>
                 <target>Retour à la liste</target>
             </trans-unit>
+            <trans-unit id="title.login">
+                <source>title.login</source>
+                <target>Authentification</target>
+            </trans-unit>
+
+            <trans-unit id="action.remember_me">
+                <source>action.remember_me</source>
+                <target>Se souvenir de moi</target>
+            </trans-unit>
             <trans-unit id="no_records">
                 <source>no_records</source>
                 <target>Aucun enregistrement</target>
             </trans-unit>
 
 
+            <trans-unit id="user.updated_successfully">
+                <source>user.updated_successfully</source>
+                <target>Informations mises à jour avec succès !</target>
+            </trans-unit>
+            <trans-unit id="info.change_password">
+                <source>info.change_password</source>
+                <target>Après avoir modifié votre mot de passe, vous serez déconnecté de l'application.</target>
+            </trans-unit>
 
-
+            <trans-unit id="action.sign_in">
+                <source>action.sign_in</source>
+                <target>Se connecter</target>
+            </trans-unit>
             <trans-unit id="action.import">
                 <source>action.import</source>
                 <target>Importer</target>

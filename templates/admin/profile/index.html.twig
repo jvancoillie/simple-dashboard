@@ -1,0 +1,43 @@
+{% extends 'admin/layout.html.twig' %}
+
+{% block title %}Edit User{% endblock %}
+
+{% block main %}
+
+    <div class="row">
+        <div class="col">
+            <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+                <h1 class="h2">{{ 'profile.edit'|trans }}</h1>
+            </div>
+
+            {{ form_start(form_user) }}
+            {{ form_widget(form_user) }}
+
+            <button type="submit" class="btn btn-primary">
+                <i class="fa fa-save" aria-hidden="true"></i> {{ 'action.save'|trans }}
+            </button>
+            {{ form_end(form_user) }}
+
+        </div>
+        <div class="col">
+            <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+                <h1 class="h2">{{ 'profile.change_password'|trans }}</h1>
+            </div>
+
+            <div class="alert alert-info" role="alert">{{ 'info.change_password'|trans }}</div>
+
+            {{ form_start(form_password) }}
+            {{ form_widget(form_password) }}
+
+            <button type="submit" class="btn btn-primary">
+                <i class="fa fa-save" aria-hidden="true"></i> {{ 'action.save'|trans }}
+            </button>
+            {{ form_end(form_password) }}
+        </div>
+    </div>
+
+
+{% endblock %}
+
+
+
