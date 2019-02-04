@@ -6,16 +6,21 @@
 {% endblock %}
 
 {% block javascripts %}
-    {{ parent() }}
     {{ encore_entry_script_tags('js/admin') }}
 {% endblock %}
 
 {% block body %}
-    <nav class="navbar navbar-dark fixed-top bg-dark flex-md-nowrap p-0 shadow">
+    <nav class="navbar navbar-dark fixed-top bg-dark navbar-expand-lg p-0 shadow">
         <a class="navbar-brand col-sm-3 col-md-2 mr-0" href="{{ path('dashboard') }}"><i class="fas fa-tachometer-alt"></i> Dashboard Admin</a>
-        <ul class="navbar-nav px-3">
-            <li class="nav-item text-nowrap">
-                <a class="nav-link" href="{{ path('app_logout') }}">{{ 'action.sign.out'|trans }}</a>
+        <ul class="navbar-nav px-3 ml-auto">
+            <li class="nav-item dropdown ml-auto">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                   {{ app.user }}
+                </a>
+                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownMenuLink">
+                    <a class="dropdown-item" href="{{ path('admin_profile_index') }}"><i class="fas fa-user-circle"></i> {{ 'action.profile'|trans }}</a>
+                    <a class="dropdown-item" href="{{ path('app_logout') }}"><i class="fas fa-sign-out-alt "></i>{{ 'action.sign.out'|trans }}</a>
+                </div>
             </li>
         </ul>
     </nav>
