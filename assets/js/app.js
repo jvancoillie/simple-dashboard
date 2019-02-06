@@ -1,10 +1,14 @@
 const $ = jQuery = require('jquery');
 
 require('bootstrap');
+const moment = require('moment');
+require('moment/locale/fr');
+moment.locale('fr');
+
 import WeatherWidget from './weather';
 
 $(document).ready(function() {
-    const test = new WeatherWidget('weatherCard1',{location: 'Poitiers, FR', units: 'metric', displayName: 'Poitiers', lang:'fr', appid:"9c5213ce52fe7ffa15a904fc80a5f879"});
+    const test = new WeatherWidget('weather-card',{location: 'Poitiers, FR', units: 'metric', displayName: 'Poitiers', lang:'fr', appid:"9c5213ce52fe7ffa15a904fc80a5f879"});
 
     function realtime() {
         let time = moment().format('HH:mm:ss');

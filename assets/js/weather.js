@@ -44,7 +44,7 @@ export default class WeatherWidget {
         };
 
         // add inline styles for icon elements to ensure the correct icon colour is placed through loops
-        if (conditionCode === 520 || conditionCode === 521 ||conditionCode === 522 ){
+        if (conditionCode === 520 || conditionCode === 521 || conditionCode === 522) {
             let iconHTML = `<i class="wi wi-showers" style="color: '${conditionDescriptions[category][1]}"></i>`;
             return iconHTML;
         } else if (conditionCode === 800) {
@@ -59,6 +59,19 @@ export default class WeatherWidget {
 
     }
 
+    // Returns next 3 days for forecast.
+    returnNextDays(n) {
+        // const dayNames = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+        const dayNames = moment.weekdays();
+
+        const today = (new Date()).getDay();
+        let nextDays = [];
+        for (let i = 0; i < n; i++) {
+            nextDays.push(dayNames[(today + 1 + i) % dayNames.length]);
+        }
+        return nextDays;
+    }
+
     renderData(data, city) {
         const cityName = city;
         const country = data.city.country;
@@ -68,54 +81,73 @@ export default class WeatherWidget {
         const tempMax = data.list[0].temp.max.toFixed(0);
         const shortDesc = data.list[0].weather[0].description;
         const day = moment().format('dddd D MMMM');
+        let card = this.getWeatherCard(data.list[0].weather[0].id);
 
         // Build HTML elements and insert data
         let html = `<div class="cityContainer cityCard${this.instanceID}">
             <div class="weatherDate">${cityName}</div>
             
             
-            <div class="d-flex justify-content-around my-2">
+            <div class="d-flex justify-content-around">
        
                 <div class="weatherIcon">
                 ${this.getWeatherIcon(data.list[0].weather[0].id)}
                 </div>
                 <div class="tempAndCity d-flex flex-column align-items-center">
                     <p class="weatherDesc">${shortDesc}</p>
-                    <p class="weatherTemp">${temp}°C</p>
+                    <p class="weatherTemp align-self-baseline">${temp}°C</p>
                 </div>
                
             </div>
              <div class="d-flex justify-content-between">
                 </div>
             
-        </div>`;
+        </div>
+         `;
 
         // Append the html to the page with the data
-        $('.ww-wrapper .'+this.targetEl).append(html);
+        $('.' + this.targetEl).append(card);
 
-        // Call method to change the WeatherCard background by passing it's condition code
-        this.changeCardBg(data.list[0].weather[0].id);
+        $('.' + this.targetEl).find('.weather').html(shortDesc);
+        $('.' + this.targetEl).find('.temp').html(temp);
+        $('.' + this.targetEl).find('.city').html(cityName);
 
-        // Convert the temperature units on click.
-        const $thisTemp = $('.'+this.targetEl+' .weatherTemp');
+        $('.' + this.targetEl).find('.cloud').each(function (e) {
+            var duration = Math.floor((Math.random() * 20000) + 10000) * (e / 10);
 
-        $thisTemp.off('click').on('click', (e) => {
-            if ($thisTemp.text().indexOf('C') > -1) {
-                $thisTemp.text(tempF + '°F');
-            } else {
-                $thisTemp.text(temp + '°C');
-            }
+            setTimeout(function () {
+                $('.cloud').eq(e).addClass('animated');
+            }, duration);
         });
 
-    }
+        $('.' + this.targetEl).find('.rain_drop').each(function (e) {
+            var duration = Math.floor((Math.random() * 3000) + 300) * (e / 10);
 
+            setTimeout(function () {
+                $('.rain_drop').eq(e).addClass('animated');
+            }, duration);
+        });
+
+        // Grab the next 3 days and loop through each with the days top temperature.
+        // generate forecast sections and loop through the data for each day
+        const nextDays = this.returnNextDays(3);
+        let forecast = nextDays.map((nextDay, i) => {
+            return `<div class="forecastCard d-flex flex-column"><p>${nextDay}</p>
+                  <p class="forecastIcons">${this.getWeatherIcon(data.list[i + 1].weather[0].id)}</p>
+                  <p class="forecastMax">${data.list[i + 1].temp.max.toFixed(0)}°</p>
+                  <p class="forecastMin">${data.list[i + 1].temp.min.toFixed(0)}°</p></div>`
+        }).join('');
+
+        $('.' + this.targetEl + ' .weatherForecast').append(forecast);
+
+    }
 
 
     // Set Background colours with classes varying on the condition.
     changeCardBg(conditionCode) {
 
         const category = Number(String(conditionCode).charAt(0));
-        const $thisCityCard = $('.cityCard'+this.instanceID);
+        const $thisCityCard = $('.cityCard' + this.instanceID);
 
         if (conditionCode === 800) {
             $thisCityCard.addClass('sunny-class');
@@ -131,4 +163,140 @@ export default class WeatherWidget {
 
     }
 
+    getWeatherCard(conditionCode) {
+        let card = null;
+        const category = Number(String(conditionCode).charAt(0));
+        console.log(category);
+        if (conditionCode === 800) {
+            card = `<div class="card sunny">
+                    <div class="top">
+                        <div class="weather"></div>
+                        <div class="temp"></div>
+                        <div class="city"></div>
+                        <div class="sun">
+                            <div class="rays"></div>
+                            <div class="rays two"></div>
+                        </div>
+                    </div>
+                    <div class="weatherForecast d-flex justify-content-between"></div>
+                </div>`;
+        } else if (category === 2) {
+            card = `<div class="card storm">
+                    <div class="top">
+                        <div class="rain_wrap">
+                           <div class="rain_drop"></div>
+                           <div class="rain_drop"></div>
+                           <div class="rain_drop"></div>
+                           <div class="rain_drop"></div>
+                           <div class="rain_drop"></div>
+                           <div class="rain_drop"></div>
+                           <div class="rain_drop"></div>
+                           <div class="rain_drop"></div>
+                           <div class="rain_drop"></div>
+                           <div class="rain_drop"></div>
+                           <div class="rain_drop"></div>
+                           <div class="rain_drop"></div>
+                           <div class="rain_drop"></div>
+                           <div class="rain_drop"></div>
+                           <div class="rain_drop"></div>
+                           <div class="rain_drop"></div>
+                           <div class="rain_drop"></div>
+                           <div class="rain_drop"></div>
+                           <div class="rain_drop"></div>
+                           <div class="rain_drop"></div>
+                           <div class="rain_drop"></div>
+                           <div class="rain_drop"></div>
+                           <div class="rain_drop"></div>
+                           <div class="rain_drop"></div>
+                           <div class="rain_drop"></div>
+                           <div class="rain_drop"></div>
+                           <div class="rain_drop"></div>
+                           <div class="rain_drop"></div>
+                        </div>
+                        <div class="weather"></div>
+                        <div class="temp"></div>
+                        <div class="city"></div>
+                    </div>
+                    <div class="weatherForecast d-flex justify-content-between"></div>
+                </div>`;
+        } else if (category === 3 || category === 5) {
+            card = `<div class="card cloudy">
+                    <div class="top">
+                        <div class="rain_wrap">
+                           <div class="rain_drop"></div>
+                           <div class="rain_drop"></div>
+                           <div class="rain_drop"></div>
+                           <div class="rain_drop"></div>
+                           <div class="rain_drop"></div>
+                           <div class="rain_drop"></div>
+                           <div class="rain_drop"></div>
+                           <div class="rain_drop"></div>
+                           <div class="rain_drop"></div>
+                           <div class="rain_drop"></div>
+                           <div class="rain_drop"></div>
+                           <div class="rain_drop"></div>
+                           <div class="rain_drop"></div>
+                           <div class="rain_drop"></div>
+                           <div class="rain_drop"></div>
+                           <div class="rain_drop"></div>
+                           <div class="rain_drop"></div>
+                           <div class="rain_drop"></div>
+                           <div class="rain_drop"></div>
+                           <div class="rain_drop"></div>
+                           <div class="rain_drop"></div>
+                           <div class="rain_drop"></div>
+                           <div class="rain_drop"></div>
+                           <div class="rain_drop"></div>
+                           <div class="rain_drop"></div>
+                           <div class="rain_drop"></div>
+                           <div class="rain_drop"></div>
+                           <div class="rain_drop"></div>
+                        </div>
+                        <div class="cloud" style="top: -65px;transform: scale(1.1);"></div>
+                        <div class="cloud" style="top: 0;transform: scale(0.7);"></div>
+                        <div class="cloud" style="top: 100px;transform: scale(1.3);"></div>
+                        <div class="cloud" style="top: 40px;"></div>
+                        
+                        <div class="weather"></div>
+                        <div class="temp"></div>
+                        <div class="city"></div>
+                    </div>
+                    <div class="weatherForecast d-flex justify-content-between"></div>
+                </div>`;
+        } else if (category === 6) {
+            card = `<div class="card snow">
+                    <div class="top">
+                        <div class="cloud" style="top: -65px;transform: scale(1.1);"></div>
+                        <div class="cloud" style="top: 0;transform: scale(0.7);"></div>
+                        <div class="cloud" style="top: 100px;transform: scale(1.3);"></div>
+                        <div class="cloud" style="top: 40px;"></div>
+                         <div class="snow_wrap">
+                         </div>
+                        <div class="weather"></div>
+                        <div class="temp"></div>
+                        <div class="city"></div>
+                    </div>
+                    <div class="weatherForecast d-flex justify-content-between"></div>
+                </div>`;
+
+        } else if (category === 7 || category === 8) {
+            card = `<div class="card cloudy">
+                    <div class="top">
+                        <div class="cloud" style="top: -65px;transform: scale(1.1);"></div>
+                        <div class="cloud" style="top: 0;transform: scale(0.7);"></div>
+                        <div class="cloud" style="top: 100px;transform: scale(1.3);"></div>
+                        <div class="cloud" style="top: 40px;"></div>
+                        <div class="weather"></div>
+                        <div class="temp"></div>
+                        <div class="city"></div>
+                    </div>
+                    <div class="weatherForecast d-flex justify-content-between"></div>
+                </div>`;
+        }
+
+        return card;
+    }
+
 }
+
+

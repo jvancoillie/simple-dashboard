@@ -7,7 +7,7 @@
 {% block body %}
 
     <div class="d-flex h-100">
-        <div class="w-66 bg-white section-left h-100 shadow">
+        <div class="w-66 bg-white section-left h-100">
             <div id="section1" class="section h-50">
                 <div class="information h-100">
                     <div class="section-inner h-100">
@@ -70,15 +70,15 @@
                         </div>
                     </div>
                     <div class="d-flex flex-column h-100 align-items-end justify-content-end date px-4">
-                        <h5 class="w-100 text-left">{{ 'now'|localizeddate('none', 'none', null, null, "dd") }}</h5>
+                        <h5 class="w-100 deepshadow text-left">{{ 'now'|localizeddate('none', 'none', null, null, "dd") }}</h5>
                         <div class="d-flex justify-content-between w-100 pb-3">
-                            <h6 class="text-left ">{{ 'now'|localizeddate('none', 'none', null, null, "MMMM") }}</h6>
-                            <div id="week" class=" text-center">
+                            <div id="month" class="deepshadow text-left ">{{ 'now'|localizeddate('none', 'none', null, null, "MMMM") }}</div>
+                            <div id="week" class="deepshadow text-center">
                                 {% for event in widgets.Week %}
                                             {{ event.content|md2html }}
                                 {% endfor %}
                             </div>
-                            <div class="text-right" id="time"></div>
+                            <div id="time" class="deepshadow text-right" >00:00:00</div>
                         </div>
                     </div>
                 </div>
@@ -86,11 +86,10 @@
         </div>
         <div class="w-33">
             <div class="d-flex flex-column h-100">
-                <div class="ww-wrapper border-bottom">
-                    <div class="ww-row">
-                        <div class="weatherCard weatherCard1"></div>
-                    </div>
+
+                <div id="cards" class="weather-card">
                 </div>
+
                 <div class="frame">
                     <div class="list">
                         <div class="head">

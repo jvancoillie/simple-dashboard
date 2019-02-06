@@ -3,15 +3,15 @@
     "js/app": {
       "js": [
         "/build/runtime.7d83f647.js",
-        "/build/0.8cc9cb0a.js",
-        "/build/js/app.19c7699d.js"
+        "/build/0.8c240160.js",
+        "/build/js/app.f86c4732.js"
       ]
     },
     "js/admin": {
       "js": [
         "/build/runtime.7d83f647.js",
-        "/build/0.8cc9cb0a.js",
-        "/build/1.a0391678.js",
+        "/build/0.8c240160.js",
+        "/build/1.ac7f701c.js",
         "/build/js/admin.75c293ae.js"
       ]
     },
@@ -22,7 +22,7 @@
       ],
       "css": [
         "/build/2.221aeca6.css",
-        "/build/css/app.0b1fb2eb.css"
+        "/build/css/app.a9e60f12.css"
       ]
     },
     "css/admin": {
