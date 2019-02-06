@@ -13,13 +13,16 @@ export default class WeatherWidget {
             this.units = options.units;
             this.displayName = options.displayName;
             this.lang = options.lang;
-            const apiRequest = `http://api.openweathermap.org/data/2.5/forecast/daily?q=${this.location}&units=${this.units}&appid=${this.appid}&cnt=${this.forecastDays}&lang=${this.lang}`;
 
-            this.getWeather(apiRequest, this.displayName);
+            this.getWeather();
+            setInterval(this.getWeather.bind(this), 60*60*1000);
+
         }
     }
 
-    getWeather(apiRequest, cityName) {
+    getWeather() {
+        const apiRequest = `http://api.openweathermap.org/data/2.5/forecast/daily?q=${this.location}&units=${this.units}&appid=${this.appid}&cnt=${this.forecastDays}&lang=${this.lang}`;
+        const cityName = this.displayName;
         $.getJSON(apiRequest, (data) => {
             this.renderData(data, cityName);
         })
@@ -76,37 +79,11 @@ export default class WeatherWidget {
         const cityName = city;
         const country = data.city.country;
         const temp = data.list[0].temp.day.toFixed(0);
-        const tempF = (temp * 9 / 5 + 32).toFixed(0);
-        const tempMin = data.list[0].temp.min.toFixed(0);
-        const tempMax = data.list[0].temp.max.toFixed(0);
         const shortDesc = data.list[0].weather[0].description;
-        const day = moment().format('dddd D MMMM');
         let card = this.getWeatherCard(data.list[0].weather[0].id);
 
-        // Build HTML elements and insert data
-        let html = `<div class="cityContainer cityCard${this.instanceID}">
-            <div class="weatherDate">${cityName}</div>
-            
-            
-            <div class="d-flex justify-content-around">
-       
-                <div class="weatherIcon">
-                ${this.getWeatherIcon(data.list[0].weather[0].id)}
-                </div>
-                <div class="tempAndCity d-flex flex-column align-items-center">
-                    <p class="weatherDesc">${shortDesc}</p>
-                    <p class="weatherTemp align-self-baseline">${temp}°C</p>
-                </div>
-               
-            </div>
-             <div class="d-flex justify-content-between">
-                </div>
-            
-        </div>
-         `;
-
         // Append the html to the page with the data
-        $('.' + this.targetEl).append(card);
+        $('.' + this.targetEl).html(card);
 
         $('.' + this.targetEl).find('.weather').html(shortDesc);
         $('.' + this.targetEl).find('.temp').html(temp);
@@ -142,31 +119,9 @@ export default class WeatherWidget {
 
     }
 
-
-    // Set Background colours with classes varying on the condition.
-    changeCardBg(conditionCode) {
-
-        const category = Number(String(conditionCode).charAt(0));
-        const $thisCityCard = $('.cityCard' + this.instanceID);
-
-        if (conditionCode === 800) {
-            $thisCityCard.addClass('sunny-class');
-        } else if (category === 2) {
-            $thisCityCard.addClass('stormy-class');
-        } else if (category === 3 || category === 5) {
-            $thisCityCard.addClass('rainy-class');
-        } else if (category === 6) {
-            $thisCityCard.addClass('snow-class');
-        } else if (category === 7 || category === 8) {
-            $thisCityCard.addClass('cloudy-class');
-        }
-
-    }
-
     getWeatherCard(conditionCode) {
         let card = null;
         const category = Number(String(conditionCode).charAt(0));
-        console.log(category);
         if (conditionCode === 800) {
             card = `<div class="card sunny">
                     <div class="top">

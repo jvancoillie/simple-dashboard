@@ -16,7 +16,7 @@ $(document).ready(function() {
         setInterval(() => {
             time = moment().format('HH:mm:ss');
             document.getElementById('time').innerHTML = time;
-            if(time === '00:00:30'){
+            if(time === '02:00:30'){
                 document.location.reload(true)
             }
         }, 1000)
