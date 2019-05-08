@@ -22,7 +22,8 @@
     "moment": "^2.23.0",
     "normalize.css": "^8.0.1",
     "pickadate-webpack": "^3.5.6",
-    "popper.js": "^1.14.6"
+    "popper.js": "^1.14.6",
+    "trumbowyg": "^2.16.2"
   },
   "browserslist": [
     "> 0.5%",

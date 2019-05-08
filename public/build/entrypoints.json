@@ -2,43 +2,45 @@
   "entrypoints": {
     "js/app": {
       "js": [
-        "/build/runtime.7d83f647.js",
-        "/build/0.8c240160.js",
-        "/build/js/app.1179ddbe.js"
+        "/build/runtime.6cf710cd.js",
+        "/build/vendors~js/admin~js/app.1dea7222.js",
+        "/build/js/app.a10d6a70.js"
       ]
     },
     "js/admin": {
       "js": [
-        "/build/runtime.7d83f647.js",
-        "/build/0.8c240160.js",
-        "/build/1.ac7f701c.js",
-        "/build/js/admin.75c293ae.js"
+        "/build/runtime.6cf710cd.js",
+        "/build/vendors~js/admin~js/app.1dea7222.js",
+        "/build/vendors~js/admin.7d8ae540.js",
+        "/build/js/admin.eeae92b5.js"
       ]
     },
     "css/app": {
       "js": [
-        "/build/runtime.7d83f647.js",
-        "/build/2.96a0027f.js"
+        "/build/runtime.6cf710cd.js",
+        "/build/vendors~css/app.aed5a5c0.js"
       ],
       "css": [
-        "/build/2.221aeca6.css",
-        "/build/css/app.6c80ef91.css"
+        "/build/vendors~css/app.383ca162.css",
+        "/build/css/app.bdffcdf8.css"
       ]
     },
     "css/admin": {
       "js": [
-        "/build/runtime.7d83f647.js"
+        "/build/runtime.6cf710cd.js",
+        "/build/vendors~css/admin.09a1e3c6.js"
       ],
       "css": [
-        "/build/css/admin.358888fe.css"
+        "/build/vendors~css/admin.ac50cbc7.css",
+        "/build/css/admin.1c20b26e.css"
       ]
     },
     "css/signin": {
       "js": [
-        "/build/runtime.7d83f647.js"
+        "/build/runtime.6cf710cd.js"
       ],
       "css": [
-        "/build/css/signin.30355343.css"
+        "/build/css/signin.1440730a.css"
       ]
     }
   }

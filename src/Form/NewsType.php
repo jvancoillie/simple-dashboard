@@ -5,6 +5,7 @@ namespace App\Form;
 use App\Entity\News;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
+use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Form\FormEvent;
 use Symfony\Component\Form\FormEvents;
@@ -15,7 +16,9 @@ class NewsType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('content')
+            ->add('content', TextareaType::class, [
+                'label' => 'news.content',
+            ])
             ->add('publishAt')
         ;
         $builder->addEventListener(FormEvents::PRE_SET_DATA, function (FormEvent $event){

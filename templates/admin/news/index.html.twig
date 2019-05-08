@@ -27,10 +27,15 @@
                 <td>{{ news.content|md2html }}</td>
                 <td>{{ news.publishAt ? news.publishAt|date('d/m/Y') : '' }}</td>
                 <td>
-                    <a class="btn btn-sm btn-outline-primary"  href="{{ path('admin_news_edit', {'id': news.id}) }}">
-                        <i class="fas fa-edit"></i>
-                        <span class="sr-only">{{ 'edit'|trans }}</span>
-                    </a>
+                    <div class="d-flex">
+                        <a class="btn btn-sm btn-outline-primary mr-2"  href="{{ path('admin_news_edit', {'id': news.id}) }}">
+                            <i class="fas fa-edit"></i>
+                            <span class="sr-only">{{ 'edit'|trans }}</span>
+                        </a>
+                        {{ include('admin/news/_delete_form.html.twig', { news:news }, withContext=false) }}
+                    </div>
+
+
                 </td>
             </tr>
         {% else %}

@@ -6557,6 +6557,11 @@ trim-right@^1.0.1:
   dependencies:
     glob "^7.1.2"
 
+trumbowyg@^2.16.2:
+  version "2.16.2"
+  resolved "https://registry.yarnpkg.com/trumbowyg/-/trumbowyg-2.16.2.tgz#b9ee85360ecf87cd18a5d7d2cc40ce4a74f0ceb8"
+  integrity sha512-c8EaoqUVW4pnPY1/UO4+Ew+NUMBYLLp9dB7OZtFlJ0sy6KU2BlarA4E5bFESS9jULjo0UaxfZPp5VjEsdhqW4g==
+
 tslib@^1.9.0:
   version "1.9.3"
   resolved "https://registry.yarnpkg.com/tslib/-/tslib-1.9.3.tgz#d7e4dd79245d85428c4d7e4822a79917954ca286"

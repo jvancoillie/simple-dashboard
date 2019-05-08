@@ -32,10 +32,15 @@
                 <td>{{ menu.content|md2html }}</td>
                 <td>{{ menu.publishAt ? menu.publishAt|date('d/m/Y') : '' }}</td>
                 <td>
-                    <a class="btn btn-sm btn-outline-primary" href="{{ path('admin_menu_edit', {'id': menu.id}) }}">
-                        <i class="fas fa-edit"></i>
-                        <span class="sr-only">{{ 'edit'|trans }}</span>
-                    </a>
+                    <div class="d-flex">
+                        <a class="btn btn-sm btn-outline-primary mr-2" href="{{ path('admin_menu_edit', {'id': menu.id}) }}">
+                            <i class="fas fa-edit"></i>
+                            <span class="sr-only">{{ 'edit'|trans }}</span>
+                        </a>
+                        {{ include('admin/menu/_delete_form.html.twig', { menu: menu }, withContext=false) }}
+
+                    </div>
+
                 </td>
             </tr>
         {% else %}
