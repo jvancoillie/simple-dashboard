@@ -47,6 +47,10 @@
             </trans-unit>
 
             <!-- Menu translations-->
+            <trans-unit id="menu.screen">
+                <source>menu.screen</source>
+                <target>Liste des écrans</target>
+            </trans-unit>
             <trans-unit id="menu.title">
                 <source>menu.title</source>
                 <target>Liste des menus</target>
@@ -96,6 +100,32 @@
             <trans-unit id="news.action.add">
                 <source>news.action.add</source>
                 <target>Ajouter une information</target>
+            </trans-unit>
+
+            <!-- News translations-->
+            <trans-unit id="screen.title">
+                <source>screen.title</source>
+                <target>Liste des écrans</target>
+            </trans-unit>
+            <trans-unit id="screen.name">
+                <source>screen.name</source>
+                <target>Nom de l'écran</target>
+            </trans-unit>
+            <trans-unit id="screen.create.title">
+                <source>screen.create.title</source>
+                <target>Ajouter un écran</target>
+            </trans-unit>
+            <trans-unit id="screen.edit.title">
+                <source>screen.edit.title</source>
+                <target>Modifier un écran</target>
+            </trans-unit>
+            <trans-unit id="screen.description">
+                <source>screen.description</source>
+                <target>Description</target>
+            </trans-unit>
+            <trans-unit id="screen.action.add">
+                <source>screen.action.add</source>
+                <target>Ajouter un écran</target>
             </trans-unit>
 
             <!-- Week translations-->

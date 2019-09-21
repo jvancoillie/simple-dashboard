@@ -22,6 +22,14 @@ class MenuBuilder
         $menu = $this->factory->createItem('root');
         $menu->setChildrenAttribute('class', 'nav flex-column');
 
+        $menu->addChild('Screen', [
+            'label' => 'menu.screen',
+            'route' => 'admin_screen_index',
+            'attributes' => [
+                'icon' => 'fas fa-desktop',
+            ],
+        ]);
+
         $menu->addChild('Menu', [
             'label' => 'menu.menu',
             'route' => 'admin_menu_index',
