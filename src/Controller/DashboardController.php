@@ -10,10 +10,24 @@ use Symfony\Component\Routing\Annotation\Route;
 class DashboardController extends AbstractController
 {
     /**
-     * @Route("/", name="dashboard", defaults={"style"="index"})
-     * @Route("/{style}", name="dashboard_style", requirements={"style"="index|simple|planner"})
+     * @Route("/", name="homepage")
      */
-    public function index(DashboardManager $dashboardManager, $style)
+    public function index(DashboardManager $dashboardManager)
+    {
+        $date = new \DateTime();
+        $widgets = $dashboardManager->getWidgetsByDate($date);
+
+        return $this->render('dashboard/index.html.twig', [
+            'widgets' => $widgets,
+            'date' => $date,
+        ]);
+    }
+
+    /**
+     * @Route("/screen", name="dashboard", defaults={"style"="screen"})
+     * @Route("/{style}", name="dashboard_style", requirements={"style"="screen|simple|planner"})
+     */
+    public function screen(DashboardManager $dashboardManager, $style)
     {
         $date = new \DateTime();
         $widgets = $dashboardManager->getWidgetsByDate($date);
