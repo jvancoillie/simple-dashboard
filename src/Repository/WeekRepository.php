@@ -3,6 +3,7 @@
 namespace App\Repository;
 
 use App\Entity\Menu;
+use App\Entity\Screen;
 use App\Entity\Week;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Symfony\Bridge\Doctrine\RegistryInterface;
@@ -22,9 +23,12 @@ class WeekRepository extends ServiceEntityRepository implements DashboardReposit
         parent::__construct($registry, Week::class);
     }
 
-    public function getByDate(\DateTime $date)
+    public function getByDateAndScreen(\DateTime $date, Screen $screen)
     {
         return $this->createQueryBuilder('week')
+            ->innerJoin('week.screens', 'screen')
+            ->andWhere('screen = :screen')
+            ->setParameter('screen', $screen)
             ->andWhere(':date BETWEEN week.startDate and week.endDate')
             ->setParameter('date', $date->format('Y-m-d'))
             ->orderBy('week.id', 'ASC')

@@ -9,6 +9,7 @@
 namespace App\Manager;
 
 
+use App\Entity\Screen;
 use App\Repository\BirthdayRepository;
 use App\Repository\DashboardRepositoryInterface;
 use App\Repository\MenuRepository;
@@ -35,7 +36,7 @@ class DashboardManager
         $this->screenRepository = $screenRepository;
     }
 
-    public function getWidgetsByDate(\DateTime $date)
+    public function getWidgetsByDateAndScreen(\DateTime $date, Screen $screen)
     {
         $result = [];
 
@@ -43,7 +44,7 @@ class DashboardManager
          * @var DashboardRepositoryInterface repository
          */
         foreach($this->dashboardRepositories as $name => $repository){
-            $result[$name] = $repository->getByDate($date);
+            $result[$name] = $repository->getByDateAndScreen($date, $screen);
         }
 
         return $result;

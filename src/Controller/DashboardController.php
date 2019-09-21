@@ -28,7 +28,7 @@ class DashboardController extends AbstractController
     public function screen(DashboardManager $dashboardManager, Screen $screen )
     {
         $date = new \DateTime();
-        $widgets = $dashboardManager->getWidgetsByDate($date);
+        $widgets = $dashboardManager->getWidgetsByDateAndScreen($date, $screen);
 
         return $this->render('dashboard/screen.html.twig', [
             'widgets' => $widgets,

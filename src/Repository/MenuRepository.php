@@ -3,6 +3,7 @@
 namespace App\Repository;
 
 use App\Entity\Menu;
+use App\Entity\Screen;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Symfony\Bridge\Doctrine\RegistryInterface;
 
@@ -21,9 +22,12 @@ class MenuRepository extends ServiceEntityRepository implements DashboardReposit
         parent::__construct($registry, Menu::class);
     }
 
-    public function getByDate(\DateTime $date)
+    public function getByDateAndScreen(\DateTime $date, Screen $screen)
     {
         return $this->createQueryBuilder('menu')
+            ->innerJoin('menu.screens', 'screen')
+            ->andWhere('screen = :screen')
+            ->setParameter('screen', $screen)
             ->andWhere('menu.publishAt = :date')
             ->setParameter('date', $date->format('Y-m-d'))
             ->orderBy('menu.id', 'ASC')

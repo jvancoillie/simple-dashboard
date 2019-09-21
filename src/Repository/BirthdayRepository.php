@@ -3,6 +3,7 @@
 namespace App\Repository;
 
 use App\Entity\Birthday;
+use App\Entity\Screen;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Symfony\Bridge\Doctrine\RegistryInterface;
 
@@ -21,11 +22,15 @@ class BirthdayRepository extends ServiceEntityRepository implements DashboardRep
         parent::__construct($registry, Birthday::class);
     }
 
-    public function getByDate(\DateTime $date)
+    public function getByDateAndScreen(\DateTime $date, Screen $screen)
     {
         return $this->createQueryBuilder('birthday')
+            ->innerJoin('birthday.screens', 'screen')
+            ->setParameter('screen', $screen)
+            ->andWhere('screen = :screen')
             ->andWhere('DAY(birthday.date) = :day')
             ->andWhere('MONTH(birthday.date) = :month')
+
             ->setParameter('day', $date->format('d'))
             ->setParameter('month', $date->format('m'))
             ->orderBy('birthday.id', 'ASC')

@@ -4,6 +4,7 @@ namespace App\Repository;
 
 use App\Entity\Menu;
 use App\Entity\News;
+use App\Entity\Screen;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Symfony\Bridge\Doctrine\RegistryInterface;
 
@@ -22,9 +23,12 @@ class NewsRepository extends ServiceEntityRepository implements DashboardReposit
         parent::__construct($registry, News::class);
     }
 
-    public function getByDate(\DateTime $date)
+    public function getByDateAndScreen(\DateTime $date, Screen $screen)
     {
         return $this->createQueryBuilder('news')
+            ->innerJoin('news.screens', 'screen')
+            ->andWhere('screen = :screen')
+            ->setParameter('screen', $screen)
             ->andWhere('news.publishAt = :date')
             ->setParameter('date', $date->format('Y-m-d'))
             ->orderBy('news.id', 'ASC')

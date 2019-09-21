@@ -9,6 +9,8 @@
 namespace App\Repository;
 
 
+use App\Entity\Screen;
+
 /**
  * Interface DashboardRepositoryInterface
  * @package App\Repository
@@ -20,7 +22,7 @@ interface DashboardRepositoryInterface
      * @param \DateTime $date
      * @return mixed
      */
-    public function getByDate(\DateTime $date);
+    public function getByDateAndScreen(\DateTime $date, Screen $screen);
 
     public function getName();
 
