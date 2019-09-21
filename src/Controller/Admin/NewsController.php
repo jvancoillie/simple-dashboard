@@ -20,7 +20,7 @@ class NewsController extends AbstractController
      */
     public function index(NewsRepository $newsRepository): Response
     {
-        return $this->render('admin/news/index.html.twig', ['news' => $newsRepository->findAll()]);
+        return $this->render('admin/news/index.html.twig', ['news_list' => $newsRepository->findAll()]);
     }
 
     /**

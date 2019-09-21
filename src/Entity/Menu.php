@@ -2,6 +2,8 @@
 
 namespace App\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -27,12 +29,18 @@ class Menu implements WidgetInterface
     private $publishAt;
 
     /**
+     * @ORM\ManyToMany(targetEntity="App\Entity\Screen")
+     */
+    private $screens;
+
+    /**
      * Menu constructor.
      * @param $publishAt
      */
     public function __construct()
     {
         $this->publishAt = new \DateTime();
+        $this->screens = new ArrayCollection();
     }
 
 
@@ -61,6 +69,32 @@ class Menu implements WidgetInterface
     public function setPublishAt(\DateTimeInterface $publishAt): self
     {
         $this->publishAt = $publishAt;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Screen[]
+     */
+    public function getScreens(): Collection
+    {
+        return $this->screens;
+    }
+
+    public function addScreen(Screen $screen): self
+    {
+        if (!$this->screens->contains($screen)) {
+            $this->screens[] = $screen;
+        }
+
+        return $this;
+    }
+
+    public function removeScreen(Screen $screen): self
+    {
+        if ($this->screens->contains($screen)) {
+            $this->screens->removeElement($screen);
+        }
 
         return $this;
     }

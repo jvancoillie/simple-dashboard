@@ -3,6 +3,8 @@
 namespace App\Form;
 
 use App\Entity\News;
+use App\Entity\Screen;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
@@ -18,6 +20,12 @@ class NewsType extends AbstractType
         $builder
             ->add('content', TextareaType::class, [
                 'label' => 'news.content',
+            ])
+            ->add('screens',EntityType::class, [
+                'label' => 'screen.list',
+                'class' => Screen::class,
+                'multiple' => true,
+                'expanded' => true
             ])
             ->add('publishAt')
         ;

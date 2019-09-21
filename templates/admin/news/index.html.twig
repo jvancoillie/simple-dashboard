@@ -18,14 +18,23 @@
         <tr>
             <th>{{ 'menu.content'|trans }}</th>
             <th>{{ 'menu.publish_at'|trans }}</th>
+            <th>{{ 'screen.list'|trans }}</th>
             <th>{{ 'table.actions'|trans }}</th>
         </tr>
         </thead>
         <tbody>
-        {% for news in news %}
+        {% for news in news_list %}
             <tr>
                 <td>{{ news.content|md2html }}</td>
                 <td>{{ news.publishAt ? news.publishAt|date('d/m/Y') : '' }}</td>
+                <td>
+                    <ul class="list-unstyled">
+                        {% for screen in news.screens %}
+                            <li>{{ screen }}</li>
+                        {% endfor %}
+                    </ul>
+
+                </td>
                 <td>
                     <div class="d-flex">
                         <a class="btn btn-sm btn-outline-primary mr-2"  href="{{ path('admin_news_edit', {'id': news.id}) }}">

@@ -19,6 +19,7 @@
             <th>{{ 'week.content'|trans }}</th>
             <th>{{ 'week.start_date'|trans }}</th>
             <th>{{ 'week.end_date'|trans }}</th>
+            <th>{{ 'screen.list'|trans }}</th>
             <th>{{ 'table.actions'|trans }}</th>
         </tr>
         </thead>
@@ -28,6 +29,14 @@
                 <td>{{ week.content|md2html }}</td>
                 <td>{{ week.startDate ? week.startDate|date('d/m/Y') : '' }}</td>
                 <td>{{ week.endDate ? week.endDate|date('d/m/Y') : '' }}</td>
+                <td>
+                    <ul class="list-unstyled">
+                        {% for screen in week.screens %}
+                            <li>{{ screen }}</li>
+                        {% endfor %}
+                    </ul>
+
+                </td>
                 <td>
                     <div class="d-flex">
                         <a class="btn btn-sm btn-outline-primary mr-2"  href="{{ path('admin_week_edit', {'id': week.id}) }}">

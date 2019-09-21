@@ -2,6 +2,8 @@
 
 namespace App\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -30,6 +32,16 @@ class Birthday implements WidgetInterface
      * @ORM\Column(type="date")
      */
     private $date;
+
+    /**
+     * @ORM\ManyToMany(targetEntity="App\Entity\Screen")
+     */
+    private $screens;
+
+    public function __construct()
+    {
+        $this->screens = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -80,6 +92,32 @@ class Birthday implements WidgetInterface
     public function getContent()
     {
         return sprintf('%s %s (%d ans)', $this->firstname, $this->lastname, $this->getAge());
+    }
+
+    /**
+     * @return Collection|Screen[]
+     */
+    public function getScreens(): Collection
+    {
+        return $this->screens;
+    }
+
+    public function addScreen(Screen $screen): self
+    {
+        if (!$this->screens->contains($screen)) {
+            $this->screens[] = $screen;
+        }
+
+        return $this;
+    }
+
+    public function removeScreen(Screen $screen): self
+    {
+        if ($this->screens->contains($screen)) {
+            $this->screens->removeElement($screen);
+        }
+
+        return $this;
     }
 
 

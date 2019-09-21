@@ -25,6 +25,7 @@
                 <th>{{ 'birthday.firstname'|trans }}</th>
                 <th>{{ 'birthday.lastname'|trans }}</th>
                 <th>{{ 'birthday.date'|trans }}</th>
+                <th>{{ 'screen.list'|trans }}</th>
                 <th>{{ 'table.actions'|trans }}</th>
             </tr>
             </thead>
@@ -34,6 +35,14 @@
                     <td>{{ birthday.firstname }}</td>
                     <td>{{ birthday.lastname }}</td>
                     <td>{{ birthday.date ? birthday.date|date('d/m/Y') : '' }}</td>
+                    <td>
+                        <ul class="list-unstyled">
+                            {% for screen in birthday.screens %}
+                                <li>{{ screen }}</li>
+                            {% endfor %}
+                        </ul>
+
+                    </td>
                     <td>
                         <div class="d-flex">
                             <a class="btn btn-sm btn-outline-primary mr-2" href="{{ path('admin_birthday_edit', {'id': birthday.id}) }}">

@@ -127,6 +127,10 @@
                 <source>screen.action.add</source>
                 <target>Ajouter un écran</target>
             </trans-unit>
+            <trans-unit id="screen.list">
+                <source>screen.list</source>
+                <target>Écrans</target>
+            </trans-unit>
 
             <!-- Week translations-->
             <trans-unit id="week.title">

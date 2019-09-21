@@ -2,6 +2,8 @@
 
 namespace App\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -30,6 +32,16 @@ class Week implements WidgetInterface
      * @ORM\Column(type="date")
      */
     private $endDate;
+
+    /**
+     * @ORM\ManyToMany(targetEntity="App\Entity\Screen")
+     */
+    private $screens;
+
+    public function __construct()
+    {
+        $this->screens = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -82,6 +94,32 @@ class Week implements WidgetInterface
     public function setEndDate($endDate): void
     {
         $this->endDate = $endDate;
+    }
+
+    /**
+     * @return Collection|Screen[]
+     */
+    public function getScreens(): Collection
+    {
+        return $this->screens;
+    }
+
+    public function addScreen(Screen $screen): self
+    {
+        if (!$this->screens->contains($screen)) {
+            $this->screens[] = $screen;
+        }
+
+        return $this;
+    }
+
+    public function removeScreen(Screen $screen): self
+    {
+        if ($this->screens->contains($screen)) {
+            $this->screens->removeElement($screen);
+        }
+
+        return $this;
     }
 
 
