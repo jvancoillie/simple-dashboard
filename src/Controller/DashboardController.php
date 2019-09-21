@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Entity\Screen;
 use App\Manager\DashboardManager;
 use App\Repository\TagRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -14,25 +15,22 @@ class DashboardController extends AbstractController
      */
     public function index(DashboardManager $dashboardManager)
     {
-        $date = new \DateTime();
-        $widgets = $dashboardManager->getWidgetsByDate($date);
+        $screens = $dashboardManager->getScreens();
 
         return $this->render('dashboard/index.html.twig', [
-            'widgets' => $widgets,
-            'date' => $date,
+            'screens' => $screens,
         ]);
     }
 
     /**
-     * @Route("/screen", name="dashboard", defaults={"style"="screen"})
-     * @Route("/{style}", name="dashboard_style", requirements={"style"="screen|simple|planner"})
+     * @Route("/screen/{id}", name="dashboard_screen")
      */
-    public function screen(DashboardManager $dashboardManager, $style)
+    public function screen(DashboardManager $dashboardManager, Screen $screen )
     {
         $date = new \DateTime();
         $widgets = $dashboardManager->getWidgetsByDate($date);
 
-        return $this->render(sprintf('dashboard/%s.html.twig', $style), [
+        return $this->render('dashboard/screen.html.twig', [
             'widgets' => $widgets,
             'date' => $date,
         ]);

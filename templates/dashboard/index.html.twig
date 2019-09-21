@@ -13,43 +13,22 @@
             </div>
 
             <div class="row">
-                <div class="col-md-4 col-sm-6">
-                    <a href="">
-                    <div class="serviceBox">
-                        <div class="service-icon">
-                            <i class="fa fa-desktop"></i>
-                        </div>
-                        <h3 class="title">web design</h3>
-                        <p class="description">
-                            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aperiam blanditiis debitis, harum minima mollitia sunt totam. Amet cumque deleniti eos harum, libero quaerat quos unde!
-                        </p>
+                {% for screen in screens %}
+                    <div class="col-md-4 col-sm-6">
+                        <a href="{{ path('dashboard_screen', {id: screen.id }) }}" class="serviceBox-link">
+                            <div class="serviceBox">
+                                <div class="service-icon">
+                                    <i class="fa fa-desktop"></i>
+                                </div>
+                                <h3 class="title">{{ screen.name }}</h3>
+                                <p class="description">
+                                    {{ screen.description|md2html }}
+                                </p>
+                            </div>
+                        </a>
                     </div>
-                    </a>
-                </div>
+                {% endfor %}
 
-                <div class="col-md-4 col-sm-6">
-                    <div class="serviceBox">
-                        <div class="service-icon">
-                            <i class="fa fa-rocket"></i>
-                        </div>
-                        <h3 class="title">Web Development</h3>
-                        <p class="description">
-                            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aperiam blanditiis debitis, harum minima mollitia sunt totam. Amet cumque deleniti eos harum, libero quaerat quos unde!
-                        </p>
-                    </div>
-                </div>
-
-                <div class="col-md-4 col-sm-6">
-                    <div class="serviceBox">
-                        <div class="service-icon">
-                            <i class="fa fa-briefcase"></i>
-                        </div>
-                        <h3 class="title">Brand Building</h3>
-                        <p class="description">
-                            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aperiam blanditiis debitis, harum minima mollitia sunt totam. Amet cumque deleniti eos harum, libero quaerat quos unde!
-                        </p>
-                    </div>
-                </div>
             </div>
         </div>
     </div>
