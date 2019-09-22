@@ -98,7 +98,7 @@ class Birthday implements WidgetInterface
 
     public function getContent()
     {
-        return sprintf('%s %s (%d ans)', $this->firstname, $this->lastname, $this->getAge());
+        return sprintf('%s %s. (%s)', $this->firstname, substr($this->lastname, 0, 1), $this->classroom);
     }
 
     /**
