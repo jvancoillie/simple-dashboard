@@ -81,16 +81,18 @@ class Menu implements WidgetInterface
         return $this->screens;
     }
 
-    public function addScreen(Screen $screen): self
+    public function addScreen(Screen ...$screens): self
     {
-        if (!$this->screens->contains($screen)) {
-            $this->screens[] = $screen;
+        foreach ($screens as $screen){
+            if (!$this->screens->contains($screen)) {
+                $this->screens[] = $screen;
+            }
         }
 
         return $this;
     }
 
-    public function removeScreen(Screen $screen): self
+    public function removeScreen(Screen ...$screen): self
     {
         if ($this->screens->contains($screen)) {
             $this->screens->removeElement($screen);
