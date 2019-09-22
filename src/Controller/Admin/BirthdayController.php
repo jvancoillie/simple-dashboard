@@ -22,7 +22,7 @@ class BirthdayController extends AbstractController
      */
     public function index(BirthdayRepository $birthdayRepository, Request $request): Response
     {
-        $form = $this->createForm(ImportType::class, null, [ 'action' => $this->generateUrl('admin_birthday_import')]);
+        $form = $this->createForm(ImportType::class, null, ['action' => $this->generateUrl('admin_birthday_import')]);
 
         return $this->render('admin/birthday/index.html.twig', [
             'birthdays' => $birthdayRepository->findAll(),
@@ -74,7 +74,6 @@ class BirthdayController extends AbstractController
     }
 
 
-
     /**
      * @Route("/truncate", name="admin_birthday_truncate", methods="DELETE")
      */
@@ -93,7 +92,7 @@ class BirthdayController extends AbstractController
      */
     public function delete(Request $request, Birthday $birthday): Response
     {
-        if ($this->isCsrfTokenValid('delete'.$birthday->getId(), $request->request->get('_token'))) {
+        if ($this->isCsrfTokenValid('delete' . $birthday->getId(), $request->request->get('_token'))) {
             $em = $this->getDoctrine()->getManager();
             $em->remove($birthday);
             $em->flush();
@@ -114,33 +113,52 @@ class BirthdayController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $data = $form->getData();
             $file = $data['file'];
+            $screens = $data['screens'];
+
+            $errorLignes = [];
 
             $reader = Reader::createFromPath($file->getPathname());
             $reader->setDelimiter(';');
             $reader->setHeaderOffset(0);
             $records = $reader->getRecords();
-
+            $header = $reader->getHeader();
             $em = $this->getDoctrine()->getManager();
 
-            try{
-                foreach ($records as $offset => $record) {
-                    $birthday = new Birthday();
-                    $birthday
-                        ->setFirstname($record['prenom'])
-                        ->setLastname($record['nom'])
-                        ->setDate(\DateTime::createFromFormat('d/m/Y', $record['date']))
-                    ;
-                    $em->persist($birthday);
+            $result = array_diff(['Nom', 'Prénom', 'Né(e) le', 'Classe'], $header);
+
+            if ($result) {
+                $this->addFlash('danger', sprintf('Import impossible : colonne(s) manquante(s) %s', implode(' | ',$result)));
+            } else {
+                try {
+                    foreach ($records as $offset => $record) {
+
+                        if ($record['Prénom'] && $record['Nom'] && $record['Né(e) le'] && $record['Classe']) {
+                            $birthday = new Birthday();
+                            $birthday
+                                ->addScreen(...$screens)
+                                ->setFirstname($record['Prénom'])
+                                ->setLastname($record['Nom'])
+                                ->setDate(\DateTime::createFromFormat('d/m/y', $record['Né(e) le']))
+                                ->setClassroom($record['Classe']);
+
+                            $em->persist($birthday);
+                        } else {
+                            $errorLignes[] = $offset;
+                        }
+                    }
+                    if($errorLignes){
+                        $this->addFlash('warning', sprintf('fichier importé sauf les lignes : %s', implode(' | ', $errorLignes)));
+                    }else{
+                        $this->addFlash('success', 'fichier importé');
+                    }
+
+                    $em->flush();
+                } catch (\Exception $e) {
+                    $this->addFlash('danger', 'Erreur lors de l\'import');
                 }
 
-                $this->addFlash('success', 'fichier importé');
 
-                $em->flush();
-            }catch (\Exception $e){
-                $this->addFlash('danger', 'Erreur lors de l\'import');
             }
-
-
 
 
         }

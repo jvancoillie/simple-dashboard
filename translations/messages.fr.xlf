@@ -33,6 +33,10 @@
                 <source>birthday.firstname</source>
                 <target>Prénom</target>
             </trans-unit>
+            <trans-unit id="birthday.classroom">
+                <source>birthday.classroom</source>
+                <target>Classe</target>
+            </trans-unit>
             <trans-unit id="birthday.lastname">
                 <source>birthday.lastname</source>
                 <target>Nom</target>

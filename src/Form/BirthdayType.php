@@ -20,6 +20,7 @@ class BirthdayType extends AbstractType
         $builder
             ->add('firstname', TextType::class, ['label' => 'birthday.firstname'])
             ->add('lastname',TextType::class, ['label' => 'birthday.lastname'])
+            ->add('classroom',TextType::class, ['label' => 'birthday.classroom'])
             ->add('screens',EntityType::class, [
                 'label' => 'screen.list',
                 'class' => Screen::class,

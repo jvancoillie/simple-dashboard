@@ -76,10 +76,12 @@
                     <p>
                         Fichier CSV <br>
                         séparateur : ; <br>
-                        Colonne : nom; prenom; date <br>
-                        Format de date : dd/mm/yyyy
+                        Colonne : 'Nom', 'Prénom', 'Né(e) le', 'Classe' <br>
+                        Format de date : dd/mm/yy
                     </p>
+
                     {{ form_row(form.file) }}
+                    {{ form_row(form.screens) }}
 
                 </div>
                 <div class="modal-footer">
