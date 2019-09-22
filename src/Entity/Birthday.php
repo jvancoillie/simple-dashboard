@@ -34,6 +34,13 @@ class Birthday implements WidgetInterface
     private $date;
 
     /**
+     * @var $classroom
+     *
+     * @ORM\Column(type="string")
+     */
+    private $classroom;
+
+    /**
      * @ORM\ManyToMany(targetEntity="App\Entity\Screen")
      */
     private $screens;
@@ -95,6 +102,22 @@ class Birthday implements WidgetInterface
     }
 
     /**
+     * @return mixed
+     */
+    public function getClassroom()
+    {
+        return $this->classroom;
+    }
+
+    /**
+     * @param mixed $classroom
+     */
+    public function setClassroom($classroom): void
+    {
+        $this->classroom = $classroom;
+    }
+
+    /**
      * @return Collection|Screen[]
      */
     public function getScreens(): Collection
@@ -102,10 +125,12 @@ class Birthday implements WidgetInterface
         return $this->screens;
     }
 
-    public function addScreen(Screen $screen): self
+    public function addScreen(Screen ...$screens): self
     {
-        if (!$this->screens->contains($screen)) {
-            $this->screens[] = $screen;
+        foreach ($screens as $screen){
+            if (!$this->screens->contains($screen)) {
+                $this->screens[] = $screen;
+            }
         }
 
         return $this;
