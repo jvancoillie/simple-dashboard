@@ -113,6 +113,7 @@ class MenuController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $data = $form->getData();
             $file = $data['file'];
+            $screens = $data['screens'];
 
             $reader = Reader::createFromPath($file->getPathname());
             $reader->setDelimiter(';');
@@ -131,6 +132,7 @@ class MenuController extends AbstractController
                         }
 
                     $menu
+                        ->addScreen(...$screens)
                         ->setContent($content)
                         ->setPublishAt(\DateTime::createFromFormat('d/m/Y', $record['date']));
                     $em->persist($menu);
