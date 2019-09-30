@@ -19,9 +19,6 @@ help: ## Outputs this help screen
 check: ## Check dependencies
 	$(EXEC_PHP) vendor/bin/composer-require-checker check composer.json
 
-install: build ## Install apps based on APP_ENV
-
-build: vendor node_modules assets ## Build vendor, node_modules and compile assests based on APP_ENV
 
 ## —— Symfony ——————————————————————————————————————————————————————————————————
 sf: ## List Symfony commands
@@ -78,14 +75,28 @@ test: phpunit.xml.dist load-fixtures ## Launch all functionnal and unit tests
 	bin/phpunit --stop-on-failure
 
 ## —— Deploy ——————————————————————————————————————————————————————————————————
-deploy: git-update install db ## Deploy, install composer dependencies and run database migrations
+deploy: git-update install  ## Deploy, install composer dependencies and run database migrations
 
+deploy-and-reset: git-update install-reset  ## Deploy, install composer dependencies and run database migrations
 
+## —— install —————————————————————————————————————————————————————————————————
+install: db ## Install apps based on APP_ENV
+
+install-with-assets: build ## Install apps and run assets based on APP_ENV
+
+install-reset-with-assets: build db-reset ## Install apps and run assets based on APP_ENV
+
+install-reset: db-reset ## Install apps and run assets based on APP_ENV
+
+## —— GIT —————————————————————————————————————————————————————————————————————
 git-update: ## Update Git only and refresh cache (sf+pagespeed)
 	git pull
 	rm -rf var/cache/* var/logs/*
 	php bin/console cache:warmup
 	chmod -R 777 var/*
+
+## —— build ———————————————————————————————————————————————————————————————————
+build: vendor node_modules assets ## Build vendor, node_modules and compile assests based on APP_ENV
 
 ## —— Stats ———————————————————————————————————————————————————————————————————
 stats: ## Commits by hour for the main author of this project
