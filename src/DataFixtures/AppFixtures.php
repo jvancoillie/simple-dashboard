@@ -12,13 +12,13 @@ class AppFixtures extends Fixture
     {
         $screen = new Screen();
         $screen->setName('Écran 1');
-        $screen->setDescription('Affichage des information pour l\'écran numéro 1');
+        $screen->setDescription('Affichage des informations pour l\'écran numéro 1');
 
         $manager->persist($screen);
 
         $screen2 = new Screen();
         $screen2->setName('Écran 2');
-        $screen2->setDescription('Affichage des information pour l\'écran numéro 2');
+        $screen2->setDescription('Affichage des informations pour l\'écran numéro 2');
 
         $manager->persist($screen2);
         $manager->flush();
