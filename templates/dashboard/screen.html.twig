@@ -2,7 +2,9 @@
 
 {% block title %}Dashboard{% endblock %}
 {% block body_id 'dashboard' %}
-
+{% block stylesheets %}
+    {{ encore_entry_link_tags('css/app') }}
+{% endblock %}
 {% block header %}{% endblock header %}
 {% block body %}
 

@@ -30,7 +30,9 @@ $(document).ready(function() {
         labelMonthNext:"Mois suivant",
         labelMonthPrev:"Mois précédent",
         labelMonthSelect:"Sélectionner un mois",
-        labelYearSelect:"Sélectionner une année"
+        labelYearSelect:"Sélectionner une année",
+        selectYears: true,
+        selectMonths: true
     });
 
     $('[data-toggle="popover"]').popover();

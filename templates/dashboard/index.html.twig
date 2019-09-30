@@ -3,6 +3,10 @@
 {% block title %}Dashboard{% endblock %}
 {% block body_id 'homepage' %}
 
+{% block stylesheets %}
+    {{ encore_entry_link_tags('css/homepage') }}
+{% endblock %}
+
 {% block header %}{% endblock header %}
 
 {% block body %}
@@ -30,10 +34,19 @@
                 {% endfor %}
 
             </div>
+            <div class="circle1"></div>
+            <div class="circle2"></div>
+            <div class="circle3"></div>
+            <div class="circle4"></div>
+            <div class="circle5"></div>
+            <div class="circle6"></div>
+            <div class="circle7"></div>
+            <div class="circle8"></div>
         </div>
+
     </div>
     <a href="{{ path('admin_dashboard') }}">
-    <div class="template-corner template-top template-right">
+    <div class="template-corner template-top template-left">
         <div class="template-title">
 
                 Admin<i class="template-icon fa fa-cogs"></i>
@@ -42,5 +55,10 @@
         </div>
     </div>
     </a>
+
+{% endblock %}
+
+
+{% block javascripts %}
 
 {% endblock %}

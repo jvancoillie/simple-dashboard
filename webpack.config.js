@@ -13,6 +13,7 @@ Encore
     .addStyleEntry('css/app', ['./assets/scss/app.scss'])
     .addStyleEntry('css/admin', ['./assets/scss/admin.scss'])
     .addStyleEntry('css/signin', ['./assets/scss/signin.scss'])
+    .addStyleEntry('css/homepage', ['./assets/scss/homepage.scss'])
     .splitEntryChunks()
     .enableSingleRuntimeChunk()
     .autoProvideVariables({
