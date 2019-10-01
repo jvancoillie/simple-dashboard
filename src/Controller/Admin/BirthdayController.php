@@ -132,7 +132,7 @@ class BirthdayController extends AbstractController
                 try {
                     foreach ($records as $offset => $record) {
 
-                        if ($record['Prénom'] && $record['Nom'] && $record['Né(e) le'] && $record['Classe']) {
+                        if ($record['Prénom'] && $record['Nom'] && $record['Né(e) le'] && $record['Classe'] && \DateTime::createFromFormat('d/m/y', $record['Né(e) le'])) {
                             $birthday = new Birthday();
                             $birthday
                                 ->addScreen(...$screens)
