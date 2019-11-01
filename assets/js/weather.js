@@ -109,7 +109,7 @@ export default class WeatherWidget {
         // generate forecast sections and loop through the data for each day
         const nextDays = this.returnNextDays(3);
         let forecast = nextDays.map((nextDay, i) => {
-            return `<div class="forecastCard d-flex flex-column"><p>${nextDay}</p>
+            return `<div class="forecastCard d-flex justify-content-around flex-column"><p>${nextDay}</p>
                   <p class="forecastIcons">${this.getWeatherIcon(data.list[i + 1].weather[0].id)}</p>
                   <p class="forecastMax">${data.list[i + 1].temp.max.toFixed(0)}°</p>
                   <p class="forecastMin">${data.list[i + 1].temp.min.toFixed(0)}°</p></div>`

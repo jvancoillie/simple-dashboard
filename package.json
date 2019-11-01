@@ -16,6 +16,7 @@
     "build": "encore production --progress"
   },
   "dependencies": {
+    "animate.css": "^3.7.2",
     "autoprefixer": "^9.4.6",
     "bootstrap": "^4.2.1",
     "jquery": "^3.3.1",

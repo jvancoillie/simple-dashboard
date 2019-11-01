@@ -2,57 +2,77 @@
 
 {% block title %}Dashboard{% endblock %}
 {% block body_id 'dashboard' %}
+{% block meta %}
+    <meta http-equiv="refresh" content="300">
+{% endblock meta %}
+
 {% block stylesheets %}
     {{ encore_entry_link_tags('css/app') }}
 {% endblock %}
 {% block header %}{% endblock header %}
 {% block body %}
 
-    <div class="d-flex h-100">
-        <div class="w-66 bg-white section-left h-100">
-            <div id="section1" class="section h-50">
-                <div class="information h-100">
-                    <div class="section-inner h-100">
-                        <div class="d-flex h-100">
-                            <div class="w-100 h-100">
-                                <div class="information-container h-100">
-                                    <div class="card w-100 mw-50">
-                                        <div class="card-body">
-                                            <h5 class="card-title">{{ 'dashboard.information.title'|trans }}</h5>
-                                            <div class="separator"></div>
-                                            <div class="card-text">
-                                                {% for event in widgets.News %}
-                                                    {{ event.content|md2html }}
-                                                {% else %}
-                                                    <p>Aucune Information</p>
-                                                {% endfor %}
-                                            </div>
-                                            <div class="logo"></div>
-                                        </div>
-                                    </div>
-                                </div>
+
+    <div class="d-flex h-100 flex-wrap p-1">
+        <div class="d-flex flex-column w-75 h-100">
+            <div class="d-flex h-50">
+                <div class="widget w-75">
+                    <div class="content  d-flex idea">
+                    <div class="filter d-flex flex-column">
+                        <div class=" menu-details overflow-hidden flex-grow-1">
+                            <h1 class="text-uppercase">{{ 'dashboard.information.title'|trans }}</h1>
+                            <div class="separator"></div>
+                            <div class="card-text h-100 overflow-auto">
+                                {% for event in widgets.News %}
+                                    {{ event.content|md2html }}
+                                {% else %}
+                                    <p>Aucune Information</p>
+                                {% endfor %}
                             </div>
-
                         </div>
+                        <div id="week" class="w-100 text-center  justify-content-between p-2">
+                            {% for event in widgets.Week %}
+                                {{ event.content|md2html }}
+                            {% endfor %}
+                        </div>
+                    </div>
 
-                        <div class="circle1"></div>
-                        <div class="circle2"></div>
-                        <div class="circle3"></div>
-                        <div class="circle4"></div>
-                        <div class="circle5"></div>
-                        <div class="circle6"></div>
-                        <div class="circle7"></div>
-                        <div class="circle8"></div>
+                    </div>
+                </div>
+                <div class="widget w-25">
+                    <div class="content">
+                        <div id="cards" class="weather-card">
+                        </div>
                     </div>
                 </div>
             </div>
-            <div id="section2" class="section h-50">
-                <div class="menu h-100">
-                    <div class="menu-card">
-                        <div class="thumbnail">
-                            <img class="left" src="{{ asset('build/'~random(['culinaire-1.png', 'culinaire-2.png', 'culinaire-3.png', 'culinaire-4.png', 'culinaire-5.png', 'culinaire-6.png', 'culinaire-7.png', 'culinaire-8.png'])) }}" alt="">
+            <div class="d-flex h-50 mh-50">
+                <div class="widget w-25">
+                    <div class="content calendar ">
+                        <div class="clock mt-3">
+                            <div class="hour-markers">
+                                <div class="hour-marker"></div>
+                                <div class="hour-marker"></div>
+                                <div class="hour-marker"></div>
+                                <div class="hour-marker"></div>
+                                <div class="hour-marker"></div>
+                                <div class="hour-marker"></div>
+                            </div>
+                            <div id="hour"></div>
+                            <div id="min"></div>
+                            <div id="sec"></div>
                         </div>
-                        <div class="right">
+                        <div class="d-flex flex-column mt-3 date">
+                            <h5 class="w-100  text-center">{{ 'now'|localizeddate('none', 'none', null, null, "dd") }}</h5>
+                            <div id="month" class="w-100 text-center ">
+                                {{ 'now'|localizeddate('none', 'none', null, null, "MMMM") }}</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="widget w-75">
+                    <div class="content menu d-flex">
+
+                        <div class="menu-details filter w-100">
                             <h1 class="text-center">{{ 'dashboard.menu.title'|trans }}</h1>
                             <div class="separator"></div>
                             <div id="carouselExampleSlidesOnly" class="carousel slide" data-ride="carousel">
@@ -71,51 +91,38 @@
                             <div class="elior"></div>
                         </div>
                     </div>
-                    <div class="d-flex flex-column h-100 align-items-end justify-content-end date px-4">
-                        <h5 class="w-100 deepshadow text-left">{{ 'now'|localizeddate('none', 'none', null, null, "dd") }}</h5>
-                        <div class="d-flex justify-content-between w-100 pb-3">
-                            <div id="month" class="deepshadow text-left ">{{ 'now'|localizeddate('none', 'none', null, null, "MMMM") }}</div>
-                            <div id="week" class="deepshadow text-center">
-                                {% for event in widgets.Week %}
-                                            {{ event.content|md2html }}
-                                {% endfor %}
-                            </div>
-                            <div id="time" class="deepshadow text-right" >00:00:00</div>
-                        </div>
-                    </div>
                 </div>
             </div>
         </div>
-        <div class="w-33">
-            <div class="d-flex flex-column h-100">
+        <div class="d-flex w-25">
+            <div class="widget">
+                <div class="content cake birthday">
+                            <h1 class="text-center title"> {{ 'dashboard.birthday.title'|trans }}</h1>
+                            <div class="separator"></div>
+                            {% if widgets.Birthday|length %}
+                                <ul>
+                                    {% for event in widgets.Birthday %}
+                                        <li>
+                                            {{ event.content|md2html }}
+                                        </li>
+                                    {% endfor %}
+                                </ul>
+                            {% else %}
+                                <div class="h-50 align-items-center d-flex justify-content-center">
+                                    <div class="empty-state">Aucun</div>
+                                </div>
+                            {% endif %}
 
-                <div id="cards" class="weather-card">
-                </div>
-
-                <div class="frame">
-                    <div class="list">
-                        <div class="head">
-                            <div class="title"> {{ 'dashboard.birthday.title'|trans }}</div>
-                        </div>
-                        {% if widgets.Birthday|length %}
-                            <ul>
-                                {% for event in widgets.Birthday %}
-                                    <li>
-                                        {{ event.content|md2html }}
-                                    </li>
-                                {% endfor %}
-                            </ul>
-                        {% else %}
-                            <div class="h-50 align-items-center d-flex justify-content-center">
-                                <div class="empty-state">Aucun</div>
-                            </div>
-                        {% endif %}
-
-                    </div>
                 </div>
             </div>
-
         </div>
     </div>
+
+
+
+
+
+
+
 
 {% endblock %}

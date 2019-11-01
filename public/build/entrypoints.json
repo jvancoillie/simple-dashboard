@@ -2,55 +2,53 @@
   "entrypoints": {
     "js/app": {
       "js": [
-        "/build/runtime.6e3f3c3a.js",
-        "/build/vendors~js/admin~js/app.d75c2ff9.js",
-        "/build/js/app.a10d6a70.js"
+        "/build/runtime.dca8fcdd.js",
+        "/build/0.16765af5.js",
+        "/build/js/app.9ccdb779.js"
       ]
     },
     "js/admin": {
       "js": [
-        "/build/runtime.6e3f3c3a.js",
-        "/build/vendors~js/admin~js/app.d75c2ff9.js",
-        "/build/vendors~js/admin.5971366f.js",
-        "/build/js/admin.32c6c472.js"
+        "/build/runtime.dca8fcdd.js",
+        "/build/0.16765af5.js",
+        "/build/2.71cce475.js",
+        "/build/js/admin.aa10d2a2.js"
       ]
     },
     "css/app": {
       "js": [
-        "/build/runtime.6e3f3c3a.js",
-        "/build/vendors~css/app~css/homepage.2fb70404.js"
+        "/build/runtime.dca8fcdd.js",
+        "/build/1.b2ff7b49.js"
       ],
       "css": [
-        "/build/vendors~css/app~css/homepage.58e8c413.css",
-        "/build/css/app.ff4cd132.css"
+        "/build/1.0ba235f9.css",
+        "/build/css/app.9db627dc.css"
       ]
     },
     "css/admin": {
       "js": [
-        "/build/runtime.6e3f3c3a.js",
-        "/build/vendors~css/admin.09a1e3c6.js"
+        "/build/runtime.dca8fcdd.js"
       ],
       "css": [
-        "/build/vendors~css/admin.7c678857.css",
-        "/build/css/admin.593ec6c9.css"
+        "/build/css/admin.1fae1da8.css"
       ]
     },
     "css/signin": {
       "js": [
-        "/build/runtime.6e3f3c3a.js"
+        "/build/runtime.dca8fcdd.js"
       ],
       "css": [
-        "/build/css/signin.06d0a581.css"
+        "/build/css/signin.8a4e2156.css"
       ]
     },
     "css/homepage": {
       "js": [
-        "/build/runtime.6e3f3c3a.js",
-        "/build/vendors~css/app~css/homepage.2fb70404.js"
+        "/build/runtime.dca8fcdd.js",
+        "/build/1.b2ff7b49.js"
       ],
       "css": [
-        "/build/vendors~css/app~css/homepage.58e8c413.css",
-        "/build/css/homepage.ed529c90.css"
+        "/build/1.0ba235f9.css",
+        "/build/css/homepage.28adcad2.css"
       ]
     }
   }

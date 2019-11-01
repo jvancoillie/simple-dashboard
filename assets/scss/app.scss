@@ -8,37 +8,21 @@
 @import "~pickadate-webpack/lib/themes/classic.date.css";
 @import "weather";
 @import "weather-icons.min.css";
-@import "skew";
-@import "information";
-@import "menu";
-@import "birthday";
 @import "circle";
+@import "widget";
+@import "~animate.css";
 
 html, body {
     height: 100%;
 }
 
-.card {
-    box-shadow: 0px 2px 11px 1px rgba(0, 0, 0, 0.15);
-    border:none;
+body#dashboard{
+    background: #353B3F;
+    height:100%;
+    overflow: hidden;
+    font-size: 2rem;
 }
 
-.card {
-    &.news {
-        background-color: #76d585;
-        color: color-yiq(#76d585)
-    }
-    &.birthday {
-        background-color: #D5764C;
-        color: color-yiq(#76d585)
-
-    }
-    &.menu {
-        background-color: #B62F56;
-        color: color-yiq(#76d585)
-
-    }
-}
 @-webkit-keyframes Gradient {
     0% {
         background-position: 0% 50%
@@ -75,48 +59,6 @@ html, body {
     }
 }
 
-.section-header {
-
-    .section-logo {
-        width: 100px;
-        height: 100px;
-        border-radius: 50%;
-        margin: 20px auto;
-        display: flex;
-        align-items: center;
-        justify-content: space-around;
-        box-shadow:
-                0 0 0 3px #fff
-    }
-    h2 {
-        font-size: 2rem;
-    }
-}
-
-.section-left{
-    z-index: 3;
-}
-
-.section-content {
-    font-size: 1.25rem;
-    ul {
-        padding-left: 0;
-        list-style: none;
-    }
-}
-
-.information-content {
-    color: #444
-}
-
-.w-33{
-    width: 33.3333% !important;
-}
-
-.w-66{
-    width: 66.6666% !important;
-}
-
 .separator {
     margin: 10px 0;
     border: 1px solid #C3C3C3;
@@ -130,32 +72,12 @@ html, body {
     }
 
    div {
-        font-size: 1.5rem;
+        font-size: 2.5rem;
         font-weight: bold;
         text-transform: uppercase;
     }
 }
 
-.inset-text-shadow {
-    color: #202020;
-    //background-color: #2d2d2d;
-    letter-spacing: 0.1em;
-    text-shadow: -1px -1px 1px #111, 2px 2px 1px #363636;
-}
-
-.deepshadow {
-    color: #e0dfdc;
-    text-shadow: 0 -1px 0 #fff,
-    0 1px 0 #2e2e2e,
-    0 2px 0 #2c2c2c,
-    0 3px 0 #2a2a2a,
-    0 4px 0 #282828,
-    0 5px 0 #262626,
-    0 6px 0 #242424,
-    0 7px 0 #222,
-    0 8px 0 #202020,
-    0 9px 0 #1e1e1e;
-}
 
 .logo{
     background-image: url("../images/logo.png");

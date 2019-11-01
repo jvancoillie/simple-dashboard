@@ -35,4 +35,5 @@ class DashboardController extends AbstractController
             'date' => $date,
         ]);
     }
+
 }

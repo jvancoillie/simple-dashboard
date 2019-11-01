@@ -1,5 +1,5 @@
 .weatherForecast {
-  height: 210px;
+  height: 80%;
   width: 100%;
   background: #FFF;
   text-align: center;
@@ -30,6 +30,7 @@
 #cards {
   text-align: center;
   width: 100%;
+  height: 100%;
 }
 
 /* Generic CSS for the cards */
@@ -37,18 +38,17 @@
 #cards .card {
   position: relative;
   width: 100%;
-  height: 340px;
-  box-shadow: 0 14px 28px rgba(0,0,0,0.40), 0 10px 10px rgba(0,0,0,0.38);
+  height: 100%;
   overflow: hidden;
   color: #dadada;
   background-color: #dadada;
+  border: none;
 }
 
 #cards .card .top {
   position: relative;
   width: 100%;
   height: 100%;
-  //box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
   transition: height 400ms ease-in-out;
 }
 
