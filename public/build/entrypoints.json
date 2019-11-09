@@ -2,53 +2,55 @@
   "entrypoints": {
     "js/app": {
       "js": [
-        "/build/runtime.dca8fcdd.js",
-        "/build/0.16765af5.js",
-        "/build/js/app.9ccdb779.js"
+        "/build/runtime.6e3f3c3a.js",
+        "/build/vendors~js/admin~js/app.83550608.js",
+        "/build/js/app.03f63abf.js"
       ]
     },
     "js/admin": {
       "js": [
-        "/build/runtime.dca8fcdd.js",
-        "/build/0.16765af5.js",
-        "/build/2.71cce475.js",
-        "/build/js/admin.aa10d2a2.js"
+        "/build/runtime.6e3f3c3a.js",
+        "/build/vendors~js/admin~js/app.83550608.js",
+        "/build/vendors~js/admin.5971366f.js",
+        "/build/js/admin.32c6c472.js"
       ]
     },
     "css/app": {
       "js": [
-        "/build/runtime.dca8fcdd.js",
-        "/build/1.b2ff7b49.js"
+        "/build/runtime.6e3f3c3a.js",
+        "/build/vendors~css/app~css/homepage.2fb70404.js"
       ],
       "css": [
-        "/build/1.0ba235f9.css",
-        "/build/css/app.9db627dc.css"
+        "/build/vendors~css/app~css/homepage.37d0156a.css",
+        "/build/css/app.fa6b8b23.css"
       ]
     },
     "css/admin": {
       "js": [
-        "/build/runtime.dca8fcdd.js"
+        "/build/runtime.6e3f3c3a.js",
+        "/build/vendors~css/admin.09a1e3c6.js"
       ],
       "css": [
-        "/build/css/admin.1fae1da8.css"
+        "/build/vendors~css/admin.88f7f66d.css",
+        "/build/css/admin.d8e742ad.css"
       ]
     },
     "css/signin": {
       "js": [
-        "/build/runtime.dca8fcdd.js"
+        "/build/runtime.6e3f3c3a.js"
       ],
       "css": [
-        "/build/css/signin.8a4e2156.css"
+        "/build/css/signin.b96efc5a.css"
       ]
     },
     "css/homepage": {
       "js": [
-        "/build/runtime.dca8fcdd.js",
-        "/build/1.b2ff7b49.js"
+        "/build/runtime.6e3f3c3a.js",
+        "/build/vendors~css/app~css/homepage.2fb70404.js"
       ],
       "css": [
-        "/build/1.0ba235f9.css",
-        "/build/css/homepage.28adcad2.css"
+        "/build/vendors~css/app~css/homepage.37d0156a.css",
+        "/build/css/homepage.9b4b7fc4.css"
       ]
     }
   }
