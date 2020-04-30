@@ -19,7 +19,7 @@
     "animate.css": "^3.7.2",
     "autoprefixer": "^9.4.6",
     "bootstrap": "^4.2.1",
-    "jquery": "^3.3.1",
+    "jquery": "^3.5.0",
     "moment": "^2.23.0",
     "normalize.css": "^8.0.1",
     "pickadate-webpack": "^3.5.6",
