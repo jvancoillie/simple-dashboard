@@ -225,13 +225,16 @@
         "version": "v4.2.0"
     },
     "symfony/flex": {
-        "version": "1.0",
+        "version": "1.20",
         "recipe": {
             "repo": "github.com/symfony/recipes",
-            "branch": "master",
+            "branch": "main",
             "version": "1.0",
-            "ref": "5f8a51c0fad684396f6b6c0fd770e043439cb632"
-        }
+            "ref": "146251ae39e06a95be0fe3d13c807bcf3938b172"
+        },
+        "files": [
+            ".env"
+        ]
     },
     "symfony/form": {
         "version": "v4.2.0"
