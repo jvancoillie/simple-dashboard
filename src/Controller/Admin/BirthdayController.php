@@ -65,7 +65,6 @@ class BirthdayController extends AbstractController
         ]);
     }
 
-
     #[Route(path: '/truncate', name: 'admin_birthday_truncate', methods: 'POST')]
     public function truncate(Request $request, BirthdayRepository $birthdayRepository): Response
     {
@@ -80,7 +79,7 @@ class BirthdayController extends AbstractController
     #[Route(path: '/{id}/delete', name: 'admin_birthday_delete', methods: 'POST')]
     public function delete(Request $request, Birthday $birthday): Response
     {
-        if ($this->isCsrfTokenValid('delete' . $birthday->getId(), $request->request->get('_token'))) {
+        if ($this->isCsrfTokenValid('delete'.$birthday->getId(), $request->request->get('_token'))) {
             $em = $this->getDoctrine()->getManager();
             $em->remove($birthday);
             $em->flush();
@@ -113,11 +112,10 @@ class BirthdayController extends AbstractController
             $result = array_diff(['Nom', 'Prénom', 'Né(e) le', 'Classe'], $header);
 
             if ($result) {
-                $this->addFlash('danger', sprintf('Import impossible : colonne(s) manquante(s) %s', implode(' | ',$result)));
+                $this->addFlash('danger', sprintf('Import impossible : colonne(s) manquante(s) %s', implode(' | ', $result)));
             } else {
                 try {
                     foreach ($records as $offset => $record) {
-
                         if ($record['Prénom'] && $record['Nom'] && $record['Né(e) le'] && $record['Classe'] && \DateTime::createFromFormat('d/m/y', $record['Né(e) le'])) {
                             $birthday = new Birthday();
                             $birthday
@@ -132,9 +130,9 @@ class BirthdayController extends AbstractController
                             $errorLignes[] = $offset;
                         }
                     }
-                    if($errorLignes){
+                    if ($errorLignes) {
                         $this->addFlash('warning', sprintf('fichier importé sauf les lignes : %s', implode(' | ', $errorLignes)));
-                    }else{
+                    } else {
                         $this->addFlash('success', 'fichier importé');
                     }
 
@@ -142,11 +140,7 @@ class BirthdayController extends AbstractController
                 } catch (\Exception) {
                     $this->addFlash('danger', 'Erreur lors de l\'import');
                 }
-
-
             }
-
-
         }
 
         return $this->redirectToRoute('admin_birthday_index');

@@ -51,6 +51,4 @@ class Screen implements \Stringable
     {
         return (string) $this->name;
     }
-
-
 }

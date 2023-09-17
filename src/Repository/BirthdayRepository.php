@@ -15,7 +15,7 @@ use Doctrine\Persistence\ManagerRegistry;
  */
 class BirthdayRepository extends ServiceEntityRepository implements DashboardRepositoryInterface
 {
-    final public const NAME = "Birthday";
+    final public const NAME = 'Birthday';
 
     public function __construct(ManagerRegistry $registry)
     {
@@ -40,10 +40,10 @@ class BirthdayRepository extends ServiceEntityRepository implements DashboardRep
 
     public function truncate()
     {
-       return $this->createQueryBuilder('birthday')
-            ->delete()
-            ->getQuery()
-            ->getResult()
+        return $this->createQueryBuilder('birthday')
+             ->delete()
+             ->getQuery()
+             ->getResult()
         ;
     }
 
@@ -51,5 +51,4 @@ class BirthdayRepository extends ServiceEntityRepository implements DashboardRep
     {
         return self::NAME;
     }
-
 }

@@ -25,14 +25,12 @@ class Menu implements WidgetInterface
 
     /**
      * Menu constructor.
-     * @param $publishAt
      */
     public function __construct()
     {
         $this->publishAt = new \DateTime();
         $this->screens = new ArrayCollection();
     }
-
 
     public function getId(): ?int
     {
@@ -73,7 +71,7 @@ class Menu implements WidgetInterface
 
     public function addScreen(Screen ...$screens): self
     {
-        foreach ($screens as $screen){
+        foreach ($screens as $screen) {
             if (!$this->screens->contains($screen)) {
                 $this->screens[] = $screen;
             }

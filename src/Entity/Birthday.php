@@ -23,9 +23,6 @@ class Birthday implements WidgetInterface
     #[ORM\Column(type: 'date')]
     private ?\DateTimeInterface $date = null;
 
-    /**
-     * @var $classroom
-     */
     #[ORM\Column(type: 'string')]
     private $classroom;
 
@@ -88,9 +85,6 @@ class Birthday implements WidgetInterface
         return sprintf('%s %s. (%s)', $this->firstname, substr($this->lastname, 0, 1), $this->classroom);
     }
 
-    /**
-     * @return mixed
-     */
     public function getClassroom()
     {
         return $this->classroom;
@@ -111,7 +105,7 @@ class Birthday implements WidgetInterface
 
     public function addScreen(Screen ...$screens): self
     {
-        foreach ($screens as $screen){
+        foreach ($screens as $screen) {
             if (!$this->screens->contains($screen)) {
                 $this->screens[] = $screen;
             }
@@ -128,6 +122,4 @@ class Birthday implements WidgetInterface
 
         return $this;
     }
-
-
 }

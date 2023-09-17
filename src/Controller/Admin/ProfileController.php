@@ -3,7 +3,7 @@
  * Created by PhpStorm.
  * User: kami
  * Date: 04/02/2019
- * Time: 15:02
+ * Time: 15:02.
  */
 
 namespace App\Controller\Admin;
@@ -19,26 +19,25 @@ use Symfony\Component\Routing\Annotation\Route;
 /**
  * Controller used to manage current user.
  *
- *
  * */
 #[Route(path: '/admin/profile')]
 class ProfileController extends AbstractController
 {
-
     #[Route(path: '/', methods: ['GET'], name: 'admin_profile_index')]
     public function index(): Response
     {
         $user = $this->getUser();
         $formUser = $this->createForm(UserType::class, $user, [
-            'action' => $this->generateUrl('admin_profile_edit')
+            'action' => $this->generateUrl('admin_profile_edit'),
         ]);
-        $formPassword = $this->createForm(ChangePasswordType::class, null,  [
-            'action' => $this->generateUrl('admin_profile_change_password')
+        $formPassword = $this->createForm(ChangePasswordType::class, null, [
+            'action' => $this->generateUrl('admin_profile_change_password'),
         ]);
+
         return $this->render('admin/profile/index.html.twig', [
             'user' => $user,
             'form_user' => $formUser->createView(),
-            'form_password' => $formPassword->createView()
+            'form_password' => $formPassword->createView(),
         ]);
     }
 
@@ -47,11 +46,11 @@ class ProfileController extends AbstractController
     {
         $user = $this->getUser();
         $formUser = $this->createForm(UserType::class, $user, [
-            'action' => $this->generateUrl('admin_profile_edit')
+            'action' => $this->generateUrl('admin_profile_edit'),
         ]);
 
-        $formPassword = $this->createForm(ChangePasswordType::class, null,  [
-            'action' => $this->generateUrl('admin_profile_change_password')
+        $formPassword = $this->createForm(ChangePasswordType::class, null, [
+            'action' => $this->generateUrl('admin_profile_change_password'),
         ]);
 
         $formUser->handleRequest($request);
@@ -59,13 +58,14 @@ class ProfileController extends AbstractController
         if ($formUser->isSubmitted() && $formUser->isValid()) {
             $this->getDoctrine()->getManager()->flush();
             $this->addFlash('success', 'user.updated_successfully');
+
             return $this->redirectToRoute('admin_profile_index');
         }
 
         return $this->render('admin/profile/index.html.twig', [
             'user' => $user,
             'form_user' => $formUser->createView(),
-            'form_password' => $formPassword->createView()
+            'form_password' => $formPassword->createView(),
         ]);
     }
 
@@ -74,27 +74,25 @@ class ProfileController extends AbstractController
     {
         $user = $this->getUser();
         $formUser = $this->createForm(UserType::class, $user, [
-            'action' => $this->generateUrl('admin_profile_edit')
+            'action' => $this->generateUrl('admin_profile_edit'),
         ]);
 
-        $formPassword = $this->createForm(ChangePasswordType::class, null,  [
-            'action' => $this->generateUrl('admin_profile_change_password')
+        $formPassword = $this->createForm(ChangePasswordType::class, null, [
+            'action' => $this->generateUrl('admin_profile_change_password'),
         ]);
 
         $formPassword->handleRequest($request);
         if ($formPassword->isSubmitted() && $formPassword->isValid()) {
             $user->setPassword($encoder->hashPassword($user, $formPassword->get('newPassword')->getData()));
             $this->getDoctrine()->getManager()->flush();
+
             return $this->redirectToRoute('app_logout');
         }
 
         return $this->render('admin/profile/index.html.twig', [
             'user' => $user,
             'form_user' => $formUser->createView(),
-            'form_password' => $formPassword->createView()
+            'form_password' => $formPassword->createView(),
         ]);
     }
-
-
-
 }

@@ -8,10 +8,10 @@ use Rector\Set\ValueObject\LevelSetList;
 
 return static function (RectorConfig $rectorConfig): void {
     $rectorConfig->paths([
-        __DIR__ . '/config',
-        __DIR__ . '/public',
-        __DIR__ . '/src',
-        __DIR__ . '/tests',
+        __DIR__.'/config',
+        __DIR__.'/public',
+        __DIR__.'/src',
+        __DIR__.'/tests',
     ]);
 
     $rectorConfig->sets([
@@ -21,12 +21,11 @@ return static function (RectorConfig $rectorConfig): void {
         \Rector\Symfony\Set\SymfonySetList::SYMFONY_54,
         \Rector\Symfony\Set\SymfonySetList::SYMFONY_CODE_QUALITY,
         \Rector\Symfony\Set\SymfonySetList::SYMFONY_CONSTRUCTOR_INJECTION,
-        LevelSetList::UP_TO_PHP_81
+        LevelSetList::UP_TO_PHP_81,
     ]);
 
-
     // register a single rule
-    //$rectorConfig->rule(InlineConstructorDefaultToPropertyRector::class);
+    // $rectorConfig->rule(InlineConstructorDefaultToPropertyRector::class);
 
     // define sets of rules
     //    $rectorConfig->sets([

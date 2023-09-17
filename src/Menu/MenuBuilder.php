@@ -7,7 +7,7 @@ use Symfony\Component\HttpFoundation\RequestStack;
 
 class MenuBuilder
 {
-    public function __construct(private readonly \Knp\Menu\FactoryInterface $factory)
+    public function __construct(private readonly FactoryInterface $factory)
     {
     }
 

@@ -18,25 +18,25 @@ class WeekType extends AbstractType
     {
         $builder
             ->add('content')
-            ->add('screens',EntityType::class, [
+            ->add('screens', EntityType::class, [
                 'label' => 'screen.list',
                 'class' => Screen::class,
                 'multiple' => true,
-                'expanded' => true
+                'expanded' => true,
             ])
         ;
-        $builder->addEventListener(FormEvents::PRE_SET_DATA, function (FormEvent $event){
+        $builder->addEventListener(FormEvents::PRE_SET_DATA, function (FormEvent $event) {
             $form = $event->getForm();
             $data = $event->getData();
-            $startDate = $data->getStartDate()? $data->getStartDate()->format('Y-m-d'):null;
-            $endDate = $data->getEndDate()? $data->getEndDate()->format('Y-m-d'):null;
+            $startDate = $data->getStartDate() ? $data->getStartDate()->format('Y-m-d') : null;
+            $endDate = $data->getEndDate() ? $data->getEndDate()->format('Y-m-d') : null;
 
             $form->add('startDate', DateType::class, [
                 'widget' => 'single_text',
                 'html5' => false,
                 'attr' => [
                     'class' => 'datepicker',
-                    'data-value' => $startDate
+                    'data-value' => $startDate,
                 ],
             ]);
             $form->add('endDate', DateType::class, [
@@ -44,7 +44,7 @@ class WeekType extends AbstractType
                 'html5' => false,
                 'attr' => [
                     'class' => 'datepicker',
-                    'data-value' => $endDate
+                    'data-value' => $endDate,
                 ],
             ]);
         });

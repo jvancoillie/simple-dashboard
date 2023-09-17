@@ -15,7 +15,7 @@ use Doctrine\Persistence\ManagerRegistry;
  */
 class MenuRepository extends ServiceEntityRepository implements DashboardRepositoryInterface
 {
-    final public const NAME = "Menu";
+    final public const NAME = 'Menu';
 
     public function __construct(ManagerRegistry $registry)
     {
@@ -41,13 +41,11 @@ class MenuRepository extends ServiceEntityRepository implements DashboardReposit
             ->delete()
             ->getQuery()
             ->getResult()
-            ;
+        ;
     }
 
     public function getName()
     {
         return self::NAME;
     }
-
-
 }

@@ -32,18 +32,15 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface, \Serial
     #[ORM\Column(type: 'integer')]
     private $id;
 
-    
     #[ORM\Column(type: 'string')]
     #[Assert\NotBlank]
     private ?string $fullName = null;
 
-    
     #[ORM\Column(type: 'string', unique: true)]
     #[Assert\NotBlank]
     #[Assert\Length(min: 2, max: 50)]
     private ?string $username = null;
 
-    
     #[ORM\Column(type: 'string', unique: true)]
     #[Assert\Email]
     private ?string $email = null;
@@ -144,18 +141,12 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface, \Serial
         // $this->plainPassword = null;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function serialize(): string
     {
         // add $this->salt too if you don't use Bcrypt or Argon2i
         return serialize([$this->id, $this->username, $this->password]);
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function unserialize($serialized): void
     {
         // add $this->salt too if you don't use Bcrypt or Argon2i

@@ -36,9 +36,6 @@ class Week implements WidgetInterface
         return $this->id;
     }
 
-    /**
-     * @return mixed
-     */
     public function getContent()
     {
         return $this->content;
@@ -49,9 +46,6 @@ class Week implements WidgetInterface
         $this->content = $content;
     }
 
-    /**
-     * @return mixed
-     */
     public function getStartDate()
     {
         return $this->startDate;
@@ -62,9 +56,6 @@ class Week implements WidgetInterface
         $this->startDate = $startDate;
     }
 
-    /**
-     * @return mixed
-     */
     public function getEndDate()
     {
         return $this->endDate;
@@ -85,7 +76,7 @@ class Week implements WidgetInterface
 
     public function addScreen(Screen ...$screens): self
     {
-        foreach ($screens as $screen){
+        foreach ($screens as $screen) {
             if (!$this->screens->contains($screen)) {
                 $this->screens[] = $screen;
             }
@@ -102,6 +93,4 @@ class Week implements WidgetInterface
 
         return $this;
     }
-
-
 }

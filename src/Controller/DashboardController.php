@@ -4,7 +4,6 @@ namespace App\Controller;
 
 use App\Entity\Screen;
 use App\Manager\DashboardManager;
-use App\Repository\TagRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
 
@@ -21,7 +20,7 @@ class DashboardController extends AbstractController
     }
 
     #[Route(path: '/screen/{id}', name: 'dashboard_screen')]
-    public function screen(Screen $screen,DashboardManager $dashboardManager ): \Symfony\Component\HttpFoundation\Response
+    public function screen(Screen $screen, DashboardManager $dashboardManager): \Symfony\Component\HttpFoundation\Response
     {
         $date = new \DateTime();
         $widgets = $dashboardManager->getWidgetsByDateAndScreen($date, $screen);
@@ -31,5 +30,4 @@ class DashboardController extends AbstractController
             'date' => $date,
         ]);
     }
-
 }

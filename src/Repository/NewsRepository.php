@@ -16,7 +16,7 @@ use Doctrine\Persistence\ManagerRegistry;
  */
 class NewsRepository extends ServiceEntityRepository implements DashboardRepositoryInterface
 {
-    final public const NAME = "News";
+    final public const NAME = 'News';
 
     public function __construct(ManagerRegistry $registry)
     {
@@ -34,7 +34,7 @@ class NewsRepository extends ServiceEntityRepository implements DashboardReposit
             ->orderBy('news.id', 'ASC')
             ->getQuery()
             ->getResult()
-            ;
+        ;
     }
 
     public function truncate()
@@ -43,7 +43,7 @@ class NewsRepository extends ServiceEntityRepository implements DashboardReposit
             ->delete()
             ->getQuery()
             ->getResult()
-            ;
+        ;
     }
 
     public function getName()

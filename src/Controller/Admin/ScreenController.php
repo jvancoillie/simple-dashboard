@@ -2,11 +2,9 @@
 
 namespace App\Controller\Admin;
 
-use App\Entity\News;
 use App\Entity\Screen;
 use App\Form\NewsType;
 use App\Form\ScreenType;
-use App\Repository\NewsRepository;
 use App\Repository\ScreenRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -25,7 +23,7 @@ class ScreenController extends AbstractController
     #[Route(path: '/new', name: 'admin_screen_new', methods: 'GET|POST')]
     public function new(Request $request): Response
     {
-        $screen= new Screen();
+        $screen = new Screen();
         $form = $this->createForm(ScreenType::class, $screen);
         $form->handleRequest($request);
 

@@ -52,14 +52,11 @@ class AddUserCommand extends Command
 
     private ?\Symfony\Component\Console\Style\SymfonyStyle $io = null;
 
-    public function __construct(private readonly \Doctrine\ORM\EntityManagerInterface $entityManager, private readonly \Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface $passwordEncoder, private readonly \App\Utils\Validator $validator, private readonly \App\Repository\UserRepository $users)
+    public function __construct(private readonly EntityManagerInterface $entityManager, private readonly UserPasswordHasherInterface $passwordEncoder, private readonly Validator $validator, private readonly UserRepository $users)
     {
         parent::__construct();
     }
 
-    /**
-     * {@inheritdoc}
-     */
     protected function configure(): void
     {
         $this

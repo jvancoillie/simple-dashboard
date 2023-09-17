@@ -12,15 +12,15 @@ use Doctrine\Migrations\AbstractMigration;
  */
 final class Version20190921094049 extends AbstractMigration
 {
-    public function getDescription() : string
+    public function getDescription(): string
     {
         return '';
     }
 
-    public function up(Schema $schema) : void
+    public function up(Schema $schema): void
     {
         // this up() migration is auto-generated, please modify it to your needs
-        $this->abortIf($this->connection->getDatabasePlatform()->getName() !== 'mysql', 'Migration can only be executed safely on \'mysql\'.');
+        $this->abortIf('mysql' !== $this->connection->getDatabasePlatform()->getName(), 'Migration can only be executed safely on \'mysql\'.');
 
         $this->addSql('CREATE TABLE week_screen (week_id INT NOT NULL, screen_id INT NOT NULL, INDEX IDX_AB361863C86F3B2F (week_id), INDEX IDX_AB36186341A67722 (screen_id), PRIMARY KEY(week_id, screen_id)) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci ENGINE = InnoDB');
         $this->addSql('CREATE TABLE birthday_screen (birthday_id INT NOT NULL, screen_id INT NOT NULL, INDEX IDX_930B615EB8DB2791 (birthday_id), INDEX IDX_930B615E41A67722 (screen_id), PRIMARY KEY(birthday_id, screen_id)) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci ENGINE = InnoDB');
@@ -37,10 +37,10 @@ final class Version20190921094049 extends AbstractMigration
         $this->addSql('ALTER TABLE user CHANGE roles roles JSON NOT NULL');
     }
 
-    public function down(Schema $schema) : void
+    public function down(Schema $schema): void
     {
         // this down() migration is auto-generated, please modify it to your needs
-        $this->abortIf($this->connection->getDatabasePlatform()->getName() !== 'mysql', 'Migration can only be executed safely on \'mysql\'.');
+        $this->abortIf('mysql' !== $this->connection->getDatabasePlatform()->getName(), 'Migration can only be executed safely on \'mysql\'.');
 
         $this->addSql('DROP TABLE week_screen');
         $this->addSql('DROP TABLE birthday_screen');

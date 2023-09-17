@@ -8,13 +8,10 @@ use Twig\TwigFilter;
 
 class AppExtension extends AbstractExtension
 {
-    public function __construct(private readonly \App\Utils\Markdown $parser)
+    public function __construct(private readonly Markdown $parser)
     {
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function getFilters(): array
     {
         return [
@@ -29,5 +26,4 @@ class AppExtension extends AbstractExtension
     {
         return $this->parser->toHtml($content);
     }
-
 }

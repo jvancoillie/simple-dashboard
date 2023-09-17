@@ -22,7 +22,7 @@ class MenuController extends AbstractController
 
         return $this->render('admin/menu/index.html.twig', [
             'menus' => $menuRepository->findAll(),
-            'form' => $form->createView()
+            'form' => $form->createView(),
         ]);
     }
 
@@ -79,7 +79,7 @@ class MenuController extends AbstractController
     #[Route(path: '/{id}/delete', name: 'admin_menu_delete', methods: 'POST')]
     public function delete(Request $request, Menu $menu): Response
     {
-        if ($this->isCsrfTokenValid('delete' . $menu->getId(), $request->request->get('_token'))) {
+        if ($this->isCsrfTokenValid('delete'.$menu->getId(), $request->request->get('_token'))) {
             $em = $this->getDoctrine()->getManager();
             $em->remove($menu);
             $em->flush();
@@ -87,7 +87,6 @@ class MenuController extends AbstractController
 
         return $this->redirectToRoute('admin_menu_index');
     }
-
 
     #[Route(path: '/import', name: 'admin_menu_import', methods: 'POST')]
     public function import(Request $request): Response
@@ -112,10 +111,11 @@ class MenuController extends AbstractController
                 foreach ($records as $offset => $record) {
                     $menu = new Menu();
                     $content = '';
-                    foreach (['plat1', 'plat2', 'legume1', 'legume2'] as $index)
-                        if ($record[$index] !== '') {
+                    foreach (['plat1', 'plat2', 'legume1', 'legume2'] as $index) {
+                        if ('' !== $record[$index]) {
                             $content .= sprintf("* %s \n", $record[$index]);
                         }
+                    }
 
                     $menu
                         ->addScreen(...$screens)
@@ -125,7 +125,6 @@ class MenuController extends AbstractController
                 }
 
                 $em->flush();
-
 
                 $this->addFlash('success', 'fichier importé');
             } catch (\Exception) {

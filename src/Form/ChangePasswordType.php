@@ -43,5 +43,4 @@ class ChangePasswordType extends AbstractType
             ])
         ;
     }
-
 }
