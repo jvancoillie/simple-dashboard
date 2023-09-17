@@ -1,119 +1,53 @@
-# —— Inspired by ———————————————————————————————————————————————————————————————
-# https://speakerdeck.com/mykiwi/outils-pour-ameliorer-la-vie-des-developpeurs-symfony?slide=47
-# https://blog.theodo.fr/2018/05/why-you-need-a-makefile-on-your-project/
+# Executables (local)
+DOCKER_COMP = docker compose
 
-# Setup —————————————————————————————————————————————————————————————————————————
-EXEC_PHP   = php
-GIT        = git
-GIT_AUTHOR = vancoillie
-SYMFONY    = $(EXEC_PHP) bin/console
-COMPOSER   = composer
-YARN       = yarn
-.DEFAULT_GOAL := help
+# Docker containers
+PHP_CONT = $(DOCKER_COMP) exec php
 
-## —— 🐝  Strangebuzz Make file  🐝  —————————————————————————————————————————————
+# Executables
+PHP      = $(PHP_CONT) php
+COMPOSER = $(PHP_CONT) composer
+SYMFONY  = $(PHP) bin/console
+
+# Misc
+.DEFAULT_GOAL = help
+.PHONY        : help build up start down logs sh composer vendor sf cc
+
+## —— 🎵 🐳 The Symfony Docker Makefile 🐳 🎵 ——————————————————————————————————
 help: ## Outputs this help screen
-	@grep -E '(^[a-zA-Z_-]+:.*?##.*$$)|(^##)' $(MAKEFILE_LIST) | awk 'BEGIN {FS = ":.*?## "}{printf "\033[32m%-30s\033[0m %s\n", $$1, $$2}' | sed -e 's/\[32m##/[33m/'
+	@grep -E '(^[a-zA-Z0-9\./_-]+:.*?##.*$$)|(^##)' $(MAKEFILE_LIST) | awk 'BEGIN {FS = ":.*?## "}{printf "\033[32m%-30s\033[0m %s\n", $$1, $$2}' | sed -e 's/\[32m##/[33m/'
 
-## —— Composer —————————————————————————————————————————————————————————————————
-check: ## Check dependencies
-	$(EXEC_PHP) vendor/bin/composer-require-checker check composer.json
+## —— Docker 🐳 ————————————————————————————————————————————————————————————————
+build: ## Builds the Docker images
+	@$(DOCKER_COMP) build --pull --no-cache
 
+up: ## Start the docker hub in detached mode (no logs)
+	@$(DOCKER_COMP) up --detach
 
-## —— Symfony ——————————————————————————————————————————————————————————————————
-sf: ## List Symfony commands
-	$(SYMFONY)
+start: build up ## Build and start the containers
 
-cc: ## Clear cache
-	$(SYMFONY) c:c
+down: ## Stop the docker hub
+	@$(DOCKER_COMP) down --remove-orphans
 
-warmup: ## Warmump the cache
-	$(SYMFONY) cache:warmup
+logs: ## Show live logs
+	@$(DOCKER_COMP) logs --tail=0 --follow
 
-fix-perms: ## Fix permissions of all var files
-	chmod -R 777 var/*
+sh: ## Connect to the PHP FPM container
+	@$(PHP_CONT) sh
 
-purge: ## Purge cache and logs
-	rm -rf var/cache/* var/logs/*
+## —— Composer 🧙 ——————————————————————————————————————————————————————————————
+composer: ## Run composer, pass the parameter "c=" to run a given command, example: make composer c='req symfony/orm-pack'
+	@$(eval c ?=)
+	@$(COMPOSER) $(c)
 
-## —— Database ——————————————————————————————————————————————————————————————————
-db: vendor ## create database
-	$(SYMFONY) doctrine:database:create --if-not-exists
-	$(SYMFONY) doctrine:migrations:migrate --no-interaction --allow-no-migration
+vendor: ## Install vendors according to the current composer.lock file
+vendor: c=install --prefer-dist --no-dev --no-progress --no-scripts --no-interaction
+vendor: composer
 
-migration: vendor ## create doctrine migration
-	$(SYMFONY) doctrine:migrations:diff
+## —— Symfony 🎵 ———————————————————————————————————————————————————————————————
+sf: ## List all Symfony commands or pass the parameter "c=" to run a given command, example: make sf c=about
+	@$(eval c ?=)
+	@$(SYMFONY) $(c)
 
-db-reset: vendor ## reset database
-	$(SYMFONY) doctrine:database:drop --force
-	$(SYMFONY) doctrine:database:create
-	$(SYMFONY) doctrine:migrations:migrate -n
-	$(SYMFONY) doctrine:fixtures:load -n
-
-
-## —— Project ——————————————————————————————————————————————————————————————————
-assets: node_modules ## Run Webpack Encore to compile assets
-	$(YARN) run build
-
-assets@dev: node_modules ## Run Webpack Encore to compile assets in dev mode
-	$(YARN) run dev
-
-watch: node_modules ## Run Webpack Encore in watch mode
-	$(YARN) run watch
-
-## —— Project ——————————————————————————————————————————————————————————————————
-load-fixtures: ## Build the db, control the schema validity, load fixtures and check the migration status
-	$(SYMFONY) doctrine:cache:clear-metadata
-	$(SYMFONY) doctrine:database:create --if-not-exists
-	$(SYMFONY) doctrine:schema:drop --force
-	$(SYMFONY) doctrine:schema:create
-	$(SYMFONY) doctrine:schema:validate
-	$(SYMFONY) doctrine:fixtures:load -n
-	$(SYMFONY) doctrine:migration:status
-
-test: phpunit.xml.dist load-fixtures ## Launch all functionnal and unit tests
-	bin/phpunit --stop-on-failure
-
-## —— Deploy ——————————————————————————————————————————————————————————————————
-deploy: git-update install  ## Deploy, install composer dependencies and run database migrations
-
-deploy-and-reset: git-update install-reset  ## Deploy, install composer dependencies and run database migrations
-
-## —— install —————————————————————————————————————————————————————————————————
-install: db ## Install apps based on APP_ENV
-
-install-with-assets: build ## Install apps and run assets based on APP_ENV
-
-install-reset-with-assets: build db-reset ## Install apps and run assets based on APP_ENV
-
-install-reset: db-reset ## Install apps and run assets based on APP_ENV
-
-## —— GIT —————————————————————————————————————————————————————————————————————
-git-update: ## Update Git only and refresh cache (sf+pagespeed)
-	git pull
-	rm -rf var/cache/* var/logs/*
-	php bin/console cache:warmup
-	chmod -R 777 var/*
-
-## —— build ———————————————————————————————————————————————————————————————————
-build: vendor node_modules assets ## Build vendor, node_modules and compile assests based on APP_ENV
-
-## —— Stats ———————————————————————————————————————————————————————————————————
-stats: ## Commits by hour for the main author of this project
-	$(GIT) log --author="$(GIT_AUTHOR)" --date=iso | perl -nalE 'if (/^Date:\s+[\d-]{10}\s(\d{2})/) { say $$1+0 }' | sort | uniq -c|perl -MList::Util=max -nalE '$$h{$$F[1]} = $$F[0]; }{ $$m = max values %h; foreach (0..23) { $$h{$$_} = 0 if not exists $$h{$$_} } foreach (sort {$$a <=> $$b } keys %h) { say sprintf "%02d - %4d %s", $$_, $$h{$$_}, "*"x ($$h{$$_} / $$m * 50); }'
-
-# rules based on files
-composer.lock: composer.json
-	$(COMPOSER) update --lock $(COMPOSER_OPTIONS)
-
-vendor: composer.lock
-	$(COMPOSER) install $(COMPOSER_OPTIONS)
-
-node_modules: yarn.lock
-	$(YARN) install
-	@touch -c node_modules
-
-yarn.lock: package.json
-	$(YARN) upgrade
-
-
+cc: c=c:c ## Clear the cache
+cc: sf 
