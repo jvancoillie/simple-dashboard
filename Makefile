@@ -1,8 +1,14 @@
 # Executables (local)
 DOCKER_COMP = docker compose
 
+IS_DOCKER = $(shell docker info > /dev/null 2>&1 && echo 1)
+
+ifeq ($(IS_DOCKER), 1)
 # Docker containers
 PHP_CONT = $(DOCKER_COMP) exec php
+else
+PHP_CONT =
+endif
 
 # Executables
 PHP      = $(PHP_CONT) php
@@ -16,6 +22,30 @@ SYMFONY  = $(PHP) bin/console
 ## —— 🎵 🐳 The Symfony Docker Makefile 🐳 🎵 ——————————————————————————————————
 help: ## Outputs this help screen
 	@grep -E '(^[a-zA-Z0-9\./_-]+:.*?##.*$$)|(^##)' $(MAKEFILE_LIST) | awk 'BEGIN {FS = ":.*?## "}{printf "\033[32m%-30s\033[0m %s\n", $$1, $$2}' | sed -e 's/\[32m##/[33m/'
+
+##—— Quality assurance ————————————————————————————————————————————————————————————————————————————————————————————————
+
+format: ## Format code with php-cs-fixer
+	$(PHP) vendor/bin/php-cs-fixer fix
+
+phpstan: phpstan.neon.dist ## Run PHPStan (the configuration must be defined in phpstan.neon)
+	$(PHP) vendor/bin/phpstan analyse  --xdebug
+
+psalm: psalm.xml ## Run Psalm
+	$(PHP) vendor/bin/psalm  --no-cache
+
+rector: ## Run rector
+	$(PHP)  vendor/bin/rector
+
+rector-dry: ## Run rector in dry mode
+	$(PHP)  vendor/bin/rector --dry-run
+
+.PHONY: psalm phpstan format
+
+qa-all:
+	make format
+	make psalm
+	make phpstan
 
 ## —— Docker 🐳 ————————————————————————————————————————————————————————————————
 build: ## Builds the Docker images
