@@ -21,7 +21,7 @@ export default class WeatherWidget {
     }
 
     getWeather() {
-        const apiRequest = `http://api.openweathermap.org/data/2.5/forecast/daily?q=${this.location}&units=${this.units}&appid=${this.appid}&cnt=${this.forecastDays}&lang=${this.lang}`;
+        const apiRequest = `https://api.openweathermap.org/data/2.5/forecast/daily?q=${this.location}&units=${this.units}&appid=${this.appid}&cnt=${this.forecastDays}&lang=${this.lang}`;
         const cityName = this.displayName;
         $.getJSON(apiRequest, (data) => {
             this.renderData(data, cityName);
@@ -211,7 +211,7 @@ export default class WeatherWidget {
                         <div class="cloud" style="top: 0;transform: scale(0.7);"></div>
                         <div class="cloud" style="top: 100px;transform: scale(1.3);"></div>
                         <div class="cloud" style="top: 40px;"></div>
-                        
+
                         <div class="weather"></div>
                         <div class="temp"></div>
                         <div class="city"></div>
