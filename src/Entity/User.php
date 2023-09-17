@@ -12,6 +12,7 @@
 namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Component\Validator\Constraints as Assert;
 
@@ -28,7 +29,7 @@ use Symfony\Component\Validator\Constraints as Assert;
  * @author Ryan Weaver <weaverryan@gmail.com>
  * @author Javier Eguiluz <javier.eguiluz@gmail.com>
  */
-class User implements UserInterface, \Serializable
+class User implements UserInterface, PasswordAuthenticatedUserInterface, \Serializable
 {
     /**
      * @var int

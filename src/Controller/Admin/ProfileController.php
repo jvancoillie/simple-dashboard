@@ -14,8 +14,8 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 use Symfony\Component\Routing\Annotation\Route;
-use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 
 /**
  * Controller used to manage current user.
@@ -80,7 +80,7 @@ class ProfileController extends AbstractController
     /**
      * @Route("/change-password", methods={"GET", "POST"}, name="admin_profile_change_password")
      */
-    public function changePassword(Request $request, UserPasswordEncoderInterface $encoder): Response
+    public function changePassword(Request $request, UserPasswordHasherInterface $encoder): Response
     {
         $user = $this->getUser();
         $formUser = $this->createForm(UserType::class, $user, [
@@ -93,7 +93,7 @@ class ProfileController extends AbstractController
 
         $formPassword->handleRequest($request);
         if ($formPassword->isSubmitted() && $formPassword->isValid()) {
-            $user->setPassword($encoder->encodePassword($user, $formPassword->get('newPassword')->getData()));
+            $user->setPassword($encoder->hashPassword($user, $formPassword->get('newPassword')->getData()));
             $this->getDoctrine()->getManager()->flush();
             return $this->redirectToRoute('app_logout');
         }

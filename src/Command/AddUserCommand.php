@@ -22,7 +22,7 @@ use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Console\Style\SymfonyStyle;
-use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
+use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 use Symfony\Component\Stopwatch\Stopwatch;
 
 /**
@@ -60,7 +60,7 @@ class AddUserCommand extends Command
     private $validator;
     private $users;
 
-    public function __construct(EntityManagerInterface $em, UserPasswordEncoderInterface $encoder, Validator $validator, UserRepository $users)
+    public function __construct(EntityManagerInterface $em, UserPasswordHasherInterface $encoder, Validator $validator, UserRepository $users)
     {
         parent::__construct();
 
@@ -167,7 +167,7 @@ class AddUserCommand extends Command
      * This method is executed after interact() and initialize(). It usually
      * contains the logic to execute to complete this command task.
      */
-    protected function execute(InputInterface $input, OutputInterface $output): void
+    protected function execute(InputInterface $input, OutputInterface $output): int
     {
         $stopwatch = new Stopwatch();
         $stopwatch->start('add-user-command');
@@ -189,7 +189,7 @@ class AddUserCommand extends Command
         $user->setRoles([$isAdmin ? 'ROLE_ADMIN' : 'ROLE_USER']);
 
         // See https://symfony.com/doc/current/book/security.html#security-encoding-password
-        $encodedPassword = $this->passwordEncoder->encodePassword($user, $plainPassword);
+        $encodedPassword = $this->passwordEncoder->hashPassword($user, $plainPassword);
         $user->setPassword($encodedPassword);
 
         $this->entityManager->persist($user);
@@ -201,6 +201,8 @@ class AddUserCommand extends Command
         if ($output->isVerbose()) {
             $this->io->comment(sprintf('New user database id: %d / Elapsed time: %.2f ms / Consumed memory: %.2f MB', $user->getId(), $event->getDuration(), $event->getMemory() / (1024 ** 2)));
         }
+
+        return Command::SUCCESS;
     }
 
     private function validateUserData($username, $plainPassword, $email, $fullName): void
