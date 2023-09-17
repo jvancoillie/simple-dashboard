@@ -74,7 +74,7 @@ class MenuController extends AbstractController
     }
 
     /**
-     * @Route("/truncate", name="admin_menu_truncate", methods="DELETE")
+     * @Route("/truncate", name="admin_menu_truncate", methods="POST")
      */
     public function truncate(Request $request, MenuRepository $menuRepository): Response
     {
@@ -87,7 +87,7 @@ class MenuController extends AbstractController
     }
 
     /**
-     * @Route("/{id}/delete", name="admin_menu_delete", methods="DELETE")
+     * @Route("/{id}/delete", name="admin_menu_delete", methods="POST")
      */
     public function delete(Request $request, Menu $menu): Response
     {

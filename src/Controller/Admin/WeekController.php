@@ -67,7 +67,7 @@ class WeekController extends AbstractController
     }
 
     /**
-     * @Route("/truncate", name="admin_week_truncate", methods="DELETE")
+     * @Route("/truncate", name="admin_week_truncate", methods="POST")
      */
     public function truncate(Request $request, WeekRepository $weekRepository): Response
     {
@@ -80,7 +80,7 @@ class WeekController extends AbstractController
     }
 
     /**
-     * @Route("/{id}/delete", name="admin_week_delete", methods="DELETE")
+     * @Route("/{id}/delete", name="admin_week_delete", methods="POST")
      */
     public function delete(Request $request, Week $week): Response
     {

@@ -67,7 +67,7 @@ class NewsController extends AbstractController
     }
 
     /**
-     * @Route("/truncate", name="admin_news_truncate", methods="DELETE")
+     * @Route("/truncate", name="admin_news_truncate", methods="POST")
      */
     public function truncate(Request $request, NewsRepository $newsRepository): Response
     {
@@ -80,7 +80,7 @@ class NewsController extends AbstractController
     }
 
     /**
-     * @Route("/{id}/delete", name="admin_news_delete", methods="DELETE")
+     * @Route("/{id}/delete", name="admin_news_delete", methods="POST")
      */
     public function delete(Request $request, News $news): Response
     {

@@ -75,7 +75,7 @@ class BirthdayController extends AbstractController
 
 
     /**
-     * @Route("/truncate", name="admin_birthday_truncate", methods="DELETE")
+     * @Route("/truncate", name="admin_birthday_truncate", methods="POST")
      */
     public function truncate(Request $request, BirthdayRepository $birthdayRepository): Response
     {
@@ -88,7 +88,7 @@ class BirthdayController extends AbstractController
     }
 
     /**
-     * @Route("/{id}/delete", name="admin_birthday_delete", methods="DELETE")
+     * @Route("/{id}/delete", name="admin_birthday_delete", methods="POST")
      */
     public function delete(Request $request, Birthday $birthday): Response
     {

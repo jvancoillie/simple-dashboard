@@ -70,7 +70,7 @@ class ScreenController extends AbstractController
     }
 
     /**
-     * @Route("/truncate", name="admin_screen_truncate", methods="DELETE")
+     * @Route("/truncate", name="admin_screen_truncate", methods="POST")
      */
     public function truncate(Request $request, ScreenRepository $screenRepository): Response
     {
@@ -83,7 +83,7 @@ class ScreenController extends AbstractController
     }
 
     /**
-     * @Route("/{id}/delete", name="admin_screen_delete", methods="DELETE")
+     * @Route("/{id}/delete", name="admin_screen_delete", methods="POST")
      */
     public function delete(Request $request, Screen $screen): Response
     {
