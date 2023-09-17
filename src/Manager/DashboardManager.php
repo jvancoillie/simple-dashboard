@@ -18,6 +18,9 @@ use App\Repository\WeekRepository;
 
 class DashboardManager
 {
+    /**
+     * @var DashboardRepositoryInterface[]
+     */
     private array $dashboardRepositories;
 
     /**
@@ -31,7 +34,7 @@ class DashboardManager
         $this->dashboardRepositories[$weekRepository->getName()] = $weekRepository;
     }
 
-    public function getWidgetsByDateAndScreen(\DateTime $date, Screen $screen)
+    public function getWidgetsByDateAndScreen(\DateTime $date, Screen $screen): array
     {
         $result = [];
 
@@ -45,7 +48,7 @@ class DashboardManager
         return $result;
     }
 
-    public function getScreens()
+    public function getScreens(): array
     {
         return $this->screenRepository->findAll();
     }

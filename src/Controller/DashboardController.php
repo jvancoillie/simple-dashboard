@@ -5,12 +5,13 @@ namespace App\Controller;
 use App\Entity\Screen;
 use App\Manager\DashboardManager;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
 class DashboardController extends AbstractController
 {
     #[Route(path: '/', name: 'homepage')]
-    public function index(DashboardManager $dashboardManager): \Symfony\Component\HttpFoundation\Response
+    public function index(DashboardManager $dashboardManager): Response
     {
         $screens = $dashboardManager->getScreens();
 
@@ -20,7 +21,7 @@ class DashboardController extends AbstractController
     }
 
     #[Route(path: '/screen/{id}', name: 'dashboard_screen')]
-    public function screen(Screen $screen, DashboardManager $dashboardManager): \Symfony\Component\HttpFoundation\Response
+    public function screen(Screen $screen, DashboardManager $dashboardManager): Response
     {
         $date = new \DateTime();
         $widgets = $dashboardManager->getWidgetsByDateAndScreen($date, $screen);

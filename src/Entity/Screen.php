@@ -2,9 +2,10 @@
 
 namespace App\Entity;
 
+use App\Repository\ScreenRepository;
 use Doctrine\ORM\Mapping as ORM;
 
-#[ORM\Entity(repositoryClass: \App\Repository\ScreenRepository::class)]
+#[ORM\Entity(repositoryClass: ScreenRepository::class)]
 class Screen implements \Stringable
 {
     #[ORM\Id]

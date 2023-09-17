@@ -26,8 +26,8 @@ class Birthday implements WidgetInterface
     #[ORM\Column(type: 'string')]
     private $classroom;
 
-    #[ORM\ManyToMany(targetEntity: \App\Entity\Screen::class)]
-    private \Doctrine\Common\Collections\ArrayCollection|array $screens;
+    #[ORM\ManyToMany(targetEntity: Screen::class)]
+    private Collection $screens;
 
     public function __construct()
     {

@@ -2,11 +2,12 @@
 
 namespace App\Entity;
 
+use App\Repository\MenuRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
-#[ORM\Entity(repositoryClass: \App\Repository\MenuRepository::class)]
+#[ORM\Entity(repositoryClass: MenuRepository::class)]
 class Menu implements WidgetInterface
 {
     #[ORM\Id]
@@ -20,8 +21,8 @@ class Menu implements WidgetInterface
     #[ORM\Column(type: 'date')]
     private \DateTime|\DateTimeInterface $publishAt;
 
-    #[ORM\ManyToMany(targetEntity: \App\Entity\Screen::class)]
-    private \Doctrine\Common\Collections\ArrayCollection|array $screens;
+    #[ORM\ManyToMany(targetEntity: Screen::class)]
+    private Collection $screens;
 
     /**
      * Menu constructor.

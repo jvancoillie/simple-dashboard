@@ -2,11 +2,12 @@
 
 namespace App\Entity;
 
+use App\Repository\NewsRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
-#[ORM\Entity(repositoryClass: \App\Repository\NewsRepository::class)]
+#[ORM\Entity(repositoryClass: NewsRepository::class)]
 class News implements WidgetInterface
 {
     #[ORM\Id]
@@ -20,8 +21,8 @@ class News implements WidgetInterface
     #[ORM\Column(type: 'date')]
     private ?\DateTimeInterface $publishAt = null;
 
-    #[ORM\ManyToMany(targetEntity: \App\Entity\Screen::class)]
-    private \Doctrine\Common\Collections\ArrayCollection|array $screens;
+    #[ORM\ManyToMany(targetEntity: Screen::class)]
+    private Collection $screens;
 
     public function __construct()
     {

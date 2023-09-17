@@ -23,7 +23,7 @@ use Symfony\Component\Routing\Annotation\Route;
 #[Route(path: '/admin/profile')]
 class ProfileController extends AbstractController
 {
-    #[Route(path: '/', methods: ['GET'], name: 'admin_profile_index')]
+    #[Route(path: '/', name: 'admin_profile_index', methods: ['GET'])]
     public function index(): Response
     {
         $user = $this->getUser();
@@ -41,7 +41,7 @@ class ProfileController extends AbstractController
         ]);
     }
 
-    #[Route(path: '/edit', methods: ['GET', 'POST'], name: 'admin_profile_edit')]
+    #[Route(path: '/edit', name: 'admin_profile_edit', methods: ['GET', 'POST'])]
     public function edit(Request $request): Response
     {
         $user = $this->getUser();
@@ -69,7 +69,7 @@ class ProfileController extends AbstractController
         ]);
     }
 
-    #[Route(path: '/change-password', methods: ['GET', 'POST'], name: 'admin_profile_change_password')]
+    #[Route(path: '/change-password', name: 'admin_profile_change_password', methods: ['GET', 'POST'])]
     public function changePassword(Request $request, UserPasswordHasherInterface $encoder): Response
     {
         $user = $this->getUser();

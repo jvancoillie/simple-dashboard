@@ -2,11 +2,12 @@
 
 namespace App\Entity;
 
+use App\Repository\WeekRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
-#[ORM\Entity(repositoryClass: \App\Repository\WeekRepository::class)]
+#[ORM\Entity(repositoryClass: WeekRepository::class)]
 class Week implements WidgetInterface
 {
     #[ORM\Id]
@@ -23,8 +24,8 @@ class Week implements WidgetInterface
     #[ORM\Column(type: 'date')]
     private $endDate;
 
-    #[ORM\ManyToMany(targetEntity: \App\Entity\Screen::class)]
-    private \Doctrine\Common\Collections\ArrayCollection|array $screens;
+    #[ORM\ManyToMany(targetEntity: Screen::class)]
+    private Collection $screens;
 
     public function __construct()
     {
