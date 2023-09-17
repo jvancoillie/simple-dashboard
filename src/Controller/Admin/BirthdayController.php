@@ -12,15 +12,11 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
-/**
- * @Route("/admin/birthday")
- */
+#[Route(path: '/admin/birthday')]
 class BirthdayController extends AbstractController
 {
-    /**
-     * @Route("/", name="admin_birthday_index", methods="GET")
-     */
-    public function index(BirthdayRepository $birthdayRepository, Request $request): Response
+    #[Route(path: '/', name: 'admin_birthday_index', methods: 'GET')]
+    public function index(BirthdayRepository $birthdayRepository): Response
     {
         $form = $this->createForm(ImportType::class, null, ['action' => $this->generateUrl('admin_birthday_import')]);
 
@@ -30,9 +26,7 @@ class BirthdayController extends AbstractController
         ]);
     }
 
-    /**
-     * @Route("/new", name="admin_birthday_new", methods="GET|POST")
-     */
+    #[Route(path: '/new', name: 'admin_birthday_new', methods: 'GET|POST')]
     public function new(Request $request): Response
     {
         $birthday = new Birthday();
@@ -53,9 +47,7 @@ class BirthdayController extends AbstractController
         ]);
     }
 
-    /**
-     * @Route("/{id}/edit", name="admin_birthday_edit", methods="GET|POST")
-     */
+    #[Route(path: '/{id}/edit', name: 'admin_birthday_edit', methods: 'GET|POST')]
     public function edit(Request $request, Birthday $birthday): Response
     {
         $form = $this->createForm(BirthdayType::class, $birthday);
@@ -74,9 +66,7 @@ class BirthdayController extends AbstractController
     }
 
 
-    /**
-     * @Route("/truncate", name="admin_birthday_truncate", methods="POST")
-     */
+    #[Route(path: '/truncate', name: 'admin_birthday_truncate', methods: 'POST')]
     public function truncate(Request $request, BirthdayRepository $birthdayRepository): Response
     {
         if ($this->isCsrfTokenValid('truncate', $request->request->get('_token'))) {
@@ -87,9 +77,7 @@ class BirthdayController extends AbstractController
         return $this->redirectToRoute('admin_birthday_index');
     }
 
-    /**
-     * @Route("/{id}/delete", name="admin_birthday_delete", methods="POST")
-     */
+    #[Route(path: '/{id}/delete', name: 'admin_birthday_delete', methods: 'POST')]
     public function delete(Request $request, Birthday $birthday): Response
     {
         if ($this->isCsrfTokenValid('delete' . $birthday->getId(), $request->request->get('_token'))) {
@@ -101,9 +89,7 @@ class BirthdayController extends AbstractController
         return $this->redirectToRoute('admin_birthday_index');
     }
 
-    /**
-     * @Route("/import", name="admin_birthday_import", methods="POST")
-     */
+    #[Route(path: '/import', name: 'admin_birthday_import', methods: 'POST')]
     public function import(BirthdayRepository $birthdayRepository, Request $request): Response
     {
         $form = $this->createForm(ImportType::class);
@@ -153,7 +139,7 @@ class BirthdayController extends AbstractController
                     }
 
                     $em->flush();
-                } catch (\Exception $e) {
+                } catch (\Exception) {
                     $this->addFlash('danger', 'Erreur lors de l\'import');
                 }
 

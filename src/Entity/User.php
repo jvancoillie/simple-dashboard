@@ -17,67 +17,42 @@ use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Component\Validator\Constraints as Assert;
 
 /**
- * @ORM\Entity(repositoryClass="App\Repository\UserRepository")
- * @ORM\Table(name="user")
- *
- * Defines the properties of the User entity to represent the application users.
- * See https://symfony.com/doc/current/book/doctrine.html#creating-an-entity-class
- *
- * Tip: if you have an existing database, you can generate these entity class automatically.
- * See https://symfony.com/doc/current/cookbook/doctrine/reverse_engineering.html
- *
  * @author Ryan Weaver <weaverryan@gmail.com>
  * @author Javier Eguiluz <javier.eguiluz@gmail.com>
  */
-class User implements UserInterface, PasswordAuthenticatedUserInterface, \Serializable
+#[ORM\Table(name: 'user')]
+#[ORM\Entity(repositoryClass: \App\Repository\UserRepository::class)]
+class User implements UserInterface, PasswordAuthenticatedUserInterface, \Serializable, \Stringable
 {
     /**
      * @var int
-     *
-     * @ORM\Id
-     * @ORM\GeneratedValue
-     * @ORM\Column(type="integer")
      */
+    #[ORM\Id]
+    #[ORM\GeneratedValue]
+    #[ORM\Column(type: 'integer')]
     private $id;
 
-    /**
-     * @var string
-     *
-     * @ORM\Column(type="string")
-     * @Assert\NotBlank()
-     */
-    private $fullName;
+    
+    #[ORM\Column(type: 'string')]
+    #[Assert\NotBlank]
+    private ?string $fullName = null;
 
-    /**
-     * @var string
-     *
-     * @ORM\Column(type="string", unique=true)
-     * @Assert\NotBlank()
-     * @Assert\Length(min=2, max=50)
-     */
-    private $username;
+    
+    #[ORM\Column(type: 'string', unique: true)]
+    #[Assert\NotBlank]
+    #[Assert\Length(min: 2, max: 50)]
+    private ?string $username = null;
 
-    /**
-     * @var string
-     *
-     * @ORM\Column(type="string", unique=true)
-     * @Assert\Email()
-     */
-    private $email;
+    
+    #[ORM\Column(type: 'string', unique: true)]
+    #[Assert\Email]
+    private ?string $email = null;
 
-    /**
-     * @var string
-     *
-     * @ORM\Column(type="string")
-     */
-    private $password;
+    #[ORM\Column(type: 'string')]
+    private ?string $password = null;
 
-    /**
-     * @var array
-     *
-     * @ORM\Column(type="json")
-     */
-    private $roles = [];
+    #[ORM\Column(type: 'json')]
+    private array $roles = [];
 
     public function getId(): ?int
     {
@@ -187,8 +162,8 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface, \Serial
         [$this->id, $this->username, $this->password] = unserialize($serialized, ['allowed_classes' => false]);
     }
 
-    public function __toString()
+    public function __toString(): string
     {
-        return $this->getFullName();
+        return (string) $this->getFullName();
     }
 }

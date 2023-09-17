@@ -8,11 +8,8 @@ use Twig\TwigFilter;
 
 class AppExtension extends AbstractExtension
 {
-    private $parser;
-
-    public function __construct(Markdown $parser)
+    public function __construct(private readonly \App\Utils\Markdown $parser)
     {
-        $this->parser = $parser;
     }
 
     /**
@@ -21,7 +18,7 @@ class AppExtension extends AbstractExtension
     public function getFilters(): array
     {
         return [
-            new TwigFilter('md2html', [$this, 'markdownToHtml'], ['is_safe' => ['html']]),
+            new TwigFilter('md2html', $this->markdownToHtml(...), ['is_safe' => ['html']]),
         ];
     }
 

@@ -16,7 +16,7 @@ use Doctrine\Persistence\ManagerRegistry;
  */
 class WeekRepository extends ServiceEntityRepository implements DashboardRepositoryInterface
 {
-    const NAME = "Week";
+    final public const NAME = "Week";
 
     public function __construct(ManagerRegistry $registry)
     {

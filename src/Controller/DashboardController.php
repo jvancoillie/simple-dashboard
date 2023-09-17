@@ -10,10 +10,8 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class DashboardController extends AbstractController
 {
-    /**
-     * @Route("/", name="homepage")
-     */
-    public function index(DashboardManager $dashboardManager)
+    #[Route(path: '/', name: 'homepage')]
+    public function index(DashboardManager $dashboardManager): \Symfony\Component\HttpFoundation\Response
     {
         $screens = $dashboardManager->getScreens();
 
@@ -22,10 +20,8 @@ class DashboardController extends AbstractController
         ]);
     }
 
-    /**
-     * @Route("/screen/{id}", name="dashboard_screen")
-     */
-    public function screen(DashboardManager $dashboardManager, Screen $screen )
+    #[Route(path: '/screen/{id}', name: 'dashboard_screen')]
+    public function screen(Screen $screen,DashboardManager $dashboardManager ): \Symfony\Component\HttpFoundation\Response
     {
         $date = new \DateTime();
         $widgets = $dashboardManager->getWidgetsByDateAndScreen($date, $screen);

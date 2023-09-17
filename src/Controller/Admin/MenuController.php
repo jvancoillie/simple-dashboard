@@ -12,14 +12,10 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
-/**
- * @Route("/admin/menu")
- */
+#[Route(path: '/admin/menu')]
 class MenuController extends AbstractController
 {
-    /**
-     * @Route("/", name="admin_menu_index", methods="GET")
-     */
+    #[Route(path: '/', name: 'admin_menu_index', methods: 'GET')]
     public function index(MenuRepository $menuRepository): Response
     {
         $form = $this->createForm(ImportType::class, null, ['action' => $this->generateUrl('admin_menu_import')]);
@@ -30,9 +26,7 @@ class MenuController extends AbstractController
         ]);
     }
 
-    /**
-     * @Route("/new", name="admin_menu_new", methods="GET|POST")
-     */
+    #[Route(path: '/new', name: 'admin_menu_new', methods: 'GET|POST')]
     public function new(Request $request): Response
     {
         $menu = new Menu();
@@ -53,9 +47,7 @@ class MenuController extends AbstractController
         ]);
     }
 
-    /**
-     * @Route("/{id}/edit", name="admin_menu_edit", methods="GET|POST")
-     */
+    #[Route(path: '/{id}/edit', name: 'admin_menu_edit', methods: 'GET|POST')]
     public function edit(Request $request, Menu $menu): Response
     {
         $form = $this->createForm(MenuType::class, $menu);
@@ -73,9 +65,7 @@ class MenuController extends AbstractController
         ]);
     }
 
-    /**
-     * @Route("/truncate", name="admin_menu_truncate", methods="POST")
-     */
+    #[Route(path: '/truncate', name: 'admin_menu_truncate', methods: 'POST')]
     public function truncate(Request $request, MenuRepository $menuRepository): Response
     {
         if ($this->isCsrfTokenValid('truncate', $request->request->get('_token'))) {
@@ -86,9 +76,7 @@ class MenuController extends AbstractController
         return $this->redirectToRoute('admin_menu_index');
     }
 
-    /**
-     * @Route("/{id}/delete", name="admin_menu_delete", methods="POST")
-     */
+    #[Route(path: '/{id}/delete', name: 'admin_menu_delete', methods: 'POST')]
     public function delete(Request $request, Menu $menu): Response
     {
         if ($this->isCsrfTokenValid('delete' . $menu->getId(), $request->request->get('_token'))) {
@@ -101,9 +89,7 @@ class MenuController extends AbstractController
     }
 
 
-    /**
-     * @Route("/import", name="admin_menu_import", methods="POST")
-     */
+    #[Route(path: '/import', name: 'admin_menu_import', methods: 'POST')]
     public function import(Request $request): Response
     {
         $form = $this->createForm(ImportType::class);
@@ -142,7 +128,7 @@ class MenuController extends AbstractController
 
 
                 $this->addFlash('success', 'fichier importé');
-            } catch (\Exception $e) {
+            } catch (\Exception) {
                 $this->addFlash('danger', 'Erreur lors de l\'import');
             }
         }

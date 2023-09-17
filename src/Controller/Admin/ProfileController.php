@@ -10,7 +10,6 @@ namespace App\Controller\Admin;
 
 use App\Form\ChangePasswordType;
 use App\Form\UserType;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -20,27 +19,22 @@ use Symfony\Component\Routing\Annotation\Route;
 /**
  * Controller used to manage current user.
  *
- * @Route("/admin/profile")
- * @IsGranted("ROLE_USER")
+ *
  * */
+#[Route(path: '/admin/profile')]
 class ProfileController extends AbstractController
 {
 
-    /**
-     * @Route("/", methods={"GET"}, name="admin_profile_index")
-     */
-    public function index(Request $request): Response
+    #[Route(path: '/', methods: ['GET'], name: 'admin_profile_index')]
+    public function index(): Response
     {
         $user = $this->getUser();
         $formUser = $this->createForm(UserType::class, $user, [
             'action' => $this->generateUrl('admin_profile_edit')
         ]);
-
         $formPassword = $this->createForm(ChangePasswordType::class, null,  [
             'action' => $this->generateUrl('admin_profile_change_password')
         ]);
-
-
         return $this->render('admin/profile/index.html.twig', [
             'user' => $user,
             'form_user' => $formUser->createView(),
@@ -48,9 +42,7 @@ class ProfileController extends AbstractController
         ]);
     }
 
-    /**
-     * @Route("/edit", methods={"GET", "POST"}, name="admin_profile_edit")
-     */
+    #[Route(path: '/edit', methods: ['GET', 'POST'], name: 'admin_profile_edit')]
     public function edit(Request $request): Response
     {
         $user = $this->getUser();
@@ -77,9 +69,7 @@ class ProfileController extends AbstractController
         ]);
     }
 
-    /**
-     * @Route("/change-password", methods={"GET", "POST"}, name="admin_profile_change_password")
-     */
+    #[Route(path: '/change-password', methods: ['GET', 'POST'], name: 'admin_profile_change_password')]
     public function changePassword(Request $request, UserPasswordHasherInterface $encoder): Response
     {
         $user = $this->getUser();

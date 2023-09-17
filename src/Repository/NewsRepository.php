@@ -16,7 +16,7 @@ use Doctrine\Persistence\ManagerRegistry;
  */
 class NewsRepository extends ServiceEntityRepository implements DashboardRepositoryInterface
 {
-    const NAME = "News";
+    final public const NAME = "News";
 
     public function __construct(ManagerRegistry $registry)
     {

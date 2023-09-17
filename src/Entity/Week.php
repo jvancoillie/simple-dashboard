@@ -6,37 +6,25 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
-/**
- * @ORM\Entity(repositoryClass="App\Repository\WeekRepository")
- */
+#[ORM\Entity(repositoryClass: \App\Repository\WeekRepository::class)]
 class Week implements WidgetInterface
 {
-    /**
-     * @ORM\Id()
-     * @ORM\GeneratedValue()
-     * @ORM\Column(type="integer")
-     */
+    #[ORM\Id]
+    #[ORM\GeneratedValue]
+    #[ORM\Column(type: 'integer')]
     private $id;
 
-    /**
-     * @ORM\Column(type="text")
-     */
+    #[ORM\Column(type: 'text')]
     private $content;
 
-    /**
-     * @ORM\Column(type="date")
-     */
+    #[ORM\Column(type: 'date')]
     private $startDate;
 
-    /**
-     * @ORM\Column(type="date")
-     */
+    #[ORM\Column(type: 'date')]
     private $endDate;
 
-    /**
-     * @ORM\ManyToMany(targetEntity="App\Entity\Screen")
-     */
-    private $screens;
+    #[ORM\ManyToMany(targetEntity: \App\Entity\Screen::class)]
+    private \Doctrine\Common\Collections\ArrayCollection|array $screens;
 
     public function __construct()
     {
@@ -56,10 +44,7 @@ class Week implements WidgetInterface
         return $this->content;
     }
 
-    /**
-     * @param mixed $content
-     */
-    public function setContent($content): void
+    public function setContent(mixed $content): void
     {
         $this->content = $content;
     }
@@ -72,10 +57,7 @@ class Week implements WidgetInterface
         return $this->startDate;
     }
 
-    /**
-     * @param mixed $startDate
-     */
-    public function setStartDate($startDate): void
+    public function setStartDate(mixed $startDate): void
     {
         $this->startDate = $startDate;
     }
@@ -88,10 +70,7 @@ class Week implements WidgetInterface
         return $this->endDate;
     }
 
-    /**
-     * @param mixed $endDate
-     */
-    public function setEndDate($endDate): void
+    public function setEndDate(mixed $endDate): void
     {
         $this->endDate = $endDate;
     }

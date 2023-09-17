@@ -19,21 +19,19 @@ use App\Repository\WeekRepository;
 
 class DashboardManager
 {
-    private $dashboardRepositories;
-    private $screenRepository;
+    private array $dashboardRepositories;
     /**
      * DashboardManager constructor.
      * @param $newsRepository
      * @param $birthdayRepository
      * @param $MenuRepository
      */
-    public function __construct(NewsRepository $newsRepository, BirthdayRepository $birthdayRepository, MenuRepository $menuRepository, WeekRepository $weekRepository, ScreenRepository $screenRepository)
+    public function __construct(NewsRepository $newsRepository, BirthdayRepository $birthdayRepository, MenuRepository $menuRepository, WeekRepository $weekRepository, private readonly \App\Repository\ScreenRepository $screenRepository)
     {
         $this->dashboardRepositories[$newsRepository->getName()] = $newsRepository;
         $this->dashboardRepositories[$birthdayRepository->getName()] = $birthdayRepository;
         $this->dashboardRepositories[$menuRepository->getName()] = $menuRepository;
         $this->dashboardRepositories[$weekRepository->getName()] = $weekRepository;
-        $this->screenRepository = $screenRepository;
     }
 
     public function getWidgetsByDateAndScreen(\DateTime $date, Screen $screen)

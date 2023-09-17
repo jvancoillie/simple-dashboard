@@ -43,19 +43,11 @@ class DeleteUserCommand extends Command
 {
     protected static $defaultName = 'app:delete-user';
 
-    /** @var SymfonyStyle */
-    private $io;
-    private $entityManager;
-    private $validator;
-    private $users;
+    private ?\Symfony\Component\Console\Style\SymfonyStyle $io = null;
 
-    public function __construct(EntityManagerInterface $em, Validator $validator, UserRepository $users)
+    public function __construct(private readonly \Doctrine\ORM\EntityManagerInterface $entityManager, private readonly \App\Utils\Validator $validator, private readonly \App\Repository\UserRepository $users)
     {
         parent::__construct();
-
-        $this->entityManager = $em;
-        $this->validator = $validator;
-        $this->users = $users;
     }
 
     /**
@@ -104,7 +96,7 @@ HELP
             '',
         ]);
 
-        $username = $this->io->ask('Username', null, [$this->validator, 'validateUsername']);
+        $username = $this->io->ask('Username', null, $this->validator->validateUsername(...));
         $input->setArgument('username', $username);
     }
 

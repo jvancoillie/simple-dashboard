@@ -6,32 +6,22 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
-/**
- * @ORM\Entity(repositoryClass="App\Repository\NewsRepository")
- */
+#[ORM\Entity(repositoryClass: \App\Repository\NewsRepository::class)]
 class News implements WidgetInterface
 {
-    /**
-     * @ORM\Id()
-     * @ORM\GeneratedValue()
-     * @ORM\Column(type="integer")
-     */
+    #[ORM\Id]
+    #[ORM\GeneratedValue]
+    #[ORM\Column(type: 'integer')]
     private $id;
 
-    /**
-     * @ORM\Column(type="text")
-     */
-    private $content;
+    #[ORM\Column(type: 'text')]
+    private ?string $content = null;
 
-    /**
-     * @ORM\Column(type="date")
-     */
-    private $publishAt;
+    #[ORM\Column(type: 'date')]
+    private ?\DateTimeInterface $publishAt = null;
 
-    /**
-     * @ORM\ManyToMany(targetEntity="App\Entity\Screen")
-     */
-    private $screens;
+    #[ORM\ManyToMany(targetEntity: \App\Entity\Screen::class)]
+    private \Doctrine\Common\Collections\ArrayCollection|array $screens;
 
     public function __construct()
     {
