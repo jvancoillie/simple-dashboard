@@ -8,20 +8,14 @@ use Twig\TwigFilter;
 
 class AppExtension extends AbstractExtension
 {
-    private $parser;
-
-    public function __construct(Markdown $parser)
+    public function __construct(private readonly Markdown $parser)
     {
-        $this->parser = $parser;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function getFilters(): array
     {
         return [
-            new TwigFilter('md2html', [$this, 'markdownToHtml'], ['is_safe' => ['html']]),
+            new TwigFilter('md2html', $this->markdownToHtml(...), ['is_safe' => ['html']]),
         ];
     }
 
@@ -32,5 +26,4 @@ class AppExtension extends AbstractExtension
     {
         return $this->parser->toHtml($content);
     }
-
 }

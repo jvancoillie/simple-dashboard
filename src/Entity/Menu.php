@@ -2,47 +2,36 @@
 
 namespace App\Entity;
 
+use App\Repository\MenuRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
-/**
- * @ORM\Entity(repositoryClass="App\Repository\MenuRepository")
- */
+#[ORM\Entity(repositoryClass: MenuRepository::class)]
 class Menu implements WidgetInterface
 {
-    /**
-     * @ORM\Id()
-     * @ORM\GeneratedValue()
-     * @ORM\Column(type="integer")
-     */
+    #[ORM\Id]
+    #[ORM\GeneratedValue]
+    #[ORM\Column(type: 'integer')]
     private $id;
 
-    /**
-     * @ORM\Column(type="text")
-     */
-    private $content;
+    #[ORM\Column(type: 'text')]
+    private ?string $content = null;
 
-    /**
-     * @ORM\Column(type="date")
-     */
-    private $publishAt;
+    #[ORM\Column(type: 'date')]
+    private \DateTime|\DateTimeInterface $publishAt;
 
-    /**
-     * @ORM\ManyToMany(targetEntity="App\Entity\Screen")
-     */
-    private $screens;
+    #[ORM\ManyToMany(targetEntity: Screen::class)]
+    private Collection $screens;
 
     /**
      * Menu constructor.
-     * @param $publishAt
      */
     public function __construct()
     {
         $this->publishAt = new \DateTime();
         $this->screens = new ArrayCollection();
     }
-
 
     public function getId(): ?int
     {
@@ -83,7 +72,7 @@ class Menu implements WidgetInterface
 
     public function addScreen(Screen ...$screens): self
     {
-        foreach ($screens as $screen){
+        foreach ($screens as $screen) {
             if (!$this->screens->contains($screen)) {
                 $this->screens[] = $screen;
             }

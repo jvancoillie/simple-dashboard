@@ -5,7 +5,7 @@ namespace App\Repository;
 use App\Entity\Menu;
 use App\Entity\Screen;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
-use Symfony\Bridge\Doctrine\RegistryInterface;
+use Doctrine\Persistence\ManagerRegistry;
 
 /**
  * @method Menu|null find($id, $lockMode = null, $lockVersion = null)
@@ -15,9 +15,9 @@ use Symfony\Bridge\Doctrine\RegistryInterface;
  */
 class MenuRepository extends ServiceEntityRepository implements DashboardRepositoryInterface
 {
-    const NAME = "Menu";
+    final public const NAME = 'Menu';
 
-    public function __construct(RegistryInterface $registry)
+    public function __construct(ManagerRegistry $registry)
     {
         parent::__construct($registry, Menu::class);
     }
@@ -41,13 +41,11 @@ class MenuRepository extends ServiceEntityRepository implements DashboardReposit
             ->delete()
             ->getQuery()
             ->getResult()
-            ;
+        ;
     }
 
     public function getName()
     {
         return self::NAME;
     }
-
-
 }

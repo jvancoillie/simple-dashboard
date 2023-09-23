@@ -43,24 +43,13 @@ class DeleteUserCommand extends Command
 {
     protected static $defaultName = 'app:delete-user';
 
-    /** @var SymfonyStyle */
-    private $io;
-    private $entityManager;
-    private $validator;
-    private $users;
+    private ?SymfonyStyle $io = null;
 
-    public function __construct(EntityManagerInterface $em, Validator $validator, UserRepository $users)
+    public function __construct(private readonly EntityManagerInterface $entityManager, private readonly Validator $validator, private readonly UserRepository $users)
     {
         parent::__construct();
-
-        $this->entityManager = $em;
-        $this->validator = $validator;
-        $this->users = $users;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     protected function configure(): void
     {
         $this
@@ -104,11 +93,11 @@ HELP
             '',
         ]);
 
-        $username = $this->io->ask('Username', null, [$this->validator, 'validateUsername']);
+        $username = $this->io->ask('Username', null, $this->validator->validateUsername(...));
         $input->setArgument('username', $username);
     }
 
-    protected function execute(InputInterface $input, OutputInterface $output): void
+    protected function execute(InputInterface $input, OutputInterface $output): int
     {
         $username = $this->validator->validateUsername($input->getArgument('username'));
 
@@ -128,5 +117,7 @@ HELP
         $this->entityManager->flush();
 
         $this->io->success(sprintf('User "%s" (ID: %d, email: %s) was successfully deleted.', $user->getUsername(), $userId, $user->getEmail()));
+
+        return Command::SUCCESS;
     }
 }

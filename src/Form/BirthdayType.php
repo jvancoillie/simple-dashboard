@@ -19,13 +19,13 @@ class BirthdayType extends AbstractType
     {
         $builder
             ->add('firstname', TextType::class, ['label' => 'birthday.firstname'])
-            ->add('lastname',TextType::class, ['label' => 'birthday.lastname'])
-            ->add('classroom',TextType::class, ['label' => 'birthday.classroom'])
-            ->add('screens',EntityType::class, [
+            ->add('lastname', TextType::class, ['label' => 'birthday.lastname'])
+            ->add('classroom', TextType::class, ['label' => 'birthday.classroom'])
+            ->add('screens', EntityType::class, [
                 'label' => 'screen.list',
                 'class' => Screen::class,
                 'multiple' => true,
-                'expanded' => true
+                'expanded' => true,
             ])
         ;
 
@@ -40,7 +40,7 @@ class BirthdayType extends AbstractType
                 'html5' => false,
                 'attr' => [
                     'class' => 'datepicker',
-                    'data-value' => $date
+                    'data-value' => $date,
                 ],
             ];
 

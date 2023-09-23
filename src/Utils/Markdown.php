@@ -4,8 +4,8 @@ namespace App\Utils;
 
 class Markdown
 {
-    private $parser;
-    private $purifier;
+    private readonly \Parsedown $parser;
+    private readonly \HTMLPurifier $purifier;
 
     public function __construct()
     {

@@ -4,7 +4,7 @@ namespace App\Repository;
 
 use App\Entity\Screen;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
-use Doctrine\Common\Persistence\ManagerRegistry;
+use Doctrine\Persistence\ManagerRegistry;
 
 /**
  * @method Screen|null find($id, $lockMode = null, $lockVersion = null)

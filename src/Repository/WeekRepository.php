@@ -6,7 +6,7 @@ use App\Entity\Menu;
 use App\Entity\Screen;
 use App\Entity\Week;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
-use Symfony\Bridge\Doctrine\RegistryInterface;
+use Doctrine\Persistence\ManagerRegistry;
 
 /**
  * @method Menu|null find($id, $lockMode = null, $lockVersion = null)
@@ -16,9 +16,9 @@ use Symfony\Bridge\Doctrine\RegistryInterface;
  */
 class WeekRepository extends ServiceEntityRepository implements DashboardRepositoryInterface
 {
-    const NAME = "Week";
+    final public const NAME = 'Week';
 
-    public function __construct(RegistryInterface $registry)
+    public function __construct(ManagerRegistry $registry)
     {
         parent::__construct($registry, Week::class);
     }
@@ -34,7 +34,7 @@ class WeekRepository extends ServiceEntityRepository implements DashboardReposit
             ->orderBy('week.id', 'ASC')
             ->getQuery()
             ->getResult()
-            ;
+        ;
     }
 
     public function truncate()
@@ -43,7 +43,7 @@ class WeekRepository extends ServiceEntityRepository implements DashboardReposit
             ->delete()
             ->getQuery()
             ->getResult()
-            ;
+        ;
     }
 
     public function getName()

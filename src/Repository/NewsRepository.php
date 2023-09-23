@@ -6,7 +6,7 @@ use App\Entity\Menu;
 use App\Entity\News;
 use App\Entity\Screen;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
-use Symfony\Bridge\Doctrine\RegistryInterface;
+use Doctrine\Persistence\ManagerRegistry;
 
 /**
  * @method Menu|null find($id, $lockMode = null, $lockVersion = null)
@@ -16,9 +16,9 @@ use Symfony\Bridge\Doctrine\RegistryInterface;
  */
 class NewsRepository extends ServiceEntityRepository implements DashboardRepositoryInterface
 {
-    const NAME = "News";
+    final public const NAME = 'News';
 
-    public function __construct(RegistryInterface $registry)
+    public function __construct(ManagerRegistry $registry)
     {
         parent::__construct($registry, News::class);
     }
@@ -34,7 +34,7 @@ class NewsRepository extends ServiceEntityRepository implements DashboardReposit
             ->orderBy('news.id', 'ASC')
             ->getQuery()
             ->getResult()
-            ;
+        ;
     }
 
     public function truncate()
@@ -43,7 +43,7 @@ class NewsRepository extends ServiceEntityRepository implements DashboardReposit
             ->delete()
             ->getQuery()
             ->getResult()
-            ;
+        ;
     }
 
     public function getName()

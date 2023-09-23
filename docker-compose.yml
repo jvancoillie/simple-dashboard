@@ -3,7 +3,7 @@ version: "3.4"
 services:
   php:
     image: ${IMAGES_PREFIX:-}app-php
-    restart: unless-stopped
+#    restart: unless-stopped
     volumes:
       - php_socket:/var/run/php
     healthcheck:
@@ -32,7 +32,7 @@ services:
       SERVER_NAME: ${SERVER_NAME:-localhost}, caddy:80
       MERCURE_PUBLISHER_JWT_KEY: ${CADDY_MERCURE_JWT_SECRET:-!ChangeThisMercureHubJWTSecretKey!}
       MERCURE_SUBSCRIBER_JWT_KEY: ${CADDY_MERCURE_JWT_SECRET:-!ChangeThisMercureHubJWTSecretKey!}
-    restart: unless-stopped
+#    restart: unless-stopped
     volumes:
       - php_socket:/var/run/php
       - caddy_data:/data
@@ -59,14 +59,11 @@ services:
       MYSQL_DATABASE: default
       MYSQL_USER: default
       MYSQL_PASSWORD: ${MYSQL_PASSWORD:-secret}
-      
-# Mercure is installed as a Caddy module, prevent the Flex recipe from installing another service
-###> symfony/mercure-bundle ###
-###< symfony/mercure-bundle ###
+    volumes:
+      - database_data:/var/lib/mysql
 
 volumes:
   php_socket:
   caddy_data:
   caddy_config:
-###> symfony/mercure-bundle ###
-###< symfony/mercure-bundle ###
+  database_data:

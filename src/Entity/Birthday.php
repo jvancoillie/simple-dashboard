@@ -6,44 +6,28 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
-/**
- * @ORM\Entity(repositoryClass="App\Repository\BirthdayRepository")
- */
+#[ORM\Entity(repositoryClass: \App\Repository\BirthdayRepository::class)]
 class Birthday implements WidgetInterface
 {
-    /**
-     * @ORM\Id()
-     * @ORM\GeneratedValue()
-     * @ORM\Column(type="integer")
-     */
+    #[ORM\Id]
+    #[ORM\GeneratedValue]
+    #[ORM\Column(type: 'integer')]
     private $id;
 
-    /**
-     * @ORM\Column(type="string", length=255)
-     */
-    private $firstname;
+    #[ORM\Column(type: 'string', length: 255)]
+    private ?string $firstname = null;
 
-    /**
-     * @ORM\Column(type="string", length=255)
-     */
-    private $lastname;
+    #[ORM\Column(type: 'string', length: 255)]
+    private ?string $lastname = null;
 
-    /**
-     * @ORM\Column(type="date")
-     */
-    private $date;
+    #[ORM\Column(type: 'date')]
+    private ?\DateTimeInterface $date = null;
 
-    /**
-     * @var $classroom
-     *
-     * @ORM\Column(type="string")
-     */
+    #[ORM\Column(type: 'string')]
     private $classroom;
 
-    /**
-     * @ORM\ManyToMany(targetEntity="App\Entity\Screen")
-     */
-    private $screens;
+    #[ORM\ManyToMany(targetEntity: Screen::class)]
+    private Collection $screens;
 
     public function __construct()
     {
@@ -101,18 +85,12 @@ class Birthday implements WidgetInterface
         return sprintf('%s %s. (%s)', $this->firstname, substr($this->lastname, 0, 1), $this->classroom);
     }
 
-    /**
-     * @return mixed
-     */
     public function getClassroom()
     {
         return $this->classroom;
     }
 
-    /**
-     * @param mixed $classroom
-     */
-    public function setClassroom($classroom): void
+    public function setClassroom(mixed $classroom): void
     {
         $this->classroom = $classroom;
     }
@@ -127,7 +105,7 @@ class Birthday implements WidgetInterface
 
     public function addScreen(Screen ...$screens): self
     {
-        foreach ($screens as $screen){
+        foreach ($screens as $screen) {
             if (!$this->screens->contains($screen)) {
                 $this->screens[] = $screen;
             }
@@ -144,6 +122,4 @@ class Birthday implements WidgetInterface
 
         return $this;
     }
-
-
 }

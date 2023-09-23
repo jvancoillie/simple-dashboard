@@ -5,7 +5,7 @@ namespace App\Repository;
 use App\Entity\Birthday;
 use App\Entity\Screen;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
-use Symfony\Bridge\Doctrine\RegistryInterface;
+use Doctrine\Persistence\ManagerRegistry;
 
 /**
  * @method Birthday|null find($id, $lockMode = null, $lockVersion = null)
@@ -15,9 +15,9 @@ use Symfony\Bridge\Doctrine\RegistryInterface;
  */
 class BirthdayRepository extends ServiceEntityRepository implements DashboardRepositoryInterface
 {
-    const NAME = "Birthday";
+    final public const NAME = 'Birthday';
 
-    public function __construct(RegistryInterface $registry)
+    public function __construct(ManagerRegistry $registry)
     {
         parent::__construct($registry, Birthday::class);
     }
@@ -40,10 +40,10 @@ class BirthdayRepository extends ServiceEntityRepository implements DashboardRep
 
     public function truncate()
     {
-       return $this->createQueryBuilder('birthday')
-            ->delete()
-            ->getQuery()
-            ->getResult()
+        return $this->createQueryBuilder('birthday')
+             ->delete()
+             ->getQuery()
+             ->getResult()
         ;
     }
 
@@ -51,5 +51,4 @@ class BirthdayRepository extends ServiceEntityRepository implements DashboardRep
     {
         return self::NAME;
     }
-
 }

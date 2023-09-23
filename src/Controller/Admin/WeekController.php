@@ -10,22 +10,16 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
-/**
- * @Route("/admin/week")
- */
+#[Route(path: '/admin/week')]
 class WeekController extends AbstractController
 {
-    /**
-     * @Route("/", name="admin_week_index", methods="GET")
-     */
+    #[Route(path: '/', name: 'admin_week_index', methods: 'GET')]
     public function index(WeekRepository $weekRepository): Response
     {
         return $this->render('admin/week/index.html.twig', ['weeks' => $weekRepository->findAll()]);
     }
 
-    /**
-     * @Route("/new", name="admin_week_new", methods="GET|POST")
-     */
+    #[Route(path: '/new', name: 'admin_week_new', methods: 'GET|POST')]
     public function new(Request $request): Response
     {
         $week = new Week();
@@ -46,9 +40,7 @@ class WeekController extends AbstractController
         ]);
     }
 
-    /**
-     * @Route("/{id}/edit", name="admin_week_edit", methods="GET|POST")
-     */
+    #[Route(path: '/{id}/edit', name: 'admin_week_edit', methods: 'GET|POST')]
     public function edit(Request $request, Week $week): Response
     {
         $form = $this->createForm(WeekType::class, $week);
@@ -66,9 +58,7 @@ class WeekController extends AbstractController
         ]);
     }
 
-    /**
-     * @Route("/truncate", name="admin_week_truncate", methods="DELETE")
-     */
+    #[Route(path: '/truncate', name: 'admin_week_truncate', methods: 'POST')]
     public function truncate(Request $request, WeekRepository $weekRepository): Response
     {
         if ($this->isCsrfTokenValid('truncate', $request->request->get('_token'))) {
@@ -79,9 +69,7 @@ class WeekController extends AbstractController
         return $this->redirectToRoute('admin_week_index');
     }
 
-    /**
-     * @Route("/{id}/delete", name="admin_week_delete", methods="DELETE")
-     */
+    #[Route(path: '/{id}/delete', name: 'admin_week_delete', methods: 'POST')]
     public function delete(Request $request, Week $week): Response
     {
         if ($this->isCsrfTokenValid('delete'.$week->getId(), $request->request->get('_token'))) {
