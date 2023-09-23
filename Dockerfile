@@ -5,7 +5,7 @@ FROM php:8.1-fpm-alpine AS php_upstream
 FROM mlocati/php-extension-installer:2 AS php_extension_installer_upstream
 FROM composer/composer:2-bin AS composer_upstream
 FROM caddy:2-alpine AS caddy_upstream
-FROM node:10-alpine as node_upstream
+FROM node:14-alpine as node_upstream
 
 FROM node_upstream AS symfony_node
 

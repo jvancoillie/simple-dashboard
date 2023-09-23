@@ -29,7 +29,7 @@ Encore
     .autoProvideVariables({
         moment: 'moment'
     })
-    .addPlugin(new webpack.IgnorePlugin(/^\.\/locale$/, /moment$/))
+    //.addPlugin(new webpack.IgnorePlugin(/^\.\/locale$/, /moment$/))
     .copyFiles({
         from: './assets/images',
     })
