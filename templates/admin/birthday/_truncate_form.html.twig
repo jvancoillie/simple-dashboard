@@ -1,7 +1,0 @@
-<form method="post" action="{{ path('admin_birthday_truncate') }}" onsubmit="return confirm('Are you sure you want to truncate this table?');">
-    <input type="hidden" name="_method" value="DELETE">
-    <input type="hidden" name="_token" value="{{ csrf_token('truncate') }}">
-    <button class="btn btn-sm btn-outline-danger">
-        <i class="fas fa-eraser"></i>
-        {{ 'action.truncate'|trans }}</button>
-</form>

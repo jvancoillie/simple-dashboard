@@ -20,18 +20,7 @@ services:
             - '../src/DependencyInjection/'
             - '../src/Entity/'
             - '../src/Kernel.php'
-            - '../src/Migrations/'
 
     # add more service definitions when explicit configuration is needed
     # please note that last definitions always *replace* previous ones
 
-    app.menu_builder:
-        class: App\Menu\MenuBuilder
-        arguments: ["@knp_menu.factory"]
-
-    app.admin_sidebar_event:
-        class: Knp\Menu\MenuItem # the service definition requires setting the class
-        factory: ["@app.menu_builder", createAdminSidebarEventMenu]
-        arguments: ["@request_stack"]
-        tags:
-        - { name: knp_menu.menu, alias: admin_sidebar_event } # The alias is what is used to retrieve the menu

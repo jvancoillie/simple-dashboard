@@ -1,10 +1,11 @@
 {% extends 'base.html.twig' %}
 
 {% block title %}Dashboard{% endblock %}
+
 {% block body_id 'homepage' %}
 
 {% block stylesheets %}
-    {{ encore_entry_link_tags('css/homepage') }}
+    {{ encore_entry_link_tags('homepage') }}
 {% endblock %}
 
 {% block header %}{% endblock header %}
@@ -12,16 +13,14 @@
 {% block body %}
     <div class="demo">
         <div class="container">
-            <div class="row text-center">
-                <h1 class="heading-title">Liste des Écrans</h1>
-            </div>
+            <h1 class="heading-title">Liste des Écrans</h1>
 
-            <div class="row">
+            <div class="card-container">
                 {% for screen in screens %}
-                    <div class="col-md-4 col-sm-6">
-                        <a href="{{ path('dashboard_screen', {id: screen.id }) }}" class="serviceBox-link">
-                            <div class="serviceBox">
-                                <div class="service-icon">
+                    <div class="card">
+                        <a href="{{ path('dashboard_screen', {id: screen.id }) }}" class="screen-box-link">
+                            <div class="screen-box">
+                                <div class="screen-icon">
                                     <i class="fa fa-desktop"></i>
                                 </div>
                                 <h3 class="title">{{ screen.name }}</h3>
@@ -32,7 +31,7 @@
                         </a>
                     </div>
                 {% endfor %}
-
+                <!-- Add more cards here -->
             </div>
             <div class="circle1"></div>
             <div class="circle2"></div>
@@ -45,20 +44,18 @@
         </div>
 
     </div>
-    <a href="{{ path('admin_dashboard') }}">
-    <div class="template-corner template-top template-left">
-        <div class="template-title">
-
-                Admin<i class="template-icon fa fa-cogs"></i>
-
-
+    <a href="{{ path('admin') }}">
+        <div class="template-corner template-top template-left">
+            <div class="template-title">
+                Admin
+                <i class="template-icon fa fa-cogs"></i>
+            </div>
         </div>
-    </div>
     </a>
 
 {% endblock %}
 
 
 {% block javascripts %}
-
+    {{ encore_entry_script_tags('homepage') }}
 {% endblock %}

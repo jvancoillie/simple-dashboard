@@ -15,13 +15,15 @@ class SecurityController extends AbstractController
         if ($this->getUser()) {
             return $this->redirectToRoute('homepage');
         }
-
-        // get the login error if there is one
         $error = $authenticationUtils->getLastAuthenticationError();
-        // last username entered by the user
         $lastUsername = $authenticationUtils->getLastUsername();
 
-        return $this->render('security/login.html.twig', ['last_username' => $lastUsername, 'error' => $error]);
+        return $this->render('@EasyAdmin/page/login.html.twig', [
+            // parameters usually defined in Symfony login forms
+            'error' => $error,
+            'last_username' => $lastUsername,
+            'csrf_token_intention' => 'authenticate',
+        ]);
     }
 
     #[Route(path: '/logout', name: 'app_logout')]
