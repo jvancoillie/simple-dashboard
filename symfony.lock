@@ -89,13 +89,13 @@
     "doctrine/persistence": {
         "version": "v1.1.0"
     },
-    "easycorp/easy-log-handler": {
-        "version": "1.0",
+    "easycorp/easyadmin-bundle": {
+        "version": "4.7",
         "recipe": {
             "repo": "github.com/symfony/recipes",
-            "branch": "master",
-            "version": "1.0",
-            "ref": "70062abc2cd58794d2a90274502f81b55cd9951b"
+            "branch": "main",
+            "version": "3.0",
+            "ref": "b131e6cbfe1b898a508987851963fff485986285"
         }
     },
     "erusev/parsedown": {
@@ -115,12 +115,6 @@
         "files": [
             ".php-cs-fixer.dist.php"
         ]
-    },
-    "knplabs/knp-menu": {
-        "version": "2.3.0"
-    },
-    "knplabs/knp-menu-bundle": {
-        "version": "v2.2.1"
     },
     "league/csv": {
         "version": "9.1.4"
@@ -537,6 +531,18 @@
     },
     "twig/twig": {
         "version": "v2.5.0"
+    },
+    "vich/uploader-bundle": {
+        "version": "2.2",
+        "recipe": {
+            "repo": "github.com/symfony/recipes-contrib",
+            "branch": "main",
+            "version": "1.13",
+            "ref": "1b3064c2f6b255c2bc2f56461aaeb76b11e07e36"
+        },
+        "files": [
+            "config/packages/vich_uploader.yaml"
+        ]
     },
     "webmozart/assert": {
         "version": "1.3.0"

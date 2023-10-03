@@ -1,0 +1,69 @@
+.weather-content {
+    display: flex;
+    margin-bottom: 4%;
+}
+
+.ow-ico {
+    line-height: 1.1em;
+}
+
+.ow-widget {
+    //font-family: "Helvetica Neue", Helvetica, sans-serif;
+    font-size: 16px;
+    color: #FFFFFF;
+    display: flex;
+    flex-direction: column;
+    padding: 15px;
+    border-radius: 25px;
+    background-color: rgba(24, 123, 200, 0.8);
+    backdrop-filter: blur(30px);
+    box-shadow: 0 0 80px rgba(0, 0, 0, 0.2);
+    overflow: hidden;
+    width: 100%;
+}
+
+.ow-forecast {
+    display: flex;
+}
+
+.ow-city-name {
+    letter-spacing: 1px;
+    line-height: 1.111em;
+    font-weight: bold;
+    font-size: 24px;
+}
+
+.ow-ico-current {
+    font-size: 80px;
+    width: 1.1em;
+    padding: 10px 0;
+}
+
+.ow-temp-current {
+    font-size:60px;
+    margin: 0 10%;
+}
+
+.ow-current-desc {
+    line-height: 1.5em;
+}
+
+.ow-forecast-item {
+    text-align: center;
+    border-right:1px solid white;
+    flex: 1;
+    &:last-child {
+        border-right: 0;
+    }
+
+    .ow-ico-forecast {
+        font-size: 30px;
+        position: relative;
+        margin: 10px 0;
+    }
+
+    .ow-forecast-temp span {
+        display: inline-block;
+        margin: 0 5px;
+    }
+}

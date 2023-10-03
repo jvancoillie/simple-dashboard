@@ -1,0 +1,37 @@
+.card {
+    //font-family: "Helvetica Neue", Helvetica, sans-serif;
+    font-size: 16px;
+    display: flex;
+    flex-direction: column;
+    color: #333;
+    border-radius: 25px;
+    background-color: rgba(255, 255, 255, 0.8);
+    backdrop-filter: blur(30px);
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+    overflow: hidden;
+    width: 100%;
+
+    &.card-blue {
+        background-color: rgba(24, 123, 200, 0.8);
+        color: #FFFFFF;
+    }
+
+    &.card-green {
+        background-color: rgb(158, 216, 78, 0.8);
+        color: #FFFFFF;
+    }
+    &.card-orange {
+        background-color: rgb(254, 196, 69, 0.8);
+        color: #FFFFFF;
+    }
+
+    .card-title{
+        margin: 0 0 .75rem 0;
+        font-size: 1.25rem;
+    }
+    .card-content {
+        padding: 1.25rem;
+    }
+}
+
+

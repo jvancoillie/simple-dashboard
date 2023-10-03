@@ -1,128 +1,104 @@
 {% extends 'base.html.twig' %}
 
 {% block title %}Dashboard{% endblock %}
-{% block body_id 'dashboard' %}
+{% block body_id 'screen' %}
 {% block meta %}
     <meta http-equiv="refresh" content="300">
 {% endblock meta %}
 
 {% block stylesheets %}
-    {{ encore_entry_link_tags('css/app') }}
+    {{ encore_entry_link_tags('screen') }}
 {% endblock %}
+
 {% block header %}{% endblock header %}
+
 {% block body %}
 
+    <div class="wrapper">
+        <header>
+            <div>{{ 'now'|format_datetime('none', 'none', pattern="EEEE d MMMM y") }}</div>
+            <img src="https://www.laprovidence-poitiers.fr/templates/yootheme/cache/La%20salle%20Poitiers_logo-9f8502e1.webp" alt="">
+        </header>
+        <main>
+            <div class="tile tile-1">
+                <div class="swiper mySwiper">
+                    <div class="swiper-wrapper">
+                        {% for event in widgets.News %}
+                        <div class="swiper-slide">
+                            <div class="text-content">
+                            {{ event.content|md2html }}
+                            </div>
+                        </div>
+                        {% endfor %}
 
-    <div class="d-flex h-100 flex-wrap p-1">
-        <div class="d-flex flex-column w-75 h-100">
-            <div class="d-flex h-50">
-                <div class="widget w-100">
-                    <div class="content  d-flex idea">
-                    <div class="filter d-flex flex-column">
-                        <div class=" menu-details overflow-hidden flex-grow-1">
-                            <h1 class="text-uppercase">{{ 'dashboard.information.title'|trans }}</h1>
-                            <div class="separator"></div>
-                            <div class="card-text h-100 overflow-auto">
-                                {% for event in widgets.News %}
-                                    {{ event.content|md2html }}
-                                {% else %}
-                                    <p>Aucune Information</p>
+                        {% for event in widgets.Menu %}
+                            <div class="swiper-slide">
+                                <img src="{{ vich_uploader_asset(event) }}" alt="image menu">
+                            </div>
+                        {% endfor %}
+
+                    </div>
+                    <div class="swiper-pagination"></div>
+                </div>
+            </div>
+            <div class="tile tile-2">
+                <div class="card card-blue">
+                    <div class="card-content">
+                        <h5 class="card-title ow-city-name"></h5>
+                        <div class="weather-content">
+                            <div class="wi ow-ico ow-ico-current pull-left"></div>
+                            <div class="ow-temp-current pull-left"></div>
+                            <div class="ow-current-desc pull-left">
+                                <div>Pression: <span class="ow-pressure"></span></div>
+                                <div>Humidité: <span class="ow-humidity"></span></div>
+                                <div>Vent: <span class="ow-wind"></span></div>
+                            </div>
+                        </div>
+                        <div class="ow-forecast">
+
+                        </div>
+                    </div>
+
+                </div>
+
+
+            </div>
+            <div class="tile tile-3 birthday">
+                <div class="card card-green">
+                    <div class="card-content">
+                        <h5 class="card-title">{{ 'dashboard.birthday.title'|trans }}</h5>
+                        {% if widgets.Birthday|length %}
+                            <ul>
+                                {% for event in widgets.Birthday %}
+                                    <li>
+                                        {{ event.content|md2html }}
+                                    </li>
                                 {% endfor %}
+                            </ul>
+                        {% else %}
+                            <div class="h-50 align-items-center d-flex justify-content-center">
+                                <div class="empty-state">Aucun</div>
                             </div>
-                        </div>
-                        <div id="week" class="w-100 text-center  justify-content-between p-2">
-                            {% for event in widgets.Week %}
-                                {{ event.content|md2html }}
-                            {% endfor %}
-                        </div>
+                        {% endif %}
                     </div>
+                </div>
 
-                    </div>
-                </div>
             </div>
-            <div class="d-flex h-50 mh-50">
-                <div class="widget w-25">
-                    <div class="content calendar ">
-                        <div class="clock mt-3">
-                            <div class="hour-markers">
-                                <div class="hour-marker"></div>
-                                <div class="hour-marker"></div>
-                                <div class="hour-marker"></div>
-                                <div class="hour-marker"></div>
-                                <div class="hour-marker"></div>
-                                <div class="hour-marker"></div>
-                            </div>
-                            <div id="hour"></div>
-                            <div id="min"></div>
-                            <div id="sec"></div>
-                        </div>
-                        <div class="d-flex flex-column mt-3 date">
-                            <h5 class="w-100  text-center">{{ 'now'|format_datetime('none', 'none', pattern="dd") }}</h5>
-                            <div id="month" class="w-100 text-center ">
-                                {{ 'now'|format_datetime('none', 'none',pattern="MMMM") }}</div>
-                        </div>
-                    </div>
-                </div>
-                <div class="widget w-50">
-                    <div class="content menu d-flex">
+        </main>
+        <footer>
 
-                        <div class="menu-details filter w-100">
-                            <h1 class="text-center">{{ 'dashboard.menu.title'|trans }}</h1>
-                            <div class="separator"></div>
-                            <div id="carouselExampleSlidesOnly" class="carousel slide" data-ride="carousel">
-                                <div class="carousel-inner">
-                                    {% for event in widgets.Menu %}
-                                        <div class="carousel-item description {% if loop.first %} active {% endif %}">
-                                            <div class="w-100 d-block">
-                                                {{ event.content|md2html }}
-                                            </div>
-                                        </div>
-                                    {% else %}
-                                        <div class="description">Aucun menu</div>
-                                    {% endfor %}
-                                </div>
-                            </div>
-                            <div class="elior"></div>
-                        </div>
-                    </div>
-                </div>
-                <div class="widget w-25">
-                    <div class="content">
-                        <div id="cards" class="weather-card">
-                        </div>
-                    </div>
-                </div>
+            <div>
+                {% for event in widgets.Week %}
+                    {{ event.content|md2html }}
+                {% endfor %}
             </div>
-        </div>
-        <div class="d-flex w-25">
-            <div class="widget">
-                <div class="content cake birthday">
-                            <h1 class="text-center title"> {{ 'dashboard.birthday.title'|trans }}</h1>
-                            <div class="separator"></div>
-                            {% if widgets.Birthday|length %}
-                                <ul>
-                                    {% for event in widgets.Birthday %}
-                                        <li>
-                                            {{ event.content|md2html }}
-                                        </li>
-                                    {% endfor %}
-                                </ul>
-                            {% else %}
-                                <div class="h-50 align-items-center d-flex justify-content-center">
-                                    <div class="empty-state">Aucun</div>
-                                </div>
-                            {% endif %}
-
-                </div>
-            </div>
-        </div>
+            <div id="currentTime"></div>
+        </footer>
     </div>
 
 
+{% endblock %}
 
-
-
-
-
-
+{% block javascripts %}
+    {{ encore_entry_script_tags('screen') }}
 {% endblock %}

@@ -28,7 +28,7 @@ class MenuRepository extends ServiceEntityRepository implements DashboardReposit
             ->innerJoin('menu.screens', 'screen')
             ->andWhere('screen = :screen')
             ->setParameter('screen', $screen)
-            ->andWhere('menu.publishAt = :date')
+            ->andWhere(':date BETWEEN menu.startDate and menu.endDate')
             ->setParameter('date', $date->format('Y-m-d'))
             ->orderBy('menu.id', 'ASC')
             ->getQuery()
