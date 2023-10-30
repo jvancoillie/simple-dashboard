@@ -18,11 +18,14 @@ class News implements WidgetInterface
     #[ORM\Column(type: 'text')]
     private ?string $content = null;
 
-    #[ORM\Column(type: 'date')]
-    private ?\DateTimeInterface $publishAt = null;
-
     #[ORM\ManyToMany(targetEntity: Screen::class)]
     private Collection $screens;
+
+    #[ORM\Column(type: 'date')]
+    private $startDate;
+
+    #[ORM\Column(type: 'date')]
+    private $endDate;
 
     public function __construct()
     {
@@ -46,16 +49,24 @@ class News implements WidgetInterface
         return $this;
     }
 
-    public function getPublishAt(): ?\DateTimeInterface
+    public function getStartDate()
     {
-        return $this->publishAt;
+        return $this->startDate;
     }
 
-    public function setPublishAt(\DateTimeInterface $publishAt): self
+    public function setStartDate(mixed $startDate): void
     {
-        $this->publishAt = $publishAt;
+        $this->startDate = $startDate;
+    }
 
-        return $this;
+    public function getEndDate()
+    {
+        return $this->endDate;
+    }
+
+    public function setEndDate(mixed $endDate): void
+    {
+        $this->endDate = $endDate;
     }
 
     /**
