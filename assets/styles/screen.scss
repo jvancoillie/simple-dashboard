@@ -50,7 +50,7 @@ body, html {
 header, footer {
     background-color: white;
     display: flex;
-    font-size: 60px;
+    font-size: 70px;
     justify-content: space-between;
     padding: 20px;
     color: #0d0a46;
@@ -73,4 +73,8 @@ header, footer {
             margin: 24px 0;
         }
     }
+}
+
+#currentTime {
+    width: 300px;
 }
