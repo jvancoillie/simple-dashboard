@@ -29,7 +29,7 @@ class NewsRepository extends ServiceEntityRepository implements DashboardReposit
             ->innerJoin('news.screens', 'screen')
             ->andWhere('screen = :screen')
             ->setParameter('screen', $screen)
-            ->andWhere('news.publishAt = :date')
+            ->andWhere(':date BETWEEN news.startDate and news.endDate')
             ->setParameter('date', $date->format('Y-m-d'))
             ->orderBy('news.id', 'ASC')
             ->getQuery()

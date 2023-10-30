@@ -42,5 +42,6 @@ services:
          protocol: tcp
 #      command: 'sh -c "yarn install; yarn run watch"'
 
-###> symfony/mercure-bundle ###
-###< symfony/mercure-bundle ###
+  database:
+    ports:
+      - 3306:3306

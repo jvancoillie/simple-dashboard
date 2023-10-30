@@ -19,7 +19,8 @@ class NewsCrudController extends AbstractCrudController
     {
         return [
             TextEditorField::new('content'),
-            DateField::new('publishAt'),
+            DateField::new('startDate'),
+            DateField::new('endDate'),
             AssociationField::new('screens'),
         ];
     }

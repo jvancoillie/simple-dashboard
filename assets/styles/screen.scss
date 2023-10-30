@@ -11,7 +11,7 @@
     src: url("../font/Manrope-VariableFont_wght.ttf") format("truetype");
 }
 
-p{
+p {
     margin: 0 0 1rem 0;
 }
 
@@ -24,7 +24,7 @@ p{
     color: inherit;
 }
 
-.date{
+.date {
     display: flex;
     width: 100%;
     justify-content: space-between;
@@ -38,7 +38,7 @@ body, html {
     height: 100%;
     margin: 0;
     padding: 0;
-    background-color: #f7f8fc;
+    background-color: #f3f4f7;
 }
 
 .wrapper {
@@ -47,16 +47,22 @@ body, html {
     min-height: 100vh;
 }
 
+main {
+    position: relative;
+}
+
 header, footer {
-    background-color: white;
+    background-color: #f7f8fc;
     display: flex;
-    font-size: 60px;
+    font-size: 70px;
     justify-content: space-between;
-    padding: 20px;
+    padding: 10px 20px;
     color: #0d0a46;
     font-weight: 700;
     text-transform: uppercase;
     margin: 0;
+    z-index: 1;
+
     p {
         margin: 0;
     }
@@ -69,8 +75,45 @@ header, footer {
         padding: 4px 0;
         font-weight: 300;
         font-size: 2rem;
+
         li {
             margin: 24px 0;
         }
+    }
+}
+
+#currentTime {
+    width: 300px;
+    text-align: left;
+}
+
+#main-logo {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    img {
+        height: 80px;
+    }
+}
+
+#left-logo {
+    position: absolute;
+    opacity: 0.3;
+    left: -180px;
+    bottom: -150px;
+    z-index: 0;
+
+    img {
+        width: 500px;
+    }
+}
+#right-logo {
+    position: absolute;
+    opacity: 0.3;
+    z-index: 0;
+    right: -450px;
+    top: -350px;
+    img {
+        width: 1500px;
     }
 }
