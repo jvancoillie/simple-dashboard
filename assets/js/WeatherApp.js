@@ -88,7 +88,6 @@ class WeatherApp {
       const forecast = data.list[i];
       const forecastItem = document.createElement('div');
       forecastItem.classList.add('ow-forecast-item');
-      console.log(forecast)
       const date = new Date(forecast.dt * 1000);
       const day = date.toLocaleDateString('fr-FR', { weekday: 'long' });
       const temp = forecast.temp.day.toFixed(0);

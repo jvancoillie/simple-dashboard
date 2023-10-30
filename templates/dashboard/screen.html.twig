@@ -3,7 +3,7 @@
 {% block title %}Dashboard{% endblock %}
 {% block body_id 'screen' %}
 {% block meta %}
-    <meta http-equiv="refresh" content="300">
+{#    <meta http-equiv="refresh" content="300">#}
 {% endblock meta %}
 
 {% block stylesheets %}
@@ -17,7 +17,9 @@
     <div class="wrapper">
         <header>
             <div>{{ 'now'|format_datetime('none', 'none', pattern="EEEE d MMMM y") }}</div>
-            <img src="https://www.laprovidence-poitiers.fr/templates/yootheme/cache/La%20salle%20Poitiers_logo-9f8502e1.webp" alt="">
+            <div id="main-logo">
+                <img  src="{{ asset('logo/main-logo.webp') }}" alt="">
+            </div>
         </header>
         <main>
             <div class="tile tile-1">
@@ -84,9 +86,14 @@
                 </div>
 
             </div>
+            <div id="left-logo">
+                <img class="el-image" alt="" src="{{ asset('logo/etoilelapro-500.webp') }}">
+            </div>
+            <div id="right-logo">
+                <img class="el-image" alt="" src="{{ asset('logo/etoilelapro-2-r1800.webp') }}">
+            </div>
         </main>
         <footer>
-
             <div>
                 {% for event in widgets.Week %}
                     {{ event.content|md2html }}
